@@ -1,0 +1,2944 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/24/2018 3:42:13 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PRINT"
+  DTS:CreatorName="PRINT\Administrator"
+  DTS:DTSID="{CBFDEABF-D2D4-4C1F-8B9C-1C961B89323C}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.107"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="LoadHistoricFBHP ESP"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="58"
+  DTS:VersionGUID="{8920CD21-719F-4019-9F46-A70A382CF5CE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{E0F67441-E83D-4778-9264-C9471231880A}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Administrator\Documents\ProductionAccounting\PressureData\ESP Test\E-10ST ESP Pressure Plot.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 1]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{2f94a245-52c2-4a5a-833c-235af4fecaf7}"
+      DTS:ObjectName="Excel Connection Manager 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Administrator\Documents\ProductionAccounting\PressureData\ESP Test\E-11ST2 ESP Pressure Plot.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 2]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{d642d14f-fa25-4d7c-8937-784d4b4695a4}"
+      DTS:ObjectName="Excel Connection Manager 2">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Administrator\Documents\ProductionAccounting\PressureData\ESP Test\E-14 ST1 ESP Pressure_Plot.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 3]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{5d81d38a-e59d-4a4f-a430-e9ccf55fc0fd}"
+      DTS:ObjectName="Excel Connection Manager 3">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Administrator\Documents\ProductionAccounting\PressureData\ESP Test\E-25 log.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 4]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{e91bceef-2ae9-492b-b58c-2c26041f86e7}"
+      DTS:ObjectName="Excel Connection Manager 4">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Administrator\Documents\ProductionAccounting\PressureData\ESP Test\E-26 ESP Pressure Plot.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 5]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{df0ec8a7-1c70-4683-bfd5-501d76c86aa3}"
+      DTS:ObjectName="Excel Connection Manager 5">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Administrator\Documents\ProductionAccounting\PressureData\ESP Test\E-26ST ESP Pressure Plot.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 6]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{e18ec595-db45-4665-8704-699489c1a6c0}"
+      DTS:ObjectName="Excel Connection Manager 6">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Administrator\Documents\ProductionAccounting\PressureData\ESP Test\E-44 ESP Pressure Plot.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.ERAS.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{3422E587-A41C-4FE4-9698-92DA519D6E6F}"
+      DTS:ObjectName="localhost.ERAS.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=10.130.64.115;User ID=sa;Initial Catalog=ERAS;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"></DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="C:\Users\Administrator\source\repos\ERASDataMigration\ERASDataMigration\PackageConfig.dtsConfig"
+      DTS:ConfigurationType="1"
+      DTS:CreationName=""
+      DTS:DTSID="{D92B89C3-9005-49BB-87CF-E5186E4B520F}"
+      DTS:ObjectName="Configuration 1" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C94A3B7E-BC69-463D-9DD8-E8AA530A2A1E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ArchiveFolder">
+      <DTS:VariableValue
+        DTS:DataType="8">\\farmhost001\DailyReportArchive</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F78F2B44-0779-4B69-A335-20115D8FD9C7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Filename">
+      <DTS:VariableValue
+        DTS:DataType="8">\EBOKDailyReport</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AEAFFF39-D252-4B80-9CD9-17FA5D44DC09}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="RIGHT(&quot;0&quot; + (DT_STR, 2, 1252) DATEPART(&quot;dd&quot; , GETDATE()), 2) + &quot;-&quot; + RIGHT(&quot;0&quot; + (DT_STR, 2, 1252) DATEPART(&quot;mm&quot; , GETDATE()), 2) + &quot;-&quot; +  (DT_STR, 4, 1252) DATEPART(&quot;yy&quot; , GETDATE()) + &quot;.xlsx&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FilenameAdd">
+      <DTS:VariableValue
+        DTS:DataType="8">14-08-2019.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{84551E90-1C1C-41D3-90D7-BC89AA460C52}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FilePattern">
+      <DTS:VariableValue
+        DTS:DataType="8">*.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{344315D3-F2A9-4432-8A30-B78247569ED9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ReceivingFolder">
+      <DTS:VariableValue
+        DTS:DataType="8">\\farmhost001\DailyReportIn</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1" />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load FBHP EBOK 10ST"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E46E3D54-87A9-41E3-A2A4-9720933750E0}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load FBHP EBOK 10ST">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load FBHP EBOK 10ST\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load FBHP EBOK 10ST\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load FBHP EBOK 10ST\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load FBHP EBOK 10ST\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 10ST\Derived Column.Outputs[Derived Column Output].Columns[Well]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="9"
+                      lineageId="Package\Load FBHP EBOK 10ST\Derived Column.Outputs[Derived Column Output].Columns[Well]"
+                      name="Well"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"EBOK-10ST"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"EBOK-10ST"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load FBHP EBOK 10ST\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load FBHP EBOK 10ST\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 10ST\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 10ST\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 10ST\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 10ST\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="FBHP EBOK 10ST"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Sheet1$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Output].Columns[Date]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Output].ExternalColumns[Date]"
+                      lineageId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Output].Columns[Date]"
+                      name="Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Output].Columns[Intake Pressure (Psi)]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Output].ExternalColumns[Intake Pressure (Psi)]"
+                      lineageId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Output].Columns[Intake Pressure (Psi)]"
+                      name="Intake Pressure (Psi)"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Output].ExternalColumns[F1]"
+                      dataType="bool"
+                      name="F1" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Output].ExternalColumns[F2]"
+                      dataType="date"
+                      name="F2" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Output].ExternalColumns[F3]"
+                      dataType="date"
+                      name="F3" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Output].ExternalColumns[Date]"
+                      dataType="date"
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Output].ExternalColumns[Frequency (Hz)]"
+                      dataType="r8"
+                      name="Frequency (Hz)" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Output].ExternalColumns[Average VSD Amps]"
+                      dataType="r8"
+                      name="Average VSD Amps" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Output].ExternalColumns[Intake Pressure (Psi)]"
+                      dataType="r8"
+                      name="Intake Pressure (Psi)" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Output].ExternalColumns[Discharge Pressure (Psi)]"
+                      dataType="r8"
+                      name="Discharge Pressure (Psi)" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Output].ExternalColumns[Motor Temp (⁰F)]"
+                      dataType="r8"
+                      name="Motor Temp (⁰F)" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Error Output].Columns[Date]"
+                      dataType="date"
+                      lineageId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Error Output].Columns[Date]"
+                      name="Date" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Error Output].Columns[Intake Pressure (Psi)]"
+                      dataType="r8"
+                      lineageId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Error Output].Columns[Intake Pressure (Psi)]"
+                      name="Intake Pressure (Psi)" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="PressurePlotFBHP"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[PressurePlotFBHPs]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.ERAS.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.ERAS.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="IgnoreFailure"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].Columns[Well]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="Well"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Well]"
+                      lineageId="Package\Load FBHP EBOK 10ST\Derived Column.Outputs[Derived Column Output].Columns[Well]" />
+                    <inputColumn
+                      refId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].Columns[Intake Pressure (Psi)]"
+                      cachedDataType="r8"
+                      cachedName="Intake Pressure (Psi)"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Pressure]"
+                      lineageId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Output].Columns[Intake Pressure (Psi)]" />
+                    <inputColumn
+                      refId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].Columns[Date]"
+                      cachedDataType="date"
+                      cachedName="Date"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[IndicatorDate]"
+                      lineageId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Output].Columns[Date]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="i4"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[IndicatorDate]"
+                      dataType="dbTimeStamp2"
+                      name="IndicatorDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Well]"
+                      dataType="wstr"
+                      length="150"
+                      name="Well" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Pressure]"
+                      dataType="r8"
+                      name="Pressure" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Temperature]"
+                      dataType="r8"
+                      name="Temperature" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[ReportDate]"
+                      dataType="dbTimeStamp2"
+                      name="ReportDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[UploadTime]"
+                      dataType="nText"
+                      name="UploadTime" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[TimeStamp]"
+                      dataType="dbTimeStamp2"
+                      name="TimeStamp"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[DayOftheWeek]"
+                      dataType="nText"
+                      name="DayOftheWeek" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load FBHP EBOK 10ST.Paths[Derived Column Output]"
+              endId="Package\Load FBHP EBOK 10ST\PressurePlotFBHP.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Load FBHP EBOK 10ST\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load FBHP EBOK 10ST.Paths[Excel Source Output]"
+              endId="Package\Load FBHP EBOK 10ST\Derived Column.Inputs[Derived Column Input]"
+              name="Excel Source Output"
+              startId="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load FBHP EBOK 11ST2"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{400f0116-27c1-453e-8ef4-25ac7a592ec8}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load FBHP EBOK 11ST2">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load FBHP EBOK 11ST2\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load FBHP EBOK 11ST2\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load FBHP EBOK 11ST2\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load FBHP EBOK 11ST2\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 11ST2\Derived Column.Outputs[Derived Column Output].Columns[Well]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\Load FBHP EBOK 11ST2\Derived Column.Outputs[Derived Column Output].Columns[Well]"
+                      name="Well"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"EBOK-11ST2"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"EBOK-11ST2"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load FBHP EBOK 11ST2\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load FBHP EBOK 11ST2\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 11ST2\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 11ST2\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 11ST2\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 11ST2\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="FBHP EBOK 11ST2"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Sheet1$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager 1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Output].Columns[F3]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Output].ExternalColumns[F3]"
+                      lineageId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Output].Columns[F3]"
+                      name="F3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Output].Columns[F7]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Output].ExternalColumns[F7]"
+                      length="255"
+                      lineageId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Output].Columns[F7]"
+                      name="F7"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Output].ExternalColumns[F1]"
+                      dataType="wstr"
+                      length="255"
+                      name="F1" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Output].ExternalColumns[F2]"
+                      dataType="bool"
+                      name="F2" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Output].ExternalColumns[F3]"
+                      dataType="date"
+                      name="F3" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Output].ExternalColumns[F4]"
+                      dataType="r8"
+                      name="F4" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Output].ExternalColumns[E-11ST2]"
+                      dataType="r8"
+                      name="E-11ST2" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Output].ExternalColumns[F6]"
+                      dataType="r8"
+                      name="F6" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Output].ExternalColumns[F7]"
+                      dataType="wstr"
+                      length="255"
+                      name="F7" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Output].ExternalColumns[F8]"
+                      dataType="wstr"
+                      length="255"
+                      name="F8" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Output].ExternalColumns[F9]"
+                      dataType="wstr"
+                      length="255"
+                      name="F9" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Error Output].Columns[F3]"
+                      dataType="date"
+                      lineageId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Error Output].Columns[F3]"
+                      name="F3" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Error Output].Columns[F7]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Error Output].Columns[F7]"
+                      name="F7" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="PressurePlotFBHP"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[PressurePlotFBHPs]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.ERAS.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.ERAS.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="IgnoreFailure"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Inputs[OLE DB Destination Input].Columns[Well]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Well"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Well]"
+                      lineageId="Package\Load FBHP EBOK 11ST2\Derived Column.Outputs[Derived Column Output].Columns[Well]" />
+                    <inputColumn
+                      refId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Inputs[OLE DB Destination Input].Columns[F3]"
+                      cachedDataType="date"
+                      cachedName="F3"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[IndicatorDate]"
+                      lineageId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Output].Columns[F3]" />
+                    <inputColumn
+                      refId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Inputs[OLE DB Destination Input].Columns[F7]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="F7"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Pressure]"
+                      lineageId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Output].Columns[F7]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="i4"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[IndicatorDate]"
+                      dataType="dbTimeStamp2"
+                      name="IndicatorDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Well]"
+                      dataType="wstr"
+                      length="150"
+                      name="Well" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Pressure]"
+                      dataType="r8"
+                      name="Pressure" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Temperature]"
+                      dataType="r8"
+                      name="Temperature" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[ReportDate]"
+                      dataType="dbTimeStamp2"
+                      name="ReportDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[UploadTime]"
+                      dataType="nText"
+                      name="UploadTime" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[TimeStamp]"
+                      dataType="dbTimeStamp2"
+                      name="TimeStamp"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[DayOftheWeek]"
+                      dataType="nText"
+                      name="DayOftheWeek" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load FBHP EBOK 11ST2.Paths[Derived Column Output]"
+              endId="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Load FBHP EBOK 11ST2\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load FBHP EBOK 11ST2.Paths[Excel Source Output]"
+              endId="Package\Load FBHP EBOK 11ST2\Derived Column.Inputs[Derived Column Input]"
+              name="Excel Source Output"
+              startId="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load FBHP EBOK 26"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{609bab26-40aa-4020-bd28-31b998403ad3}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load FBHP EBOK 26">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load FBHP EBOK 26\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load FBHP EBOK 26\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load FBHP EBOK 26\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load FBHP EBOK 26\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 26\Derived Column.Outputs[Derived Column Output].Columns[Well]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="7"
+                      lineageId="Package\Load FBHP EBOK 26\Derived Column.Outputs[Derived Column Output].Columns[Well]"
+                      name="Well"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"EBOK-26"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"EBOK-26"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load FBHP EBOK 26\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load FBHP EBOK 26\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 26\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 26\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 26\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 26\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load FBHP EBOK 26\FBHP EBOK 26"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="FBHP EBOK 26"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Sheet1$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager 4]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager 4]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Output].Columns[E - 26]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Output].ExternalColumns[E - 26]"
+                      lineageId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Output].Columns[E - 26]"
+                      name="E - 26"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Output].Columns[F3]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Output].ExternalColumns[F3]"
+                      lineageId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Output].Columns[F3]"
+                      name="F3"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Output].ExternalColumns[F2]"
+                      dataType="r8"
+                      name="F2" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Output].ExternalColumns[F3]"
+                      dataType="r8"
+                      name="F3" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Output].ExternalColumns[E - 26]"
+                      dataType="date"
+                      name="E - 26" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Output].ExternalColumns[F4]"
+                      dataType="r8"
+                      name="F4" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Output].ExternalColumns[F5]"
+                      dataType="r8"
+                      name="F5" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Output].ExternalColumns[F6]"
+                      dataType="wstr"
+                      length="255"
+                      name="F6" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Error Output].Columns[E - 26]"
+                      dataType="date"
+                      lineageId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Error Output].Columns[E - 26]"
+                      name="E - 26" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Error Output].Columns[F3]"
+                      dataType="r8"
+                      lineageId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Error Output].Columns[F3]"
+                      name="F3" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load FBHP EBOK 26\PressurePlotFBHP"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="PressurePlotFBHP"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[PressurePlotFBHPs]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.ERAS.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.ERAS.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="IgnoreFailure"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Inputs[OLE DB Destination Input].Columns[Well]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="Well"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Well]"
+                      lineageId="Package\Load FBHP EBOK 26\Derived Column.Outputs[Derived Column Output].Columns[Well]" />
+                    <inputColumn
+                      refId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Inputs[OLE DB Destination Input].Columns[E - 26]"
+                      cachedDataType="date"
+                      cachedName="E - 26"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[IndicatorDate]"
+                      lineageId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Output].Columns[E - 26]" />
+                    <inputColumn
+                      refId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Inputs[OLE DB Destination Input].Columns[F3]"
+                      cachedDataType="r8"
+                      cachedName="F3"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Pressure]"
+                      lineageId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Output].Columns[F3]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="i4"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[IndicatorDate]"
+                      dataType="dbTimeStamp2"
+                      name="IndicatorDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Well]"
+                      dataType="wstr"
+                      length="150"
+                      name="Well" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Pressure]"
+                      dataType="r8"
+                      name="Pressure" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Temperature]"
+                      dataType="r8"
+                      name="Temperature" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[ReportDate]"
+                      dataType="dbTimeStamp2"
+                      name="ReportDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[UploadTime]"
+                      dataType="nText"
+                      name="UploadTime" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[TimeStamp]"
+                      dataType="dbTimeStamp2"
+                      name="TimeStamp"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[DayOftheWeek]"
+                      dataType="nText"
+                      name="DayOftheWeek" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load FBHP EBOK 26.Paths[Derived Column Output]"
+              endId="Package\Load FBHP EBOK 26\PressurePlotFBHP.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Load FBHP EBOK 26\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load FBHP EBOK 26.Paths[Excel Source Output]"
+              endId="Package\Load FBHP EBOK 26\Derived Column.Inputs[Derived Column Input]"
+              name="Excel Source Output"
+              startId="Package\Load FBHP EBOK 26\FBHP EBOK 26.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load FBHP EBOK 26ST"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{ec10f40a-b2c6-474e-a999-bf81435557ab}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load FBHP EBOK 26ST">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load FBHP EBOK 26ST\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load FBHP EBOK 26ST\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load FBHP EBOK 26ST\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load FBHP EBOK 26ST\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 26ST\Derived Column.Outputs[Derived Column Output].Columns[Well]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="9"
+                      lineageId="Package\Load FBHP EBOK 26ST\Derived Column.Outputs[Derived Column Output].Columns[Well]"
+                      name="Well"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"EBOK-26ST"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"EBOK-26ST"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load FBHP EBOK 26ST\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load FBHP EBOK 26ST\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 26ST\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 26ST\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 26ST\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 26ST\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="FBHP EBOK 26ST"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Sheet1$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager 5]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager 5]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Output].Columns[E - 26]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Output].ExternalColumns[E - 26]"
+                      lineageId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Output].Columns[E - 26]"
+                      name="E - 26"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Output].Columns[F3]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Output].ExternalColumns[F3]"
+                      lineageId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Output].Columns[F3]"
+                      name="F3"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Output].ExternalColumns[F2]"
+                      dataType="r8"
+                      name="F2" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Output].ExternalColumns[F3]"
+                      dataType="r8"
+                      name="F3" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Output].ExternalColumns[E - 26]"
+                      dataType="date"
+                      name="E - 26" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Output].ExternalColumns[F4]"
+                      dataType="r8"
+                      name="F4" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Output].ExternalColumns[F5]"
+                      dataType="r8"
+                      name="F5" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Output].ExternalColumns[F6]"
+                      dataType="r8"
+                      name="F6" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Error Output].Columns[E - 26]"
+                      dataType="date"
+                      lineageId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Error Output].Columns[E - 26]"
+                      name="E - 26" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Error Output].Columns[F3]"
+                      dataType="r8"
+                      lineageId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Error Output].Columns[F3]"
+                      name="F3" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="PressurePlotFBHP"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[PressurePlotFBHPs]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.ERAS.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.ERAS.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="IgnoreFailure"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].Columns[Well]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="Well"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Well]"
+                      lineageId="Package\Load FBHP EBOK 26ST\Derived Column.Outputs[Derived Column Output].Columns[Well]" />
+                    <inputColumn
+                      refId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].Columns[E - 26]"
+                      cachedDataType="date"
+                      cachedName="E - 26"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[IndicatorDate]"
+                      lineageId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Output].Columns[E - 26]" />
+                    <inputColumn
+                      refId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].Columns[F3]"
+                      cachedDataType="r8"
+                      cachedName="F3"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Pressure]"
+                      lineageId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Output].Columns[F3]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="i4"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[IndicatorDate]"
+                      dataType="dbTimeStamp2"
+                      name="IndicatorDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Well]"
+                      dataType="wstr"
+                      length="150"
+                      name="Well" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Pressure]"
+                      dataType="r8"
+                      name="Pressure" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Temperature]"
+                      dataType="r8"
+                      name="Temperature" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[ReportDate]"
+                      dataType="dbTimeStamp2"
+                      name="ReportDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[UploadTime]"
+                      dataType="nText"
+                      name="UploadTime" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[TimeStamp]"
+                      dataType="dbTimeStamp2"
+                      name="TimeStamp"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[DayOftheWeek]"
+                      dataType="nText"
+                      name="DayOftheWeek" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load FBHP EBOK 26ST.Paths[Derived Column Output]"
+              endId="Package\Load FBHP EBOK 26ST\PressurePlotFBHP.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Load FBHP EBOK 26ST\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load FBHP EBOK 26ST.Paths[Excel Source Output]"
+              endId="Package\Load FBHP EBOK 26ST\Derived Column.Inputs[Derived Column Input]"
+              name="Excel Source Output"
+              startId="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load FBHP EBOK 44"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{883aba23-8669-4280-bc66-59699091f2a4}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load FBHP EBOK 44">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load FBHP EBOK 44\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load FBHP EBOK 44\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load FBHP EBOK 44\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load FBHP EBOK 44\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 44\Derived Column.Outputs[Derived Column Output].Columns[Well]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="7"
+                      lineageId="Package\Load FBHP EBOK 44\Derived Column.Outputs[Derived Column Output].Columns[Well]"
+                      name="Well"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"EBOK-44"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"EBOK-44"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load FBHP EBOK 44\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load FBHP EBOK 44\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 44\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 44\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 44\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 44\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load FBHP EBOK 44\FBHP EBOK 44"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="FBHP EBOK 44"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Sheet1$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager 6]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager 6]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Output].Columns[F3]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Output].ExternalColumns[F3]"
+                      lineageId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Output].Columns[F3]"
+                      name="F3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Output].Columns[F5]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Output].ExternalColumns[F5]"
+                      lineageId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Output].Columns[F5]"
+                      name="F5"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Output].ExternalColumns[F1]"
+                      dataType="wstr"
+                      length="255"
+                      name="F1" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Output].ExternalColumns[F2]"
+                      dataType="bool"
+                      name="F2" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Output].ExternalColumns[F3]"
+                      dataType="date"
+                      name="F3" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Output].ExternalColumns[F4]"
+                      dataType="r8"
+                      name="F4" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Output].ExternalColumns[F5]"
+                      dataType="r8"
+                      name="F5" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Output].ExternalColumns[F6]"
+                      dataType="r8"
+                      name="F6" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Output].ExternalColumns[F7]"
+                      dataType="r8"
+                      name="F7" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Output].ExternalColumns[F8]"
+                      dataType="r8"
+                      name="F8" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Error Output].Columns[F3]"
+                      dataType="date"
+                      lineageId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Error Output].Columns[F3]"
+                      name="F3" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Error Output].Columns[F5]"
+                      dataType="r8"
+                      lineageId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Error Output].Columns[F5]"
+                      name="F5" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load FBHP EBOK 44\PressurePlotFBHP"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="PressurePlotFBHP"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[PressurePlotFBHPs]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.ERAS.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.ERAS.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="IgnoreFailure"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Inputs[OLE DB Destination Input].Columns[Well]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="Well"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Well]"
+                      lineageId="Package\Load FBHP EBOK 44\Derived Column.Outputs[Derived Column Output].Columns[Well]" />
+                    <inputColumn
+                      refId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Inputs[OLE DB Destination Input].Columns[F3]"
+                      cachedDataType="date"
+                      cachedName="F3"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[IndicatorDate]"
+                      lineageId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Output].Columns[F3]" />
+                    <inputColumn
+                      refId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Inputs[OLE DB Destination Input].Columns[F5]"
+                      cachedDataType="r8"
+                      cachedName="F5"
+                      externalMetadataColumnId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Pressure]"
+                      lineageId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Output].Columns[F5]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="i4"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[IndicatorDate]"
+                      dataType="dbTimeStamp2"
+                      name="IndicatorDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Well]"
+                      dataType="wstr"
+                      length="150"
+                      name="Well" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Pressure]"
+                      dataType="r8"
+                      name="Pressure" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[Temperature]"
+                      dataType="r8"
+                      name="Temperature" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[ReportDate]"
+                      dataType="dbTimeStamp2"
+                      name="ReportDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[UploadTime]"
+                      dataType="nText"
+                      name="UploadTime" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[TimeStamp]"
+                      dataType="dbTimeStamp2"
+                      name="TimeStamp"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Inputs[OLE DB Destination Input].ExternalColumns[DayOftheWeek]"
+                      dataType="nText"
+                      name="DayOftheWeek" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load FBHP EBOK 44.Paths[Derived Column Output]"
+              endId="Package\Load FBHP EBOK 44\PressurePlotFBHP.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Load FBHP EBOK 44\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load FBHP EBOK 44.Paths[Excel Source Output]"
+              endId="Package\Load FBHP EBOK 44\Derived Column.Inputs[Derived Column Input]"
+              name="Excel Source Output"
+              startId="Package\Load FBHP EBOK 44\FBHP EBOK 44.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{C2661A50-CE3F-4E38-B205-FD4BF2456E07}"
+      DTS:From="Package\Load FBHP EBOK 10ST"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load FBHP EBOK 11ST2" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{51925FA4-CD93-4E62-B690-62D61074AAB3}"
+      DTS:From="Package\Load FBHP EBOK 11ST2"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load FBHP EBOK 26" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{1E031DB6-E598-4C47-9115-EFBDA172A850}"
+      DTS:From="Package\Load FBHP EBOK 26"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Load FBHP EBOK 26ST" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{CADFF398-61FA-4B1A-B5F9-2CB96B1B641D}"
+      DTS:From="Package\Load FBHP EBOK 26ST"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Load FBHP EBOK 44" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Load FBHP EBOK 10ST"
+          TopLeft="77.5,51.5" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\Load FBHP EBOK 11ST2"
+          TopLeft="303.5,55.5" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Load FBHP EBOK 26"
+          TopLeft="532.5,54.5" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Load FBHP EBOK 44"
+          TopLeft="306.5,147.5" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Load FBHP EBOK 26ST"
+          TopLeft="81.5,150.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="263.5,74.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="40,0"
+              Start="0,0"
+              End="32.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="32.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="495.5,76">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="37,0"
+              Start="0,0"
+              End="29.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="29.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="619.5,96.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-445,54"
+              Start="0,0"
+              End="-445,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23"
+                    Point2="0,27"
+                    Point3="-4,27" />
+                  <mssgle:LineSegment
+                    End="-441,27" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-441,27"
+                    Point2="-445,27"
+                    Point3="-445,31" />
+                  <mssgle:LineSegment
+                    End="-445,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="267.5,170">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="39,0"
+              Start="0,0"
+              End="31.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="31.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load FBHP EBOK 10ST">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST"
+          TopLeft="64,62" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Load FBHP EBOK 10ST\Derived Column"
+          TopLeft="155,161" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Load FBHP EBOK 10ST\PressurePlotFBHP"
+          TopLeft="397,232" />
+        <EdgeLayout
+          Id="Package\Load FBHP EBOK 10ST.Paths[Excel Source Output]"
+          TopLeft="144.5,104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="87.5,57"
+              Start="0,0"
+              End="87.5,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.5"
+                    Point2="0,28.5"
+                    Point3="4,28.5" />
+                  <mssgle:LineSegment
+                    End="83.5,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="83.5,28.5"
+                    Point2="87.5,28.5"
+                    Point3="87.5,32.5" />
+                  <mssgle:LineSegment
+                    End="87.5,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load FBHP EBOK 10ST.Paths[Derived Column Output]"
+          TopLeft="232,203">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="246,29"
+              Start="0,0"
+              End="246,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.5"
+                    Point2="0,14.5"
+                    Point3="4,14.5" />
+                  <mssgle:LineSegment
+                    End="242,14.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="242,14.5"
+                    Point2="246,14.5"
+                    Point3="246,18.5" />
+                  <mssgle:LineSegment
+                    End="246,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load FBHP EBOK 10ST\FBHP EBOK 10ST">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load FBHP EBOK 10ST\PressurePlotFBHP">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load FBHP EBOK 11ST2">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2"
+          TopLeft="64,62" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Load FBHP EBOK 11ST2\Derived Column"
+          TopLeft="155,161" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP"
+          TopLeft="397,232" />
+        <EdgeLayout
+          Id="Package\Load FBHP EBOK 11ST2.Paths[Excel Source Output]"
+          TopLeft="147,104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="85,57"
+              Start="0,0"
+              End="85,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.5"
+                    Point2="0,28.5"
+                    Point3="4,28.5" />
+                  <mssgle:LineSegment
+                    End="81,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="81,28.5"
+                    Point2="85,28.5"
+                    Point3="85,32.5" />
+                  <mssgle:LineSegment
+                    End="85,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load FBHP EBOK 11ST2.Paths[Derived Column Output]"
+          TopLeft="232,203">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="246,29"
+              Start="0,0"
+              End="246,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.5"
+                    Point2="0,14.5"
+                    Point3="4,14.5" />
+                  <mssgle:LineSegment
+                    End="242,14.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="242,14.5"
+                    Point2="246,14.5"
+                    Point3="246,18.5" />
+                  <mssgle:LineSegment
+                    End="246,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load FBHP EBOK 11ST2\FBHP EBOK 11ST2">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load FBHP EBOK 11ST2\PressurePlotFBHP">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load FBHP EBOK 26">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="148,42"
+          Id="Package\Load FBHP EBOK 26\FBHP EBOK 26"
+          TopLeft="64,62" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Load FBHP EBOK 26\Derived Column"
+          TopLeft="155,161" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Load FBHP EBOK 26\PressurePlotFBHP"
+          TopLeft="397,232" />
+        <EdgeLayout
+          Id="Package\Load FBHP EBOK 26.Paths[Excel Source Output]"
+          TopLeft="138,104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="94,57"
+              Start="0,0"
+              End="94,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.5"
+                    Point2="0,28.5"
+                    Point3="4,28.5" />
+                  <mssgle:LineSegment
+                    End="90,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="90,28.5"
+                    Point2="94,28.5"
+                    Point3="94,32.5" />
+                  <mssgle:LineSegment
+                    End="94,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load FBHP EBOK 26.Paths[Derived Column Output]"
+          TopLeft="232,203">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="246,29"
+              Start="0,0"
+              End="246,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.5"
+                    Point2="0,14.5"
+                    Point3="4,14.5" />
+                  <mssgle:LineSegment
+                    End="242,14.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="242,14.5"
+                    Point2="246,14.5"
+                    Point3="246,18.5" />
+                  <mssgle:LineSegment
+                    End="246,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load FBHP EBOK 26\FBHP EBOK 26">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load FBHP EBOK 26\PressurePlotFBHP">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load FBHP EBOK 44">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="148,42"
+          Id="Package\Load FBHP EBOK 44\FBHP EBOK 44"
+          TopLeft="64,62" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Load FBHP EBOK 44\Derived Column"
+          TopLeft="155,161" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Load FBHP EBOK 44\PressurePlotFBHP"
+          TopLeft="397,232" />
+        <EdgeLayout
+          Id="Package\Load FBHP EBOK 44.Paths[Excel Source Output]"
+          TopLeft="138,104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="94,57"
+              Start="0,0"
+              End="94,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.5"
+                    Point2="0,28.5"
+                    Point3="4,28.5" />
+                  <mssgle:LineSegment
+                    End="90,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="90,28.5"
+                    Point2="94,28.5"
+                    Point3="94,32.5" />
+                  <mssgle:LineSegment
+                    End="94,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load FBHP EBOK 44.Paths[Derived Column Output]"
+          TopLeft="232,203">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="246,29"
+              Start="0,0"
+              End="246,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.5"
+                    Point2="0,14.5"
+                    Point3="4,14.5" />
+                  <mssgle:LineSegment
+                    End="242,14.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="242,14.5"
+                    Point2="246,14.5"
+                    Point3="246,18.5" />
+                  <mssgle:LineSegment
+                    End="246,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load FBHP EBOK 44\FBHP EBOK 44">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load FBHP EBOK 44\PressurePlotFBHP">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load FBHP EBOK 26ST">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST"
+          TopLeft="64,62" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Load FBHP EBOK 26ST\Derived Column"
+          TopLeft="155,161" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Load FBHP EBOK 26ST\PressurePlotFBHP"
+          TopLeft="397,232" />
+        <EdgeLayout
+          Id="Package\Load FBHP EBOK 26ST.Paths[Excel Source Output]"
+          TopLeft="144.5,104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="87.5,57"
+              Start="0,0"
+              End="87.5,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.5"
+                    Point2="0,28.5"
+                    Point3="4,28.5" />
+                  <mssgle:LineSegment
+                    End="83.5,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="83.5,28.5"
+                    Point2="87.5,28.5"
+                    Point3="87.5,32.5" />
+                  <mssgle:LineSegment
+                    End="87.5,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load FBHP EBOK 26ST.Paths[Derived Column Output]"
+          TopLeft="232,203">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="246,29"
+              Start="0,0"
+              End="246,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.5"
+                    Point2="0,14.5"
+                    Point3="4,14.5" />
+                  <mssgle:LineSegment
+                    End="242,14.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="242,14.5"
+                    Point2="246,14.5"
+                    Point3="246,18.5" />
+                  <mssgle:LineSegment
+                    End="246,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load FBHP EBOK 26ST\FBHP EBOK 26ST">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load FBHP EBOK 26ST\PressurePlotFBHP">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

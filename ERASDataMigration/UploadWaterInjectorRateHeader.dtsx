@@ -1,0 +1,2301 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/3/2018 12:47:30 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="OERLAGITDHAUH"
+  DTS:CreatorName="ORIENTAL-ER\Harrison.Uhunghama"
+  DTS:DTSID="{B00402D5-3AA0-40DB-9356-3765E0C92050}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.107"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="UploadWaterInjectorRateHeader"
+  DTS:PackageType="5"
+  DTS:VersionBuild="32"
+  DTS:VersionGUID="{8CA62D87-72BA-4574-8391-9BD7F1819774}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{43B3D235-DD23-4190-8B50-51C877D63822}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\ProductionAccounting\Daily Well Surveillance (UPDATED).xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OERLAGITDHAUH.ERAS.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{66261AE3-3E81-42BA-AF16-F2FF561CEEBA}"
+      DTS:ObjectName="OERLAGITDHAUH.ERAS.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=10.130.64.137;Initial Catalog=ERAS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Reconcile Data"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{BFE82B47-37D2-4D96-B641-0D95CA37F801}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Reconcile Data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{66261AE3-3E81-42BA-AF16-F2FF561CEEBA}"
+          SQLTask:SqlStatementSource="Truncate table WaterInjectorRateHeaders&#xA;update WaterInjectorRateHeaderStagings set  [TotalWaterInj]   = 0 where [TotalWaterInj] not like '%[0-9]%'&#xA;update WaterInjectorRateHeaderStagings set [WIJUptime]   = 0 where [WIJUptime] not like '%[0-9]%'&#xA;insert into WaterInjectorRateHeaders ([TotalWaterInj],[WIJUptime],[ReportDate],[UploadTime],[TimeStamp],[DayOftheWeek],[IndicatorDate])&#xA;select &#xA;case when [TotalWaterInj] &lt;&gt; '' or [TotalWaterInj] != null then case when  ISNUMERIC([TotalWaterInj]) = 1 then round(convert(float,[TotalWaterInj]),2) else 0 end else 0 end,&#xA;case when [WIJUptime] &lt;&gt; '' or [WIJUptime] != null then case when  ISNUMERIC([WIJUptime]) = 1 then round(convert(float,[WIJUptime]),2) else 0 end else 0 end,&#xA;[ReportDate],&#xA;[UploadTime],&#xA;[TimeStamp],&#xA;[DayOftheWeek],&#xA;Convert (date,[IndicatorDate])&#xA;from WaterInjectorRateHeaderStagings where IndicatorDate is not null" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\UploadWaterInjectorRateHeader"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{81BCE2D6-04F5-46B6-9089-F249E89B280E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="UploadWaterInjectorRateHeader">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\UploadWaterInjectorRateHeader\Check for Duplicate"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Check for Duplicate"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select substring(convert(nvarchar(50),IndicatorDate), 6,2) + '/' + 
+substring(convert(nvarchar(50),IndicatorDate), 9,2) + '/' + substring(convert(nvarchar(50),IndicatorDate),1,4) as DuplicateChecker  from WaterInjectorRateHeaders</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select substring(convert(nvarchar(50),IndicatorDate), 6,2) + '/' + 
+substring(convert(nvarchar(50),IndicatorDate), 9,2) + '/' + substring(convert(nvarchar(50),IndicatorDate),1,4) as DuplicateChecker  from WaterInjectorRateHeaders) [refTable]
+where [refTable].[DuplicateChecker] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DuplicateChecker" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\UploadWaterInjectorRateHeader\Derived Column 1.Outputs[Derived Column Output].Columns[DuplicateChecker]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\UploadWaterInjectorRateHeader\Check for Duplicate.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OERLAGITDHAUH.ERAS.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[OERLAGITDHAUH.ERAS.sa]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\UploadWaterInjectorRateHeader\Check for Duplicate.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Check for Duplicate.Inputs[Lookup Input].Columns[DuplicateChecker]"
+                      cachedDataType="wstr"
+                      cachedLength="80"
+                      cachedName="DuplicateChecker"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Derived Column 1.Outputs[Derived Column Output].Columns[DuplicateChecker]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DuplicateChecker</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\UploadWaterInjectorRateHeader\Check for Duplicate.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\UploadWaterInjectorRateHeader\Check for Duplicate.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Check for Duplicate.Outputs[Lookup Match Output].Columns[DuplicateChecker]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="10"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Check for Duplicate.Outputs[Lookup Match Output].Columns[DuplicateChecker]"
+                      name="DuplicateChecker"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DuplicateChecker</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\UploadWaterInjectorRateHeader\Check for Duplicate.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\UploadWaterInjectorRateHeader\Check for Duplicate.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\UploadWaterInjectorRateHeader\Check for Duplicate.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\UploadWaterInjectorRateHeader\Check for Duplicate.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Check for Duplicate.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Check for Duplicate.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Check for Duplicate.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Check for Duplicate.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\UploadWaterInjectorRateHeader\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\UploadWaterInjectorRateHeader\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Data Conversion.Inputs[Data Conversion Input].Columns[DATE]"
+                      cachedDataType="date"
+                      cachedName="DATE"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[DATE]" />
+                    <inputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Data Conversion.Inputs[Data Conversion Input].Columns[DayOftheWeek]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="DayOftheWeek"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Derived Column.Outputs[Derived Column Output].Columns[DayOftheWeek]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\UploadWaterInjectorRateHeader\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\UploadWaterInjectorRateHeader\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of DATE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="80"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of DATE]"
+                      name="Copy of DATE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[DATE]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of DayOftheWeek]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of DayOftheWeek]"
+                      name="Copy of DayOftheWeek"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\UploadWaterInjectorRateHeader\Derived Column.Outputs[Derived Column Output].Columns[DayOftheWeek]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\UploadWaterInjectorRateHeader\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\UploadWaterInjectorRateHeader\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\UploadWaterInjectorRateHeader\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\UploadWaterInjectorRateHeader\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\UploadWaterInjectorRateHeader\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\UploadWaterInjectorRateHeader\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Derived Column.Outputs[Derived Column Output].Columns[ReportDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Derived Column.Outputs[Derived Column Output].Columns[ReportDate]"
+                      name="ReportDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[SUBSTRING]((DT_STR,50,1256)[DATEADD]("DAY",-1,[GETDATE]()),1,10)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING((DT_STR,50,1256)DATEADD("DAY",-1,GETDATE()),1,10)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Derived Column.Outputs[Derived Column Output].Columns[UploadTime]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="2"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Derived Column.Outputs[Derived Column Output].Columns[UploadTime]"
+                      name="UploadTime"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[RIGHT]("0" + (DT_STR,2,1252)[DATEPART]("hh",[GETDATE]()),2)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">RIGHT("0" + (DT_STR,2,1252)DATEPART("hh",GETDATE()),2)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Derived Column.Outputs[Derived Column Output].Columns[TimeStamp]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Derived Column.Outputs[Derived Column Output].Columns[TimeStamp]"
+                      name="TimeStamp"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Derived Column.Outputs[Derived Column Output].Columns[DayOftheWeek]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Derived Column.Outputs[Derived Column Output].Columns[DayOftheWeek]"
+                      name="DayOftheWeek"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,20,1252)(([DATEPART]("DW",[GETDATE]()) == 1) ? "SUNDAY" : ([DATEPART]("DW",[GETDATE]()) == 2) ? "MONDAY" : ([DATEPART]("DW",[GETDATE]()) == 3) ? "TUESDAY" : ([DATEPART]("DW",[GETDATE]()) == 4) ? "WEDNESDAY" : ([DATEPART]("DW",[GETDATE]()) == 5) ? "THURSDAY" : ([DATEPART]("DW",[GETDATE]()) == 6) ? "FRIDAY" : ([DATEPART]("DW",[GETDATE]()) == 7) ? "SATURDAY" : "NULL")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,20,1252)((DATEPART("DW",GETDATE()) == 1) ? "SUNDAY" : (DATEPART("DW",GETDATE()) == 2) ? "MONDAY" : (DATEPART("DW",GETDATE()) == 3) ? "TUESDAY" : (DATEPART("DW",GETDATE()) == 4) ? "WEDNESDAY" : (DATEPART("DW",GETDATE()) == 5) ? "THURSDAY" : (DATEPART("DW",GETDATE()) == 6) ? "FRIDAY" : (DATEPART("DW",GETDATE()) == 7) ? "SATURDAY" : "NULL")</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Derived Column.Outputs[Derived Column Output].Columns[Well]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="11"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Derived Column.Outputs[Derived Column Output].Columns[Well]"
+                      name="Well"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"Ebok-23 WIJ"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Ebok-23 WIJ"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\UploadWaterInjectorRateHeader\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\UploadWaterInjectorRateHeader\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\UploadWaterInjectorRateHeader\Derived Column 1"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\UploadWaterInjectorRateHeader\Derived Column 1.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Derived Column 1.Inputs[Derived Column Input].Columns[Copy of DATE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="80"
+                      cachedName="Copy of DATE"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of DATE]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\UploadWaterInjectorRateHeader\Derived Column 1.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\UploadWaterInjectorRateHeader\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Derived Column 1.Outputs[Derived Column Output].Columns[DuplicateChecker]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="80"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Derived Column 1.Outputs[Derived Column Output].Columns[DuplicateChecker]"
+                      name="DuplicateChecker"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\UploadWaterInjectorRateHeader\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of DATE]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">[Copy of DATE]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\UploadWaterInjectorRateHeader\Derived Column 1.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\UploadWaterInjectorRateHeader\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\UploadWaterInjectorRateHeader\Excel Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM [Injectors$A6:BG65536] where [DATE] is not null</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\UploadWaterInjectorRateHeader\Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[DATE]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[DATE]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[DATE]"
+                      name="DATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CHOKE    SIZE ]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CHOKE    SIZE ]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CHOKE    SIZE ]"
+                      name="CHOKE    SIZE "
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[UPTIME (hr:mm)]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[UPTIME (hr:mm)]"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[UPTIME (hr:mm)]"
+                      name="UPTIME (hr:mm)"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[THIP]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[THIP]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[THIP]"
+                      name="THIP"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[FLP ]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[FLP ]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[FLP ]"
+                      name="FLP "
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[HP]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[HP]"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[HP]"
+                      name="HP"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[INJ# RATE ]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[INJ# RATE ]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[INJ# RATE ]"
+                      name="INJ# RATE "
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CUM# INJ# RATE]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CUM# INJ# RATE]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CUM# INJ# RATE]"
+                      name="CUM# INJ# RATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CHOKE    SIZE 1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CHOKE    SIZE 1]"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CHOKE    SIZE 1]"
+                      name="CHOKE    SIZE 1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[UPTIME (hr:mm)1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[UPTIME (hr:mm)1]"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[UPTIME (hr:mm)1]"
+                      name="UPTIME (hr:mm)1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[THIP1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[THIP1]"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[THIP1]"
+                      name="THIP1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[FLP 1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[FLP 1]"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[FLP 1]"
+                      name="FLP 1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[HP1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[HP1]"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[HP1]"
+                      name="HP1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[INJ# RATE 1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[INJ# RATE 1]"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[INJ# RATE 1]"
+                      name="INJ# RATE 1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CUM# INJ# RATE1]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CUM# INJ# RATE1]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CUM# INJ# RATE1]"
+                      name="CUM# INJ# RATE1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[Totalizer ]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[Totalizer ]"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[Totalizer ]"
+                      name="Totalizer "
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CHOKE    SIZE 2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CHOKE    SIZE 2]"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CHOKE    SIZE 2]"
+                      name="CHOKE    SIZE 2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[UPTIME (hr:mm)2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[UPTIME (hr:mm)2]"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[UPTIME (hr:mm)2]"
+                      name="UPTIME (hr:mm)2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[THIP2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[THIP2]"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[THIP2]"
+                      name="THIP2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[FLP 2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[FLP 2]"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[FLP 2]"
+                      name="FLP 2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[HP2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[HP2]"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[HP2]"
+                      name="HP2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[INJ# RATE 2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[INJ# RATE 2]"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[INJ# RATE 2]"
+                      name="INJ# RATE 2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CUM# INJ# RATE2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CUM# INJ# RATE2]"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CUM# INJ# RATE2]"
+                      name="CUM# INJ# RATE2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CHOKE    SIZE 3]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CHOKE    SIZE 3]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CHOKE    SIZE 3]"
+                      name="CHOKE    SIZE 3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[UPTIME (hr:mm)3]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[UPTIME (hr:mm)3]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[UPTIME (hr:mm)3]"
+                      name="UPTIME (hr:mm)3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[THIP3]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[THIP3]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[THIP3]"
+                      name="THIP3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[FLP 3]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[FLP 3]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[FLP 3]"
+                      name="FLP 3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[HP3]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[HP3]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[HP3]"
+                      name="HP3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[INJ# RATE 3]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[INJ# RATE 3]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[INJ# RATE 3]"
+                      name="INJ# RATE 3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CUM# INJ# RATE3]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CUM# INJ# RATE3]"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CUM# INJ# RATE3]"
+                      name="CUM# INJ# RATE3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CHOKE    SIZE 4]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CHOKE    SIZE 4]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CHOKE    SIZE 4]"
+                      name="CHOKE    SIZE 4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[UPTIME (hr:mm)4]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[UPTIME (hr:mm)4]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[UPTIME (hr:mm)4]"
+                      name="UPTIME (hr:mm)4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[THIP4]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[THIP4]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[THIP4]"
+                      name="THIP4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[FLP 4]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[FLP 4]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[FLP 4]"
+                      name="FLP 4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[HP4]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[HP4]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[HP4]"
+                      name="HP4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[INJ# RATE 4]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[INJ# RATE 4]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[INJ# RATE 4]"
+                      name="INJ# RATE 4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CUM# INJ# RATE4]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CUM# INJ# RATE4]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CUM# INJ# RATE4]"
+                      name="CUM# INJ# RATE4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CHOKE    SIZE 5]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CHOKE    SIZE 5]"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CHOKE    SIZE 5]"
+                      name="CHOKE    SIZE 5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[UPTIME (hr:mm)5]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[UPTIME (hr:mm)5]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[UPTIME (hr:mm)5]"
+                      name="UPTIME (hr:mm)5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[THIP5]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[THIP5]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[THIP5]"
+                      name="THIP5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[FLP 5]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[FLP 5]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[FLP 5]"
+                      name="FLP 5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[HP5]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[HP5]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[HP5]"
+                      name="HP5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[INJ# RATE 5]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[INJ# RATE 5]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[INJ# RATE 5]"
+                      name="INJ# RATE 5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CUM# INJ# RATE5]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CUM# INJ# RATE5]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CUM# INJ# RATE5]"
+                      name="CUM# INJ# RATE5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[INJECTION RATE]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[INJECTION RATE]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[INJECTION RATE]"
+                      name="INJECTION RATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CUM# INJ# RATE6]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CUM# INJ# RATE6]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CUM# INJ# RATE6]"
+                      name="CUM# INJ# RATE6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CHOKE    SIZE 6]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CHOKE    SIZE 6]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CHOKE    SIZE 6]"
+                      name="CHOKE    SIZE 6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[UPTIME (hr:mm)6]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[UPTIME (hr:mm)6]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[UPTIME (hr:mm)6]"
+                      name="UPTIME (hr:mm)6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[THIP6]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[THIP6]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[THIP6]"
+                      name="THIP6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[FLP 6]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[FLP 6]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[FLP 6]"
+                      name="FLP 6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[HP6]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[HP6]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[HP6]"
+                      name="HP6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[INJ# RATE 6]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[INJ# RATE 6]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[INJ# RATE 6]"
+                      name="INJ# RATE 6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CUM# INJ# RATE7]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CUM# INJ# RATE7]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CUM# INJ# RATE7]"
+                      name="CUM# INJ# RATE7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[Total Water Inj (bbls)]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[Total Water Inj (bbls)]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[Total Water Inj (bbls)]"
+                      name="Total Water Inj (bbls)"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[WIJ Uptime (hr:mm)]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[WIJ Uptime (hr:mm)]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[WIJ Uptime (hr:mm)]"
+                      name="WIJ Uptime (hr:mm)"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CHOKE    SIZE 7]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CHOKE    SIZE 7]"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[CHOKE    SIZE 7]"
+                      name="CHOKE    SIZE 7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[UPTIME (hr:mm)7]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[UPTIME (hr:mm)7]"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[UPTIME (hr:mm)7]"
+                      name="UPTIME (hr:mm)7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[THIP7]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[THIP7]"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[THIP7]"
+                      name="THIP7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[FLP 7]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[FLP 7]"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[FLP 7]"
+                      name="FLP 7"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[DATE]"
+                      dataType="date"
+                      name="DATE" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CHOKE    SIZE ]"
+                      dataType="r8"
+                      name="CHOKE    SIZE " />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[UPTIME (hr:mm)]"
+                      dataType="wstr"
+                      length="255"
+                      name="UPTIME (hr:mm)" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[THIP]"
+                      dataType="r8"
+                      name="THIP" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[FLP ]"
+                      dataType="r8"
+                      name="FLP " />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[HP]"
+                      dataType="wstr"
+                      length="255"
+                      name="HP" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[INJ# RATE ]"
+                      dataType="r8"
+                      name="INJ# RATE " />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CUM# INJ# RATE]"
+                      dataType="r8"
+                      name="CUM# INJ# RATE" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CHOKE    SIZE 1]"
+                      dataType="wstr"
+                      length="255"
+                      name="CHOKE    SIZE 1" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[UPTIME (hr:mm)1]"
+                      dataType="wstr"
+                      length="255"
+                      name="UPTIME (hr:mm)1" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[THIP1]"
+                      dataType="wstr"
+                      length="255"
+                      name="THIP1" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[FLP 1]"
+                      dataType="wstr"
+                      length="255"
+                      name="FLP 1" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[HP1]"
+                      dataType="wstr"
+                      length="255"
+                      name="HP1" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[INJ# RATE 1]"
+                      dataType="wstr"
+                      length="255"
+                      name="INJ# RATE 1" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CUM# INJ# RATE1]"
+                      dataType="r8"
+                      name="CUM# INJ# RATE1" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[Totalizer ]"
+                      dataType="wstr"
+                      length="255"
+                      name="Totalizer " />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CHOKE    SIZE 2]"
+                      dataType="wstr"
+                      length="255"
+                      name="CHOKE    SIZE 2" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[UPTIME (hr:mm)2]"
+                      dataType="wstr"
+                      length="255"
+                      name="UPTIME (hr:mm)2" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[THIP2]"
+                      dataType="wstr"
+                      length="255"
+                      name="THIP2" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[FLP 2]"
+                      dataType="wstr"
+                      length="255"
+                      name="FLP 2" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[HP2]"
+                      dataType="wstr"
+                      length="255"
+                      name="HP2" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[INJ# RATE 2]"
+                      dataType="wstr"
+                      length="255"
+                      name="INJ# RATE 2" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CUM# INJ# RATE2]"
+                      dataType="wstr"
+                      length="255"
+                      name="CUM# INJ# RATE2" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CHOKE    SIZE 3]"
+                      dataType="r8"
+                      name="CHOKE    SIZE 3" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[UPTIME (hr:mm)3]"
+                      dataType="r8"
+                      name="UPTIME (hr:mm)3" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[THIP3]"
+                      dataType="r8"
+                      name="THIP3" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[FLP 3]"
+                      dataType="r8"
+                      name="FLP 3" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[HP3]"
+                      dataType="r8"
+                      name="HP3" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[INJ# RATE 3]"
+                      dataType="r8"
+                      name="INJ# RATE 3" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CUM# INJ# RATE3]"
+                      dataType="wstr"
+                      length="255"
+                      name="CUM# INJ# RATE3" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CHOKE    SIZE 4]"
+                      dataType="r8"
+                      name="CHOKE    SIZE 4" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[UPTIME (hr:mm)4]"
+                      dataType="r8"
+                      name="UPTIME (hr:mm)4" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[THIP4]"
+                      dataType="r8"
+                      name="THIP4" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[FLP 4]"
+                      dataType="r8"
+                      name="FLP 4" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[HP4]"
+                      dataType="r8"
+                      name="HP4" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[INJ# RATE 4]"
+                      dataType="r8"
+                      name="INJ# RATE 4" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CUM# INJ# RATE4]"
+                      dataType="r8"
+                      name="CUM# INJ# RATE4" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CHOKE    SIZE 5]"
+                      dataType="wstr"
+                      length="255"
+                      name="CHOKE    SIZE 5" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[UPTIME (hr:mm)5]"
+                      dataType="r8"
+                      name="UPTIME (hr:mm)5" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[THIP5]"
+                      dataType="r8"
+                      name="THIP5" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[FLP 5]"
+                      dataType="r8"
+                      name="FLP 5" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[HP5]"
+                      dataType="r8"
+                      name="HP5" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[INJ# RATE 5]"
+                      dataType="r8"
+                      name="INJ# RATE 5" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CUM# INJ# RATE5]"
+                      dataType="r8"
+                      name="CUM# INJ# RATE5" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[INJECTION RATE]"
+                      dataType="r8"
+                      name="INJECTION RATE" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CUM# INJ# RATE6]"
+                      dataType="r8"
+                      name="CUM# INJ# RATE6" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CHOKE    SIZE 6]"
+                      dataType="r8"
+                      name="CHOKE    SIZE 6" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[UPTIME (hr:mm)6]"
+                      dataType="r8"
+                      name="UPTIME (hr:mm)6" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[THIP6]"
+                      dataType="r8"
+                      name="THIP6" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[FLP 6]"
+                      dataType="r8"
+                      name="FLP 6" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[HP6]"
+                      dataType="r8"
+                      name="HP6" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[INJ# RATE 6]"
+                      dataType="r8"
+                      name="INJ# RATE 6" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CUM# INJ# RATE7]"
+                      dataType="r8"
+                      name="CUM# INJ# RATE7" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[Total Water Inj (bbls)]"
+                      dataType="r8"
+                      name="Total Water Inj (bbls)" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[WIJ Uptime (hr:mm)]"
+                      dataType="r8"
+                      name="WIJ Uptime (hr:mm)" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[CHOKE    SIZE 7]"
+                      dataType="wstr"
+                      length="255"
+                      name="CHOKE    SIZE 7" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[UPTIME (hr:mm)7]"
+                      dataType="wstr"
+                      length="255"
+                      name="UPTIME (hr:mm)7" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[THIP7]"
+                      dataType="wstr"
+                      length="255"
+                      name="THIP7" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].ExternalColumns[FLP 7]"
+                      dataType="wstr"
+                      length="255"
+                      name="FLP 7" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[DATE]"
+                      dataType="date"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[DATE]"
+                      name="DATE" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CHOKE    SIZE ]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CHOKE    SIZE ]"
+                      name="CHOKE    SIZE " />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[UPTIME (hr:mm)]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[UPTIME (hr:mm)]"
+                      name="UPTIME (hr:mm)" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[THIP]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[THIP]"
+                      name="THIP" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[FLP ]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[FLP ]"
+                      name="FLP " />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[HP]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[HP]"
+                      name="HP" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[INJ# RATE ]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[INJ# RATE ]"
+                      name="INJ# RATE " />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CUM# INJ# RATE]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CUM# INJ# RATE]"
+                      name="CUM# INJ# RATE" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CHOKE    SIZE 1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CHOKE    SIZE 1]"
+                      name="CHOKE    SIZE 1" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[UPTIME (hr:mm)1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[UPTIME (hr:mm)1]"
+                      name="UPTIME (hr:mm)1" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[THIP1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[THIP1]"
+                      name="THIP1" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[FLP 1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[FLP 1]"
+                      name="FLP 1" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[HP1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[HP1]"
+                      name="HP1" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[INJ# RATE 1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[INJ# RATE 1]"
+                      name="INJ# RATE 1" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CUM# INJ# RATE1]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CUM# INJ# RATE1]"
+                      name="CUM# INJ# RATE1" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[Totalizer ]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[Totalizer ]"
+                      name="Totalizer " />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CHOKE    SIZE 2]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CHOKE    SIZE 2]"
+                      name="CHOKE    SIZE 2" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[UPTIME (hr:mm)2]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[UPTIME (hr:mm)2]"
+                      name="UPTIME (hr:mm)2" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[THIP2]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[THIP2]"
+                      name="THIP2" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[FLP 2]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[FLP 2]"
+                      name="FLP 2" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[HP2]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[HP2]"
+                      name="HP2" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[INJ# RATE 2]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[INJ# RATE 2]"
+                      name="INJ# RATE 2" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CUM# INJ# RATE2]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CUM# INJ# RATE2]"
+                      name="CUM# INJ# RATE2" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CHOKE    SIZE 3]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CHOKE    SIZE 3]"
+                      name="CHOKE    SIZE 3" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[UPTIME (hr:mm)3]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[UPTIME (hr:mm)3]"
+                      name="UPTIME (hr:mm)3" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[THIP3]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[THIP3]"
+                      name="THIP3" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[FLP 3]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[FLP 3]"
+                      name="FLP 3" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[HP3]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[HP3]"
+                      name="HP3" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[INJ# RATE 3]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[INJ# RATE 3]"
+                      name="INJ# RATE 3" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CUM# INJ# RATE3]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CUM# INJ# RATE3]"
+                      name="CUM# INJ# RATE3" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CHOKE    SIZE 4]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CHOKE    SIZE 4]"
+                      name="CHOKE    SIZE 4" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[UPTIME (hr:mm)4]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[UPTIME (hr:mm)4]"
+                      name="UPTIME (hr:mm)4" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[THIP4]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[THIP4]"
+                      name="THIP4" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[FLP 4]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[FLP 4]"
+                      name="FLP 4" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[HP4]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[HP4]"
+                      name="HP4" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[INJ# RATE 4]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[INJ# RATE 4]"
+                      name="INJ# RATE 4" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CUM# INJ# RATE4]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CUM# INJ# RATE4]"
+                      name="CUM# INJ# RATE4" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CHOKE    SIZE 5]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CHOKE    SIZE 5]"
+                      name="CHOKE    SIZE 5" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[UPTIME (hr:mm)5]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[UPTIME (hr:mm)5]"
+                      name="UPTIME (hr:mm)5" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[THIP5]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[THIP5]"
+                      name="THIP5" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[FLP 5]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[FLP 5]"
+                      name="FLP 5" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[HP5]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[HP5]"
+                      name="HP5" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[INJ# RATE 5]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[INJ# RATE 5]"
+                      name="INJ# RATE 5" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CUM# INJ# RATE5]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CUM# INJ# RATE5]"
+                      name="CUM# INJ# RATE5" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[INJECTION RATE]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[INJECTION RATE]"
+                      name="INJECTION RATE" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CUM# INJ# RATE6]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CUM# INJ# RATE6]"
+                      name="CUM# INJ# RATE6" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CHOKE    SIZE 6]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CHOKE    SIZE 6]"
+                      name="CHOKE    SIZE 6" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[UPTIME (hr:mm)6]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[UPTIME (hr:mm)6]"
+                      name="UPTIME (hr:mm)6" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[THIP6]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[THIP6]"
+                      name="THIP6" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[FLP 6]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[FLP 6]"
+                      name="FLP 6" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[HP6]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[HP6]"
+                      name="HP6" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[INJ# RATE 6]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[INJ# RATE 6]"
+                      name="INJ# RATE 6" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CUM# INJ# RATE7]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CUM# INJ# RATE7]"
+                      name="CUM# INJ# RATE7" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[Total Water Inj (bbls)]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[Total Water Inj (bbls)]"
+                      name="Total Water Inj (bbls)" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[WIJ Uptime (hr:mm)]"
+                      dataType="r8"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[WIJ Uptime (hr:mm)]"
+                      name="WIJ Uptime (hr:mm)" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CHOKE    SIZE 7]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[CHOKE    SIZE 7]"
+                      name="CHOKE    SIZE 7" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[UPTIME (hr:mm)7]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[UPTIME (hr:mm)7]"
+                      name="UPTIME (hr:mm)7" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[THIP7]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[THIP7]"
+                      name="THIP7" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[FLP 7]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[FLP 7]"
+                      name="FLP 7" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="WaterInjectorRateHeader MSSQL"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[WaterInjectorRateHeaderStagings]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OERLAGITDHAUH.ERAS.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[OERLAGITDHAUH.ERAS.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input].Columns[ReportDate]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="ReportDate"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ReportDate]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Derived Column.Outputs[Derived Column Output].Columns[ReportDate]" />
+                    <inputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input].Columns[UploadTime]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="UploadTime"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[UploadTime]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Derived Column.Outputs[Derived Column Output].Columns[UploadTime]" />
+                    <inputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input].Columns[TimeStamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="TimeStamp"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TimeStamp]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Derived Column.Outputs[Derived Column Output].Columns[TimeStamp]" />
+                    <inputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input].Columns[DATE]"
+                      cachedDataType="date"
+                      cachedName="DATE"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[IndicatorDate]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[DATE]" />
+                    <inputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input].Columns[Copy of DayOftheWeek]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Copy of DayOftheWeek"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[DayOftheWeek]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of DayOftheWeek]" />
+                    <inputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input].Columns[Total Water Inj (bbls)]"
+                      cachedDataType="r8"
+                      cachedName="Total Water Inj (bbls)"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TotalWaterInj]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[Total Water Inj (bbls)]" />
+                    <inputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input].Columns[WIJ Uptime (hr:mm)]"
+                      cachedDataType="r8"
+                      cachedName="WIJ Uptime (hr:mm)"
+                      externalMetadataColumnId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WIJUptime]"
+                      lineageId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output].Columns[WIJ Uptime (hr:mm)]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="i4"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[IndicatorDate]"
+                      dataType="nText"
+                      name="IndicatorDate" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ReportDate]"
+                      dataType="dbTimeStamp2"
+                      name="ReportDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[UploadTime]"
+                      dataType="nText"
+                      name="UploadTime" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TimeStamp]"
+                      dataType="dbTimeStamp2"
+                      name="TimeStamp"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[DayOftheWeek]"
+                      dataType="nText"
+                      name="DayOftheWeek" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TotalWaterInj]"
+                      dataType="nText"
+                      name="TotalWaterInj" />
+                    <externalMetadataColumn
+                      refId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WIJUptime]"
+                      dataType="nText"
+                      name="WIJUptime" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\UploadWaterInjectorRateHeader.Paths[Data Conversion Output]"
+              endId="Package\UploadWaterInjectorRateHeader\Derived Column 1.Inputs[Derived Column Input]"
+              name="Data Conversion Output"
+              startId="Package\UploadWaterInjectorRateHeader\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\UploadWaterInjectorRateHeader.Paths[Derived Column Output]"
+              endId="Package\UploadWaterInjectorRateHeader\Data Conversion.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\UploadWaterInjectorRateHeader\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\UploadWaterInjectorRateHeader.Paths[Derived Column Output1]"
+              endId="Package\UploadWaterInjectorRateHeader\Check for Duplicate.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\UploadWaterInjectorRateHeader\Derived Column 1.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\UploadWaterInjectorRateHeader.Paths[Excel Source Output]"
+              endId="Package\UploadWaterInjectorRateHeader\Derived Column.Inputs[Derived Column Input]"
+              name="Excel Source Output"
+              startId="Package\UploadWaterInjectorRateHeader\Excel Source.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\UploadWaterInjectorRateHeader.Paths[Lookup No Match Output]"
+              endId="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\UploadWaterInjectorRateHeader\Check for Duplicate.Outputs[Lookup No Match Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{3BDECBF1-2E7C-4CDD-8B51-B391EC28B5B2}"
+      DTS:From="Package\UploadWaterInjectorRateHeader"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Reconcile Data" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149,42"
+          Id="Package\Reconcile Data"
+          TopLeft="412,123" />
+        <NodeLayout
+          Size="232,42"
+          Id="Package\UploadWaterInjectorRateHeader"
+          TopLeft="61,61" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="293,82">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="119,62"
+              Start="0,0"
+              End="111.5,62">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="55.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="55.5,0"
+                    Point2="59.5,0"
+                    Point3="59.5,4" />
+                  <mssgle:LineSegment
+                    End="59.5,58" />
+                  <mssgle:CubicBezierSegment
+                    Point1="59.5,58"
+                    Point2="59.5,62"
+                    Point3="63.5,62" />
+                  <mssgle:LineSegment
+                    End="111.5,62" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\UploadWaterInjectorRateHeader">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="163,42"
+          Id="Package\UploadWaterInjectorRateHeader\Derived Column 1"
+          TopLeft="539,221" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\UploadWaterInjectorRateHeader\Data Conversion"
+          TopLeft="318,217" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\UploadWaterInjectorRateHeader\Derived Column"
+          TopLeft="225,144" />
+        <NodeLayout
+          Size="235,42"
+          Id="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL"
+          TopLeft="548,340" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\UploadWaterInjectorRateHeader\Excel Source"
+          TopLeft="61,35" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\UploadWaterInjectorRateHeader\Check for Duplicate"
+          TopLeft="839,224" />
+        <EdgeLayout
+          Id="Package\UploadWaterInjectorRateHeader.Paths[Lookup No Match Output]"
+          TopLeft="924.5,266">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-259,74"
+              Start="0,0"
+              End="-259,66.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33"
+                    Point2="0,37"
+                    Point3="-4,37" />
+                  <mssgle:LineSegment
+                    End="-255,37" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-255,37"
+                    Point2="-259,37"
+                    Point3="-259,41" />
+                  <mssgle:LineSegment
+                    End="-259,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-185.30638671875,42,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\UploadWaterInjectorRateHeader.Paths[Excel Source Output]"
+          TopLeft="130.5,77">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="171.5,67"
+              Start="0,0"
+              End="171.5,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.5"
+                    Point2="0,33.5"
+                    Point3="4,33.5" />
+                  <mssgle:LineSegment
+                    End="167.5,33.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="167.5,33.5"
+                    Point2="171.5,33.5"
+                    Point3="171.5,37.5" />
+                  <mssgle:LineSegment
+                    End="171.5,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\UploadWaterInjectorRateHeader.Paths[Derived Column Output1]"
+          TopLeft="702,243.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="137,0"
+              Start="0,0"
+              End="129.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="129.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\UploadWaterInjectorRateHeader.Paths[Derived Column Output]"
+          TopLeft="302,186">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="94,31"
+              Start="0,0"
+              End="94,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.5"
+                    Point2="0,15.5"
+                    Point3="4,15.5" />
+                  <mssgle:LineSegment
+                    End="90,15.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="90,15.5"
+                    Point2="94,15.5"
+                    Point3="94,19.5" />
+                  <mssgle:LineSegment
+                    End="94,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\UploadWaterInjectorRateHeader.Paths[Data Conversion Output]"
+          TopLeft="474,240">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="65,0"
+              Start="0,0"
+              End="57.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="57.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\UploadWaterInjectorRateHeader\WaterInjectorRateHeader MSSQL">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\UploadWaterInjectorRateHeader\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\UploadWaterInjectorRateHeader\Check for Duplicate">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,1583 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/3/2018 12:47:30 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="OERLAGITDHAUH"
+  DTS:CreatorName="ORIENTAL-ER\Harrison.Uhunghama"
+  DTS:DTSID="{589824EB-20F4-48B0-8487-788D0A333777}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.107"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="UploadEBOKGasProductionSummary"
+  DTS:PackageType="5"
+  DTS:VersionBuild="52"
+  DTS:VersionGUID="{44D9DF27-43AE-4CF8-AE0C-B6CEEAFC30AD}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 3]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{73DA0939-C14D-4E1A-A009-ED5DF8D73F6D}"
+      DTS:ObjectName="Excel Connection Manager 3">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\ProductionAccounting\Gas AccountingREV.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=NO&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OERLAGITDHAUH.ERAS.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B04C3E97-7019-4F52-B913-7636094AF9D4}"
+      DTS:ObjectName="OERLAGITDHAUH.ERAS.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=10.130.64.137;Initial Catalog=ERAS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Reconcile Data"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{424793A5-FF92-4E0B-936D-A7E1854060D9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Reconcile Data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B04C3E97-7019-4F52-B913-7636094AF9D4}"
+          SQLTask:SqlStatementSource="Exec ProcessHistoricEBOKGasProductionSummaries" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{4979505e-0d5c-42ef-8baf-2e49aaae5488}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B04C3E97-7019-4F52-B913-7636094AF9D4}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="Truncate table EBOKGasProductionSummaries&#xA;Truncate table EBOKGasProductionSummaryStagings" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\UploadEBOKGasProductionSummary"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2230CAD8-3246-49C7-B343-AB3A36BC504E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="UploadEBOKGasProductionSummary">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\UploadEBOKGasProductionSummary\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\UploadEBOKGasProductionSummary\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\Data Conversion.Inputs[Data Conversion Input].Columns[DayOftheWeek]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="DayOftheWeek"
+                      lineageId="Package\UploadEBOKGasProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[DayOftheWeek]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\Data Conversion.Inputs[Data Conversion Input].Columns[Date]"
+                      cachedDataType="date"
+                      cachedName="Date"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[Date]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\UploadEBOKGasProductionSummary\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\UploadEBOKGasProductionSummary\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of DayOftheWeek]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\UploadEBOKGasProductionSummary\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of DayOftheWeek]"
+                      name="Copy of DayOftheWeek"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\UploadEBOKGasProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[DayOftheWeek]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\Data Conversion.Outputs[Data Conversion Output].Columns[INDICATORDATE]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\UploadEBOKGasProductionSummary\Data Conversion.Outputs[Data Conversion Output].Columns[INDICATORDATE]"
+                      name="INDICATORDATE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[Date]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\UploadEBOKGasProductionSummary\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\UploadEBOKGasProductionSummary\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\UploadEBOKGasProductionSummary\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\UploadEBOKGasProductionSummary\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\UploadEBOKGasProductionSummary\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\UploadEBOKGasProductionSummary\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\UploadEBOKGasProductionSummary\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\UploadEBOKGasProductionSummary\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[ReportDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\UploadEBOKGasProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[ReportDate]"
+                      name="ReportDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[SUBSTRING]((DT_STR,50,1256)[DATEADD]("DAY",-1,[GETDATE]()),1,10)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING((DT_STR,50,1256)DATEADD("DAY",-1,GETDATE()),1,10)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[UploadTime]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="2"
+                      lineageId="Package\UploadEBOKGasProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[UploadTime]"
+                      name="UploadTime"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[RIGHT]("0" + (DT_STR,2,1252)[DATEPART]("hh",[GETDATE]()),2)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">RIGHT("0" + (DT_STR,2,1252)DATEPART("hh",GETDATE()),2)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[TimeStamp]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\UploadEBOKGasProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[TimeStamp]"
+                      name="TimeStamp"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[DayOftheWeek]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\UploadEBOKGasProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[DayOftheWeek]"
+                      name="DayOftheWeek"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,20,1252)(([DATEPART]("DW",[GETDATE]()) == 1) ? "SUNDAY" : ([DATEPART]("DW",[GETDATE]()) == 2) ? "MONDAY" : ([DATEPART]("DW",[GETDATE]()) == 3) ? "TUESDAY" : ([DATEPART]("DW",[GETDATE]()) == 4) ? "WEDNESDAY" : ([DATEPART]("DW",[GETDATE]()) == 5) ? "THURSDAY" : ([DATEPART]("DW",[GETDATE]()) == 6) ? "FRIDAY" : ([DATEPART]("DW",[GETDATE]()) == 7) ? "SATURDAY" : "NULL")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,20,1252)((DATEPART("DW",GETDATE()) == 1) ? "SUNDAY" : (DATEPART("DW",GETDATE()) == 2) ? "MONDAY" : (DATEPART("DW",GETDATE()) == 3) ? "TUESDAY" : (DATEPART("DW",GETDATE()) == 4) ? "WEDNESDAY" : (DATEPART("DW",GETDATE()) == 5) ? "THURSDAY" : (DATEPART("DW",GETDATE()) == 6) ? "FRIDAY" : (DATEPART("DW",GETDATE()) == 7) ? "SATURDAY" : "NULL")</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[UptimeConverted]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="4"
+                      lineageId="Package\UploadEBOKGasProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[UptimeConverted]"
+                      name="UptimeConverted"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[RIGHT]("0" + (DT_STR,2,1252)[DATEPART]("hh",[GETDATE]()),2) + [RIGHT]("0" + (DT_STR,2,1252)[DATEPART]("mi",[GETDATE]()),2)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">RIGHT("0" + (DT_STR,2,1252)DATEPART("hh",GETDATE()),2) + RIGHT("0" + (DT_STR,2,1252)DATEPART("mi",GETDATE()),2)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\UploadEBOKGasProductionSummary\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\UploadEBOKGasProductionSummary\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\UploadEBOKGasProductionSummary\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\UploadEBOKGasProductionSummary\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="EBOKGasProductionSummary"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">'Daily Historical$'</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM [Daily Historical$A5:X65536]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager 3]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager 3]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[Date]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F1]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[Date]"
+                      name="Date"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[2-PhaseSeperator ]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F2]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[2-PhaseSeperator ]"
+                      name="2-PhaseSeperator "
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[TestSeperator ]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F3]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[TestSeperator ]"
+                      name="TestSeperator "
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[ProductionSeperator ]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F4]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[ProductionSeperator ]"
+                      name="ProductionSeperator "
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[LPVessels]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F5]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[LPVessels]"
+                      name="LPVessels"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[WFBAllocatedgas]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F6]"
+                      length="255"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[WFBAllocatedgas]"
+                      name="WFBAllocatedgas"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[WFBProcessUptime ]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F7]"
+                      length="255"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[WFBProcessUptime ]"
+                      name="WFBProcessUptime "
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[WFBFlaringUptime]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F8]"
+                      length="255"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[WFBFlaringUptime]"
+                      name="WFBFlaringUptime"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[WFBContribution]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F9]"
+                      length="255"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[WFBContribution]"
+                      name="WFBContribution"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[WFBProcessTotal]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F10]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[WFBProcessTotal]"
+                      name="WFBProcessTotal"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[GasLiftCFB]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F11]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[GasLiftCFB]"
+                      name="GasLiftCFB"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[GasLiftWFB]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F12]"
+                      length="255"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[GasLiftWFB]"
+                      name="GasLiftWFB"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[TotalGasLift]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F13]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[TotalGasLift]"
+                      name="TotalGasLift"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[GeneratorFuel ]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F14]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[GeneratorFuel ]"
+                      name="GeneratorFuel "
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[FuelGasKOD]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F15]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[FuelGasKOD]"
+                      name="FuelGasKOD"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[GTCompressorconsumption]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F16]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[GTCompressorconsumption]"
+                      name="GTCompressorconsumption"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[CalcuatedInjectedGas]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F17]"
+                      length="255"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[CalcuatedInjectedGas]"
+                      name="CalcuatedInjectedGas"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[MeteredGasInjected]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F18]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[MeteredGasInjected]"
+                      name="MeteredGasInjected"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[GasUtilizedTotal]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F19]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[GasUtilizedTotal]"
+                      name="GasUtilizedTotal"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[HPFLARE]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F20]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[HPFLARE]"
+                      name="HPFLARE"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[LPFLARE]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F21]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[LPFLARE]"
+                      name="LPFLARE"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[ WFBGasFlared]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F22]"
+                      length="255"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[ WFBGasFlared]"
+                      name=" WFBGasFlared"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[TotalMeteredGasFlared]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F23]"
+                      length="255"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[TotalMeteredGasFlared]"
+                      name="TotalMeteredGasFlared"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[Total]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F24]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[Total]"
+                      name="Total"
+                      truncationRowDisposition="IgnoreFailure" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F1]"
+                      dataType="date"
+                      name="F1" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F2]"
+                      dataType="r8"
+                      name="F2" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F3]"
+                      dataType="r8"
+                      name="F3" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F4]"
+                      dataType="r8"
+                      name="F4" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F5]"
+                      dataType="r8"
+                      name="F5" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F6]"
+                      dataType="wstr"
+                      length="255"
+                      name="F6" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F7]"
+                      dataType="wstr"
+                      length="255"
+                      name="F7" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F8]"
+                      dataType="wstr"
+                      length="255"
+                      name="F8" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F9]"
+                      dataType="wstr"
+                      length="255"
+                      name="F9" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F10]"
+                      dataType="r8"
+                      name="F10" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F11]"
+                      dataType="r8"
+                      name="F11" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F12]"
+                      dataType="wstr"
+                      length="255"
+                      name="F12" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F13]"
+                      dataType="r8"
+                      name="F13" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F14]"
+                      dataType="r8"
+                      name="F14" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F15]"
+                      dataType="r8"
+                      name="F15" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F16]"
+                      dataType="r8"
+                      name="F16" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F17]"
+                      dataType="wstr"
+                      length="255"
+                      name="F17" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F18]"
+                      dataType="r8"
+                      name="F18" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F19]"
+                      dataType="r8"
+                      name="F19" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F20]"
+                      dataType="r8"
+                      name="F20" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F21]"
+                      dataType="r8"
+                      name="F21" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F22]"
+                      dataType="wstr"
+                      length="255"
+                      name="F22" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F23]"
+                      dataType="wstr"
+                      length="255"
+                      name="F23" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].ExternalColumns[F24]"
+                      dataType="r8"
+                      name="F24" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F1]"
+                      dataType="date"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F1]"
+                      name="F1" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F2]"
+                      dataType="r8"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F2]"
+                      name="F2" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F3]"
+                      dataType="r8"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F3]"
+                      name="F3" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F4]"
+                      dataType="r8"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F4]"
+                      name="F4" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F5]"
+                      dataType="r8"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F5]"
+                      name="F5" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F6]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F6]"
+                      name="F6" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F7]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F7]"
+                      name="F7" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F8]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F8]"
+                      name="F8" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F9]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F9]"
+                      name="F9" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F10]"
+                      dataType="r8"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F10]"
+                      name="F10" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F11]"
+                      dataType="r8"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F11]"
+                      name="F11" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F12]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F12]"
+                      name="F12" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F13]"
+                      dataType="r8"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F13]"
+                      name="F13" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F14]"
+                      dataType="r8"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F14]"
+                      name="F14" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F15]"
+                      dataType="r8"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F15]"
+                      name="F15" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F16]"
+                      dataType="r8"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F16]"
+                      name="F16" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F17]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F17]"
+                      name="F17" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F18]"
+                      dataType="r8"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F18]"
+                      name="F18" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F19]"
+                      dataType="r8"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F19]"
+                      name="F19" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F20]"
+                      dataType="r8"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F20]"
+                      name="F20" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F21]"
+                      dataType="r8"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F21]"
+                      name="F21" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F22]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F22]"
+                      name="F22" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F23]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F23]"
+                      name="F23" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F24]"
+                      dataType="r8"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[F24]"
+                      name="F24" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="EBOKGasProductionSummary MSSQL"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[EBOKGasProductionSummaryStagings]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OERLAGITDHAUH.ERAS.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[OERLAGITDHAUH.ERAS.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[ReportDate]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="ReportDate"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ReportDate]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[ReportDate]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[UploadTime]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="UploadTime"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[UploadTime]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[UploadTime]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[TimeStamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="TimeStamp"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TimeStamp]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[TimeStamp]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Copy of DayOftheWeek]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Copy of DayOftheWeek"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[DayOftheWeek]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of DayOftheWeek]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[INDICATORDATE]"
+                      cachedDataType="date"
+                      cachedName="INDICATORDATE"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[IndicatorDate]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\Data Conversion.Outputs[Data Conversion Output].Columns[INDICATORDATE]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[WFBFlaringUptime]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="WFBFlaringUptime"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WFBFlaringUptime]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[WFBFlaringUptime]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[TotalMeteredGasFlared]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TotalMeteredGasFlared"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TotalMeteredGasFlared]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[TotalMeteredGasFlared]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[WFBProcessUptime ]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="WFBProcessUptime "
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WFBProcessUptime]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[WFBProcessUptime ]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[2-PhaseSeperator ]"
+                      cachedDataType="r8"
+                      cachedName="2-PhaseSeperator "
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TwoPhaseSeperator]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[2-PhaseSeperator ]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[TestSeperator ]"
+                      cachedDataType="r8"
+                      cachedName="TestSeperator "
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TestSeperator]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[TestSeperator ]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[ProductionSeperator ]"
+                      cachedDataType="r8"
+                      cachedName="ProductionSeperator "
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ProductionSeperator]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[ProductionSeperator ]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[LPVessels]"
+                      cachedDataType="r8"
+                      cachedName="LPVessels"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[LPVessels]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[LPVessels]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[WFBAllocatedgas]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="WFBAllocatedgas"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WFBAllocatedgas]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[WFBAllocatedgas]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[WFBContribution]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="WFBContribution"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WFBContribution]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[WFBContribution]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[WFBProcessTotal]"
+                      cachedDataType="r8"
+                      cachedName="WFBProcessTotal"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WFBPROCESSTOTAL]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[WFBProcessTotal]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[GasLiftWFB]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="GasLiftWFB"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WFBGasLift]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[GasLiftWFB]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[TotalGasLift]"
+                      cachedDataType="r8"
+                      cachedName="TotalGasLift"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TOTALGasLift]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[TotalGasLift]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[GeneratorFuel ]"
+                      cachedDataType="r8"
+                      cachedName="GeneratorFuel "
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[GeneratorFuel]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[GeneratorFuel ]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[FuelGasKOD]"
+                      cachedDataType="r8"
+                      cachedName="FuelGasKOD"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[FuelGasKOD]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[FuelGasKOD]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[GTCompressorconsumption]"
+                      cachedDataType="r8"
+                      cachedName="GTCompressorconsumption"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[GTCompressorconsumption]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[GTCompressorconsumption]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[CalcuatedInjectedGas]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CalcuatedInjectedGas"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[CalcuatedInjectedGas]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[CalcuatedInjectedGas]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[MeteredGasInjected]"
+                      cachedDataType="r8"
+                      cachedName="MeteredGasInjected"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[MeteredGasInjected]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[MeteredGasInjected]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[GasUtilizedTotal]"
+                      cachedDataType="r8"
+                      cachedName="GasUtilizedTotal"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[GASUtilizationTotal]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[GasUtilizedTotal]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[HPFLARE]"
+                      cachedDataType="r8"
+                      cachedName="HPFLARE"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[HPFLARE]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[HPFLARE]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[LPFLARE]"
+                      cachedDataType="r8"
+                      cachedName="LPFLARE"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[LPFLARE]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[LPFLARE]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[ WFBGasFlared]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName=" WFBGasFlared"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WFBGasFlared]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[ WFBGasFlared]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Total]"
+                      cachedDataType="r8"
+                      cachedName="Total"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[GASFLAREDTOTAL]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[Total]" />
+                    <inputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[GasLiftCFB]"
+                      cachedDataType="r8"
+                      cachedName="GasLiftCFB"
+                      externalMetadataColumnId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[CFBGasLift]"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output].Columns[GasLiftCFB]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="i4"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[IndicatorDate]"
+                      dataType="nText"
+                      name="IndicatorDate" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ReportDate]"
+                      dataType="dbTimeStamp2"
+                      name="ReportDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[UploadTime]"
+                      dataType="nText"
+                      name="UploadTime" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TimeStamp]"
+                      dataType="dbTimeStamp2"
+                      name="TimeStamp"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[DayOftheWeek]"
+                      dataType="nText"
+                      name="DayOftheWeek" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WFBFlaringUptime]"
+                      dataType="nText"
+                      name="WFBFlaringUptime" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TotalMeteredGasFlared]"
+                      dataType="nText"
+                      name="TotalMeteredGasFlared" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WFBProcessUptime]"
+                      dataType="nText"
+                      name="WFBProcessUptime" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TwoPhaseSeperator]"
+                      dataType="nText"
+                      name="TwoPhaseSeperator" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TestSeperator]"
+                      dataType="nText"
+                      name="TestSeperator" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ProductionSeperator]"
+                      dataType="nText"
+                      name="ProductionSeperator" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[LPVessels]"
+                      dataType="nText"
+                      name="LPVessels" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WFBAllocatedgas]"
+                      dataType="nText"
+                      name="WFBAllocatedgas" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WFBContribution]"
+                      dataType="nText"
+                      name="WFBContribution" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WFBPROCESSTOTAL]"
+                      dataType="nText"
+                      name="WFBPROCESSTOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WFBGasLift]"
+                      dataType="nText"
+                      name="WFBGasLift" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TOTALGasLift]"
+                      dataType="nText"
+                      name="TOTALGasLift" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[GeneratorFuel]"
+                      dataType="nText"
+                      name="GeneratorFuel" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[FuelGasKOD]"
+                      dataType="nText"
+                      name="FuelGasKOD" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[GTCompressorconsumption]"
+                      dataType="nText"
+                      name="GTCompressorconsumption" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[CalcuatedInjectedGas]"
+                      dataType="nText"
+                      name="CalcuatedInjectedGas" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[MeteredGasInjected]"
+                      dataType="nText"
+                      name="MeteredGasInjected" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[GASUtilizationTotal]"
+                      dataType="nText"
+                      name="GASUtilizationTotal" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[HPFLARE]"
+                      dataType="nText"
+                      name="HPFLARE" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[LPFLARE]"
+                      dataType="nText"
+                      name="LPFLARE" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WFBGasFlared]"
+                      dataType="nText"
+                      name="WFBGasFlared" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[GASFLAREDTOTAL]"
+                      dataType="nText"
+                      name="GASFLAREDTOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[CFBGasLift]"
+                      dataType="nText"
+                      name="CFBGasLift" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\UploadEBOKGasProductionSummary.Paths[Data Conversion Output]"
+              endId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\UploadEBOKGasProductionSummary\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\UploadEBOKGasProductionSummary.Paths[Derived Column Output]"
+              endId="Package\UploadEBOKGasProductionSummary\Data Conversion.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\UploadEBOKGasProductionSummary\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\UploadEBOKGasProductionSummary.Paths[Excel Source Output]"
+              endId="Package\UploadEBOKGasProductionSummary\Derived Column.Inputs[Derived Column Input]"
+              name="Excel Source Output"
+              startId="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{42D7DCC2-C1B1-40D2-9B5E-CCB42EE1D7A1}"
+      DTS:From="Package\UploadEBOKGasProductionSummary"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Reconcile Data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{B0D8EDC7-85CF-42AF-87F5-9189ABD343DA}"
+      DTS:From="Package\Truncate Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\UploadEBOKGasProductionSummary" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149,42"
+          Id="Package\Reconcile Data"
+          TopLeft="431,152" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Truncate Table"
+          TopLeft="2,0" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\UploadEBOKGasProductionSummary"
+          TopLeft="90,74" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="215,116">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="290.5,36"
+              Start="0,0"
+              End="290.5,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14"
+                    Point2="0,18"
+                    Point3="4,18" />
+                  <mssgle:LineSegment
+                    End="286.5,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="286.5,18"
+                    Point2="290.5,18"
+                    Point3="290.5,22" />
+                  <mssgle:LineSegment
+                    End="290.5,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="77,42">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="138,32"
+              Start="0,0"
+              End="138,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12"
+                    Point2="0,16"
+                    Point3="4,16" />
+                  <mssgle:LineSegment
+                    End="134,16" />
+                  <mssgle:CubicBezierSegment
+                    Point1="134,16"
+                    Point2="138,16"
+                    Point3="138,20" />
+                  <mssgle:LineSegment
+                    End="138,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\UploadEBOKGasProductionSummary">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="253,42"
+          Id="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL"
+          TopLeft="548,340" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\UploadEBOKGasProductionSummary\Derived Column"
+          TopLeft="225,144" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary"
+          TopLeft="93,46" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\UploadEBOKGasProductionSummary\Data Conversion"
+          TopLeft="318,217" />
+        <EdgeLayout
+          Id="Package\UploadEBOKGasProductionSummary.Paths[Excel Source Output]"
+          TopLeft="201.5,88">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="100.5,56"
+              Start="0,0"
+              End="100.5,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24"
+                    Point2="0,28"
+                    Point3="4,28" />
+                  <mssgle:LineSegment
+                    End="96.5,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="96.5,28"
+                    Point2="100.5,28"
+                    Point3="100.5,32" />
+                  <mssgle:LineSegment
+                    End="100.5,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\UploadEBOKGasProductionSummary.Paths[Derived Column Output]"
+          TopLeft="302,186">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="94,31"
+              Start="0,0"
+              End="94,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.5"
+                    Point2="0,15.5"
+                    Point3="4,15.5" />
+                  <mssgle:LineSegment
+                    End="90,15.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="90,15.5"
+                    Point2="94,15.5"
+                    Point3="94,19.5" />
+                  <mssgle:LineSegment
+                    End="94,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\UploadEBOKGasProductionSummary.Paths[Data Conversion Output]"
+          TopLeft="396,259">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="278.5,81"
+              Start="0,0"
+              End="278.5,73.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.5"
+                    Point2="0,40.5"
+                    Point3="4,40.5" />
+                  <mssgle:LineSegment
+                    End="274.5,40.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="274.5,40.5"
+                    Point2="278.5,40.5"
+                    Point3="278.5,44.5" />
+                  <mssgle:LineSegment
+                    End="278.5,73.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary MSSQL">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\UploadEBOKGasProductionSummary\EBOKGasProductionSummary">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

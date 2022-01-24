@@ -1,0 +1,2446 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/3/2018 12:47:30 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="OERLAGITDHAUH"
+  DTS:CreatorName="ORIENTAL-ER\Harrison.Uhunghama"
+  DTS:DTSID="{440C07F7-6331-4E0D-B66F-D483810556CC}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.107"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="UploadEBOKFieldProductionSummary"
+  DTS:PackageType="5"
+  DTS:VersionBuild="59"
+  DTS:VersionGUID="{F0888993-A36D-45DB-B4D9-B45CAA06B825}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{B93DF59A-89A2-4BA6-B2A8-82D2B8B2898A}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Administrator\Documents\ProductionAccounting\LatestData\Ebok Field Summary Report.xlsm;Extended Properties=&quot;EXCEL 12.0 MACRO;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 1]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{97B03370-8955-4A9C-BF8B-E3512674AE6A}"
+      DTS:ObjectName="Excel Connection Manager 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\harrison.uhunghama\OneDrive - Oriental-ER\Business Users Documents\ExcelReportingProject\ProductionReports\Ebok Field Summary Report.xlsm;Extended Properties=&quot;EXCEL 12.0 MACRO;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 2]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{0FAA88B0-32BC-4BF5-AA95-7D2CC5ED30CA}"
+      DTS:ObjectName="Excel Connection Manager 2">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Administrator\Documents\ProductionAccounting\LatestData\Ebok Field Summary Report.xlsm;Extended Properties=&quot;Excel 12.0 MACRO;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OERLAGITDHAUH.ERAS.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{36581950-E56B-47E2-A943-5E023E5488F8}"
+      DTS:ObjectName="OERLAGITDHAUH.ERAS.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=10.130.64.115;User ID=sa;Initial Catalog=ERAS;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAKWAfar50S0ijVWx87xreEQAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABa5zaynFQCYbSL1jR24aQHKpDqmqd9zuwF7OWZvCvnUQAAAAAOgAAAAAIAACAAAABLBCkwQIJFyeAgzowwomTppevo+YTXKLbk8+OyPJ9t7iAAAABJ9+Gd9XYC/La1f7/lFcZGOnL56qpNE4dXjB13mY0H3kAAAABfr3yYUMU1FYZsBrr+3HSiA7W4BWs+RAB2FfUYYY0f9ZYX5i5RKnnQUew4nfMh33xqkGD6eWJl7D7S3Sk/4MHW</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\EBOKFieldProductionSummary"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{021DBB43-2156-464E-B3DA-945C3EAB8DF1}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EBOKFieldProductionSummary">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\EBOKFieldProductionSummary\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\EBOKFieldProductionSummary\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\Data Conversion.Inputs[Data Conversion Input].Columns[DayOftheWeek]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="DayOftheWeek"
+                      lineageId="Package\EBOKFieldProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[DayOftheWeek]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\Data Conversion.Inputs[Data Conversion Input].Columns[F1]"
+                      cachedDataType="date"
+                      cachedName="F1"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[F1]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\EBOKFieldProductionSummary\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\EBOKFieldProductionSummary\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of DayOftheWeek]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\EBOKFieldProductionSummary\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of DayOftheWeek]"
+                      name="Copy of DayOftheWeek"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\EBOKFieldProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[DayOftheWeek]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\Data Conversion.Outputs[Data Conversion Output].Columns[INDICATORDATE]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\EBOKFieldProductionSummary\Data Conversion.Outputs[Data Conversion Output].Columns[INDICATORDATE]"
+                      name="INDICATORDATE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[F1]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\EBOKFieldProductionSummary\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\EBOKFieldProductionSummary\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\EBOKFieldProductionSummary\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\EBOKFieldProductionSummary\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\EBOKFieldProductionSummary\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\EBOKFieldProductionSummary\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\EBOKFieldProductionSummary\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\EBOKFieldProductionSummary\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[ReportDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\EBOKFieldProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[ReportDate]"
+                      name="ReportDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[SUBSTRING]((DT_STR,50,1256)[DATEADD]("DAY",-1,[GETDATE]()),1,10)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING((DT_STR,50,1256)DATEADD("DAY",-1,GETDATE()),1,10)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[UploadTime]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="2"
+                      lineageId="Package\EBOKFieldProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[UploadTime]"
+                      name="UploadTime"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[RIGHT]("0" + (DT_STR,2,1252)[DATEPART]("hh",[GETDATE]()),2)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">RIGHT("0" + (DT_STR,2,1252)DATEPART("hh",GETDATE()),2)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[TimeStamp]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\EBOKFieldProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[TimeStamp]"
+                      name="TimeStamp"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[DayOftheWeek]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\EBOKFieldProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[DayOftheWeek]"
+                      name="DayOftheWeek"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,20,1252)(([DATEPART]("DW",[GETDATE]()) == 1) ? "SUNDAY" : ([DATEPART]("DW",[GETDATE]()) == 2) ? "MONDAY" : ([DATEPART]("DW",[GETDATE]()) == 3) ? "TUESDAY" : ([DATEPART]("DW",[GETDATE]()) == 4) ? "WEDNESDAY" : ([DATEPART]("DW",[GETDATE]()) == 5) ? "THURSDAY" : ([DATEPART]("DW",[GETDATE]()) == 6) ? "FRIDAY" : ([DATEPART]("DW",[GETDATE]()) == 7) ? "SATURDAY" : "NULL")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,20,1252)((DATEPART("DW",GETDATE()) == 1) ? "SUNDAY" : (DATEPART("DW",GETDATE()) == 2) ? "MONDAY" : (DATEPART("DW",GETDATE()) == 3) ? "TUESDAY" : (DATEPART("DW",GETDATE()) == 4) ? "WEDNESDAY" : (DATEPART("DW",GETDATE()) == 5) ? "THURSDAY" : (DATEPART("DW",GETDATE()) == 6) ? "FRIDAY" : (DATEPART("DW",GETDATE()) == 7) ? "SATURDAY" : "NULL")</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[UptimeConverted]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="4"
+                      lineageId="Package\EBOKFieldProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[UptimeConverted]"
+                      name="UptimeConverted"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[RIGHT]("0" + (DT_STR,2,1252)[DATEPART]("hh",[GETDATE]()),2) + [RIGHT]("0" + (DT_STR,2,1252)[DATEPART]("mi",[GETDATE]()),2)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">RIGHT("0" + (DT_STR,2,1252)DATEPART("hh",GETDATE()),2) + RIGHT("0" + (DT_STR,2,1252)DATEPART("mi",GETDATE()),2)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\EBOKFieldProductionSummary\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\EBOKFieldProductionSummary\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\EBOKFieldProductionSummary\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\EBOKFieldProductionSummary\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="EBOKFieldProductionSummary"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">'Ebok-9$'</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM [Daily Historical$A2:BF65536] where [Uptime     ] is not null</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager 2]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager 2]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[F1]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[F1]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[F1]"
+                      name="F1"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Uptime     ]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Uptime     ]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Uptime     ]"
+                      name="Uptime     "
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Prod# Oil]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Prod# Oil]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Prod# Oil]"
+                      name="Prod# Oil"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Cum Prod#]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Cum Prod#]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Cum Prod#]"
+                      name="Cum Prod#"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Slippage]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Slippage]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Slippage]"
+                      name="Slippage"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Cum Slippage]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Cum Slippage]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Cum Slippage]"
+                      name="Cum Slippage"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Prod Gas]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Prod Gas]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Prod Gas]"
+                      name="Prod Gas"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[WFB Allocated Gas]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[WFB Allocated Gas]"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[WFB Allocated Gas]"
+                      name="WFB Allocated Gas"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[WFB Process Uptime]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[WFB Process Uptime]"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[WFB Process Uptime]"
+                      name="WFB Process Uptime"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[WFB Flaring Uptime]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[WFB Flaring Uptime]"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[WFB Flaring Uptime]"
+                      name="WFB Flaring Uptime"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Gas lift  ]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Gas lift  ]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Gas lift  ]"
+                      name="Gas lift  "
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Total Produced Gas]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Total Produced Gas]"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Total Produced Gas]"
+                      name="Total Produced Gas"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Cum Gas]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Cum Gas]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Cum Gas]"
+                      name="Cum Gas"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Prod Water]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Prod Water]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Prod Water]"
+                      name="Prod Water"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Cum# Water]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Cum# Water]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Cum# Water]"
+                      name="Cum# Water"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Effluent       Oil-In-Water]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Effluent       Oil-In-Water]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Effluent       Oil-In-Water]"
+                      name="Effluent       Oil-In-Water"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[F17]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[F17]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[F17]"
+                      name="F17"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[F18]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[F18]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[F18]"
+                      name="F18"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[F19]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[F19]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[F19]"
+                      name="F19"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[API]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[API]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[API]"
+                      name="API"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Export API]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Export API]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Export API]"
+                      name="Export API"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Export Temp]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Export Temp]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Export Temp]"
+                      name="Export Temp"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Export Meters Reading (Gross Crude Total)]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Export Meters Reading (Gross Crude Total)]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Export Meters Reading (Gross Crude Total)]"
+                      name="Export Meters Reading (Gross Crude Total)"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Export Meters Reading (Net Crude Total)]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Export Meters Reading (Net Crude Total)]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Export Meters Reading (Net Crude Total)]"
+                      name="Export Meters Reading (Net Crude Total)"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Field Water Cut]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Field Water Cut]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Field Water Cut]"
+                      name="Field Water Cut"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Export Water Cut]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Export Water Cut]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Export Water Cut]"
+                      name="Export Water Cut"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Pumpable cargo on Board (bbls)]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Pumpable cargo on Board (bbls)]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Pumpable cargo on Board (bbls)]"
+                      name="Pumpable cargo on Board (bbls)"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[F28]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[F28]"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[F28]"
+                      name="F28"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Adjustment ]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Adjustment ]"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Adjustment ]"
+                      name="Adjustment "
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Virini Prem Stock Balance]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Virini Prem Stock Balance]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Virini Prem Stock Balance]"
+                      name="Virini Prem Stock Balance"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[ BSW]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[ BSW]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[ BSW]"
+                      name=" BSW"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Field GOR]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Field GOR]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Field GOR]"
+                      name="Field GOR"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Adjusted Field GOR]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Adjusted Field GOR]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Adjusted Field GOR]"
+                      name="Adjusted Field GOR"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Water Overboard]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Water Overboard]"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Water Overboard]"
+                      name="Water Overboard"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Free Water Received (FSO)]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Free Water Received (FSO)]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Free Water Received (FSO)]"
+                      name="Free Water Received (FSO)"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Water Overboard (MOPU) ]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Water Overboard (MOPU) ]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Water Overboard (MOPU) ]"
+                      name="Water Overboard (MOPU) "
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Ullage Measurement]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Ullage Measurement]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Ullage Measurement]"
+                      name="Ullage Measurement"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[MOPU corrected meter Variance(%)]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[MOPU corrected meter Variance(%)]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[MOPU corrected meter Variance(%)]"
+                      name="MOPU corrected meter Variance(%)"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[BS&amp;W (Manual)]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[BS&amp;W (Manual)]"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[BS&amp;W (Manual)]"
+                      name="BS&amp;W (Manual)"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[BS&amp;W (Autosampler)]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[BS&amp;W (Autosampler)]"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[BS&amp;W (Autosampler)]"
+                      name="BS&amp;W (Autosampler)"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Offload Volume]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Offload Volume]"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Offload Volume]"
+                      name="Offload Volume"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Offload BSW]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Offload BSW]"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Offload BSW]"
+                      name="Offload BSW"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Offload API]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Offload API]"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Offload API]"
+                      name="Offload API"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Process Uptime ]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Process Uptime ]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Process Uptime ]"
+                      name="Process Uptime "
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Forecast]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Forecast]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Forecast]"
+                      name="Forecast"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Ideal Day Rate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Ideal Day Rate]"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Ideal Day Rate]"
+                      name="Ideal Day Rate"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Adjusted Ideal Day Rate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Adjusted Ideal Day Rate]"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Adjusted Ideal Day Rate]"
+                      name="Adjusted Ideal Day Rate"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Market Expectation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Market Expectation]"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Market Expectation]"
+                      name="Market Expectation"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Budget ]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Budget ]"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Budget ]"
+                      name="Budget "
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Deferment]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Deferment]"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Deferment]"
+                      name="Deferment"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[M]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[M]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[M]"
+                      name="M"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Estmated Prod Gas (GOR = 300scf/bbl)]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Estmated Prod Gas (GOR = 300scf/bbl)]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Estmated Prod Gas (GOR = 300scf/bbl)]"
+                      name="Estmated Prod Gas (GOR = 300scf/bbl)"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Target - LC]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Target - LC]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Target - LC]"
+                      name="Target - LC"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Target - HC]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Target - HC]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Target - HC]"
+                      name="Target - HC"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Technical Allowable]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Technical Allowable]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Technical Allowable]"
+                      name="Technical Allowable"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Commercial Allowable]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Commercial Allowable]"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Commercial Allowable]"
+                      name="Commercial Allowable"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Actual Prod Gas ]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Actual Prod Gas ]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Actual Prod Gas ]"
+                      name="Actual Prod Gas "
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Weekly Average]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Weekly Average]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Weekly Average]"
+                      name="Weekly Average"
+                      truncationRowDisposition="IgnoreFailure" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[F1]"
+                      dataType="date"
+                      name="F1" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Uptime     ]"
+                      dataType="date"
+                      name="Uptime     " />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Prod# Oil]"
+                      dataType="r8"
+                      name="Prod# Oil" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Cum Prod#]"
+                      dataType="r8"
+                      name="Cum Prod#" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Slippage]"
+                      dataType="r8"
+                      name="Slippage" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Cum Slippage]"
+                      dataType="r8"
+                      name="Cum Slippage" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Prod Gas]"
+                      dataType="r8"
+                      name="Prod Gas" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[WFB Allocated Gas]"
+                      dataType="wstr"
+                      length="255"
+                      name="WFB Allocated Gas" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[WFB Process Uptime]"
+                      dataType="wstr"
+                      length="255"
+                      name="WFB Process Uptime" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[WFB Flaring Uptime]"
+                      dataType="wstr"
+                      length="255"
+                      name="WFB Flaring Uptime" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Gas lift  ]"
+                      dataType="r8"
+                      name="Gas lift  " />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Total Produced Gas]"
+                      dataType="wstr"
+                      length="255"
+                      name="Total Produced Gas" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Cum Gas]"
+                      dataType="r8"
+                      name="Cum Gas" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Prod Water]"
+                      dataType="r8"
+                      name="Prod Water" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Cum# Water]"
+                      dataType="r8"
+                      name="Cum# Water" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Effluent       Oil-In-Water]"
+                      dataType="r8"
+                      name="Effluent       Oil-In-Water" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[F17]"
+                      dataType="r8"
+                      name="F17" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[F18]"
+                      dataType="r8"
+                      name="F18" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[F19]"
+                      dataType="r8"
+                      name="F19" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[API]"
+                      dataType="r8"
+                      name="API" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Export API]"
+                      dataType="r8"
+                      name="Export API" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Export Temp]"
+                      dataType="r8"
+                      name="Export Temp" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Export Meters Reading (Gross Crude Total)]"
+                      dataType="r8"
+                      name="Export Meters Reading (Gross Crude Total)" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Export Meters Reading (Net Crude Total)]"
+                      dataType="r8"
+                      name="Export Meters Reading (Net Crude Total)" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Field Water Cut]"
+                      dataType="r8"
+                      name="Field Water Cut" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Export Water Cut]"
+                      dataType="r8"
+                      name="Export Water Cut" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Pumpable cargo on Board (bbls)]"
+                      dataType="r8"
+                      name="Pumpable cargo on Board (bbls)" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[F28]"
+                      dataType="wstr"
+                      length="255"
+                      name="F28" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Adjustment ]"
+                      dataType="wstr"
+                      length="255"
+                      name="Adjustment " />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Virini Prem Stock Balance]"
+                      dataType="r8"
+                      name="Virini Prem Stock Balance" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[ BSW]"
+                      dataType="r8"
+                      name=" BSW" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Field GOR]"
+                      dataType="r8"
+                      name="Field GOR" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Adjusted Field GOR]"
+                      dataType="r8"
+                      name="Adjusted Field GOR" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Water Overboard]"
+                      dataType="wstr"
+                      length="255"
+                      name="Water Overboard" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Free Water Received (FSO)]"
+                      dataType="r8"
+                      name="Free Water Received (FSO)" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Water Overboard (MOPU) ]"
+                      dataType="r8"
+                      name="Water Overboard (MOPU) " />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Ullage Measurement]"
+                      dataType="r8"
+                      name="Ullage Measurement" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[MOPU corrected meter Variance(%)]"
+                      dataType="r8"
+                      name="MOPU corrected meter Variance(%)" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[BS&amp;W (Manual)]"
+                      dataType="wstr"
+                      length="255"
+                      name="BS&amp;W (Manual)" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[BS&amp;W (Autosampler)]"
+                      dataType="wstr"
+                      length="255"
+                      name="BS&amp;W (Autosampler)" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Offload Volume]"
+                      dataType="wstr"
+                      length="255"
+                      name="Offload Volume" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Offload BSW]"
+                      dataType="wstr"
+                      length="255"
+                      name="Offload BSW" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Offload API]"
+                      dataType="wstr"
+                      length="255"
+                      name="Offload API" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Process Uptime ]"
+                      dataType="date"
+                      name="Process Uptime " />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Forecast]"
+                      dataType="r8"
+                      name="Forecast" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Ideal Day Rate]"
+                      dataType="wstr"
+                      length="255"
+                      name="Ideal Day Rate" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Adjusted Ideal Day Rate]"
+                      dataType="wstr"
+                      length="255"
+                      name="Adjusted Ideal Day Rate" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Market Expectation]"
+                      dataType="wstr"
+                      length="255"
+                      name="Market Expectation" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Budget ]"
+                      dataType="wstr"
+                      length="255"
+                      name="Budget " />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Deferment]"
+                      dataType="wstr"
+                      length="255"
+                      name="Deferment" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[M]"
+                      dataType="r8"
+                      name="M" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Estmated Prod Gas (GOR = 300scf/bbl)]"
+                      dataType="r8"
+                      name="Estmated Prod Gas (GOR = 300scf/bbl)" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Target - LC]"
+                      dataType="r8"
+                      name="Target - LC" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Target - HC]"
+                      dataType="r8"
+                      name="Target - HC" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Technical Allowable]"
+                      dataType="r8"
+                      name="Technical Allowable" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Commercial Allowable]"
+                      dataType="wstr"
+                      length="255"
+                      name="Commercial Allowable" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Actual Prod Gas ]"
+                      dataType="r8"
+                      name="Actual Prod Gas " />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].ExternalColumns[Weekly Average]"
+                      dataType="r8"
+                      name="Weekly Average" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[F1]"
+                      dataType="date"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[F1]"
+                      name="F1" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Uptime     ]"
+                      dataType="date"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Uptime     ]"
+                      name="Uptime     " />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Prod# Oil]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Prod# Oil]"
+                      name="Prod# Oil" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Cum Prod#]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Cum Prod#]"
+                      name="Cum Prod#" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Slippage]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Slippage]"
+                      name="Slippage" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Cum Slippage]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Cum Slippage]"
+                      name="Cum Slippage" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Prod Gas]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Prod Gas]"
+                      name="Prod Gas" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[WFB Allocated Gas]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[WFB Allocated Gas]"
+                      name="WFB Allocated Gas" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[WFB Process Uptime]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[WFB Process Uptime]"
+                      name="WFB Process Uptime" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[WFB Flaring Uptime]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[WFB Flaring Uptime]"
+                      name="WFB Flaring Uptime" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Gas lift  ]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Gas lift  ]"
+                      name="Gas lift  " />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Total Produced Gas]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Total Produced Gas]"
+                      name="Total Produced Gas" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Cum Gas]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Cum Gas]"
+                      name="Cum Gas" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Prod Water]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Prod Water]"
+                      name="Prod Water" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Cum# Water]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Cum# Water]"
+                      name="Cum# Water" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Effluent       Oil-In-Water]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Effluent       Oil-In-Water]"
+                      name="Effluent       Oil-In-Water" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[F17]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[F17]"
+                      name="F17" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[F18]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[F18]"
+                      name="F18" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[F19]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[F19]"
+                      name="F19" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[API]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[API]"
+                      name="API" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Export API]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Export API]"
+                      name="Export API" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Export Temp]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Export Temp]"
+                      name="Export Temp" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Export Meters Reading (Gross Crude Total)]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Export Meters Reading (Gross Crude Total)]"
+                      name="Export Meters Reading (Gross Crude Total)" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Export Meters Reading (Net Crude Total)]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Export Meters Reading (Net Crude Total)]"
+                      name="Export Meters Reading (Net Crude Total)" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Field Water Cut]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Field Water Cut]"
+                      name="Field Water Cut" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Export Water Cut]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Export Water Cut]"
+                      name="Export Water Cut" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Pumpable cargo on Board (bbls)]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Pumpable cargo on Board (bbls)]"
+                      name="Pumpable cargo on Board (bbls)" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[F28]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[F28]"
+                      name="F28" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Adjustment ]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Adjustment ]"
+                      name="Adjustment " />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Virini Prem Stock Balance]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Virini Prem Stock Balance]"
+                      name="Virini Prem Stock Balance" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[ BSW]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[ BSW]"
+                      name=" BSW" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Field GOR]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Field GOR]"
+                      name="Field GOR" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Adjusted Field GOR]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Adjusted Field GOR]"
+                      name="Adjusted Field GOR" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Water Overboard]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Water Overboard]"
+                      name="Water Overboard" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Free Water Received (FSO)]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Free Water Received (FSO)]"
+                      name="Free Water Received (FSO)" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Water Overboard (MOPU) ]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Water Overboard (MOPU) ]"
+                      name="Water Overboard (MOPU) " />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Ullage Measurement]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Ullage Measurement]"
+                      name="Ullage Measurement" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[MOPU corrected meter Variance(%)]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[MOPU corrected meter Variance(%)]"
+                      name="MOPU corrected meter Variance(%)" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[BS&amp;W (Manual)]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[BS&amp;W (Manual)]"
+                      name="BS&amp;W (Manual)" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[BS&amp;W (Autosampler)]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[BS&amp;W (Autosampler)]"
+                      name="BS&amp;W (Autosampler)" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Offload Volume]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Offload Volume]"
+                      name="Offload Volume" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Offload BSW]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Offload BSW]"
+                      name="Offload BSW" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Offload API]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Offload API]"
+                      name="Offload API" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Process Uptime ]"
+                      dataType="date"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Process Uptime ]"
+                      name="Process Uptime " />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Forecast]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Forecast]"
+                      name="Forecast" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Ideal Day Rate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Ideal Day Rate]"
+                      name="Ideal Day Rate" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Adjusted Ideal Day Rate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Adjusted Ideal Day Rate]"
+                      name="Adjusted Ideal Day Rate" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Market Expectation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Market Expectation]"
+                      name="Market Expectation" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Budget ]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Budget ]"
+                      name="Budget " />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Deferment]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Deferment]"
+                      name="Deferment" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[M]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[M]"
+                      name="M" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Estmated Prod Gas (GOR = 300scf/bbl)]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Estmated Prod Gas (GOR = 300scf/bbl)]"
+                      name="Estmated Prod Gas (GOR = 300scf/bbl)" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Target - LC]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Target - LC]"
+                      name="Target - LC" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Target - HC]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Target - HC]"
+                      name="Target - HC" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Technical Allowable]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Technical Allowable]"
+                      name="Technical Allowable" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Commercial Allowable]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Commercial Allowable]"
+                      name="Commercial Allowable" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Actual Prod Gas ]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Actual Prod Gas ]"
+                      name="Actual Prod Gas " />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Weekly Average]"
+                      dataType="r8"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[Weekly Average]"
+                      name="Weekly Average" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="EBOKFieldProductionSummary MSSQL"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[EBOKFieldProductionSummaryStagings]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OERLAGITDHAUH.ERAS.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[OERLAGITDHAUH.ERAS.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="IgnoreFailure"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[ReportDate]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="ReportDate"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ReportDate]"
+                      lineageId="Package\EBOKFieldProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[ReportDate]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[UploadTime]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="UploadTime"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[UploadTime]"
+                      lineageId="Package\EBOKFieldProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[UploadTime]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[TimeStamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="TimeStamp"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TimeStamp]"
+                      lineageId="Package\EBOKFieldProductionSummary\Derived Column.Outputs[Derived Column Output].Columns[TimeStamp]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Copy of DayOftheWeek]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Copy of DayOftheWeek"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[DayOftheWeek]"
+                      lineageId="Package\EBOKFieldProductionSummary\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of DayOftheWeek]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Uptime     ]"
+                      cachedDataType="date"
+                      cachedName="Uptime     "
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Uptime]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Uptime     ]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Cum Prod#]"
+                      cachedDataType="r8"
+                      cachedName="Cum Prod#"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[CumProd]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Cum Prod#]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Prod Gas]"
+                      cachedDataType="r8"
+                      cachedName="Prod Gas"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ProdGas]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Prod Gas]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[WFB Allocated Gas]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="WFB Allocated Gas"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WFBAllocatedGas]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[WFB Allocated Gas]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[WFB Flaring Uptime]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="WFB Flaring Uptime"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WFBFlaringUptime]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[WFB Flaring Uptime]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Gas lift  ]"
+                      cachedDataType="r8"
+                      cachedName="Gas lift  "
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Gaslift]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Gas lift  ]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Total Produced Gas]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Total Produced Gas"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TotalProducedGas]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Total Produced Gas]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Cum Gas]"
+                      cachedDataType="r8"
+                      cachedName="Cum Gas"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[CumGas]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Cum Gas]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Effluent       Oil-In-Water]"
+                      cachedDataType="r8"
+                      cachedName="Effluent       Oil-In-Water"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[EffluentOilInWater]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Effluent       Oil-In-Water]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Prod Water]"
+                      cachedDataType="r8"
+                      cachedName="Prod Water"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ProdWater]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Prod Water]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Cum# Water]"
+                      cachedDataType="r8"
+                      cachedName="Cum# Water"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[CumWater]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Cum# Water]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[API]"
+                      cachedDataType="r8"
+                      cachedName="API"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[API]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[API]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Export API]"
+                      cachedDataType="r8"
+                      cachedName="Export API"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ExportAPI]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Export API]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Export Temp]"
+                      cachedDataType="r8"
+                      cachedName="Export Temp"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ExportTemp]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Export Temp]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Export Meters Reading (Gross Crude Total)]"
+                      cachedDataType="r8"
+                      cachedName="Export Meters Reading (Gross Crude Total)"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ExportMetersReadingGross]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Export Meters Reading (Gross Crude Total)]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Export Meters Reading (Net Crude Total)]"
+                      cachedDataType="r8"
+                      cachedName="Export Meters Reading (Net Crude Total)"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ExportMetersReadingNet]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Export Meters Reading (Net Crude Total)]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Field Water Cut]"
+                      cachedDataType="r8"
+                      cachedName="Field Water Cut"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[FieldWaterCut]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Field Water Cut]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Export Water Cut]"
+                      cachedDataType="r8"
+                      cachedName="Export Water Cut"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ExportWaterCut]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Export Water Cut]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Pumpable cargo on Board (bbls)]"
+                      cachedDataType="r8"
+                      cachedName="Pumpable cargo on Board (bbls)"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[PumpablecargoonBoard]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Pumpable cargo on Board (bbls)]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Adjustment ]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Adjustment "
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Adjustment]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Adjustment ]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Virini Prem Stock Balance]"
+                      cachedDataType="r8"
+                      cachedName="Virini Prem Stock Balance"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ViriniPremStockBalance]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Virini Prem Stock Balance]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[BS&amp;W (Manual)]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="BS&amp;W (Manual)"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[BSW]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[BS&amp;W (Manual)]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Field GOR]"
+                      cachedDataType="r8"
+                      cachedName="Field GOR"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[FieldGOR]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Field GOR]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Adjusted Field GOR]"
+                      cachedDataType="r8"
+                      cachedName="Adjusted Field GOR"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[AdjustedFieldGOR]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Adjusted Field GOR]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Free Water Received (FSO)]"
+                      cachedDataType="r8"
+                      cachedName="Free Water Received (FSO)"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[FreeWaterReceived]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Free Water Received (FSO)]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Water Overboard (MOPU) ]"
+                      cachedDataType="r8"
+                      cachedName="Water Overboard (MOPU) "
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WaterOverboardMOPU]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Water Overboard (MOPU) ]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[MOPU corrected meter Variance(%)]"
+                      cachedDataType="r8"
+                      cachedName="MOPU corrected meter Variance(%)"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[MOPUcorrectedmeterVariance]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[MOPU corrected meter Variance(%)]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[ BSW]"
+                      cachedDataType="r8"
+                      cachedName=" BSW"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[BSWManual]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[ BSW]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[BS&amp;W (Autosampler)]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="BS&amp;W (Autosampler)"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[BSWAutosampler]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[BS&amp;W (Autosampler)]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Offload Volume]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Offload Volume"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[OffloadVolume]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Offload Volume]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Offload BSW]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Offload BSW"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[OffloadBSW]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Offload BSW]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Offload API]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Offload API"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[OffloadAPI]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Offload API]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Forecast]"
+                      cachedDataType="r8"
+                      cachedName="Forecast"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Forecast]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Forecast]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Ideal Day Rate]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Ideal Day Rate"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[IdealDayRate]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Ideal Day Rate]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Market Expectation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Market Expectation"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[MarketExpectation]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Market Expectation]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Budget ]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Budget "
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Budget]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Budget ]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Deferment]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Deferment"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Deferment]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Deferment]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Estmated Prod Gas (GOR = 300scf/bbl)]"
+                      cachedDataType="r8"
+                      cachedName="Estmated Prod Gas (GOR = 300scf/bbl)"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[EstmatedProdGas]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Estmated Prod Gas (GOR = 300scf/bbl)]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Target - LC]"
+                      cachedDataType="r8"
+                      cachedName="Target - LC"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TargetLC]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Target - LC]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Target - HC]"
+                      cachedDataType="r8"
+                      cachedName="Target - HC"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TargetHC]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Target - HC]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Technical Allowable]"
+                      cachedDataType="r8"
+                      cachedName="Technical Allowable"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TechnicalAllowable]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Technical Allowable]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Commercial Allowable]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Commercial Allowable"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[CommercialAllowable]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Commercial Allowable]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Actual Prod Gas ]"
+                      cachedDataType="r8"
+                      cachedName="Actual Prod Gas "
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ActualProdGas]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Actual Prod Gas ]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Weekly Average]"
+                      cachedDataType="r8"
+                      cachedName="Weekly Average"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WeeklyAverage]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Weekly Average]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Prod# Oil]"
+                      cachedDataType="r8"
+                      cachedName="Prod# Oil"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ProdOil]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Prod# Oil]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[INDICATORDATE]"
+                      cachedDataType="date"
+                      cachedName="INDICATORDATE"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[IndicatorDate]"
+                      lineageId="Package\EBOKFieldProductionSummary\Data Conversion.Outputs[Data Conversion Output].Columns[INDICATORDATE]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Water Overboard]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Water Overboard"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WaterOverboard]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Water Overboard]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[Ullage Measurement]"
+                      cachedDataType="r8"
+                      cachedName="Ullage Measurement"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[UllageMeasurement]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[Ullage Measurement]" />
+                    <inputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].Columns[WFB Process Uptime]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="WFB Process Uptime"
+                      externalMetadataColumnId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WFBProcessUptime]"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output].Columns[WFB Process Uptime]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="i4"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[IndicatorDate]"
+                      dataType="dbTimeStamp2"
+                      name="IndicatorDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ReportDate]"
+                      dataType="dbTimeStamp2"
+                      name="ReportDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[UploadTime]"
+                      dataType="nText"
+                      name="UploadTime" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TimeStamp]"
+                      dataType="dbTimeStamp2"
+                      name="TimeStamp"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[DayOftheWeek]"
+                      dataType="nText"
+                      name="DayOftheWeek" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Uptime]"
+                      dataType="nText"
+                      name="Uptime" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[CumProd]"
+                      dataType="nText"
+                      name="CumProd" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ProdGas]"
+                      dataType="nText"
+                      name="ProdGas" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WFBAllocatedGas]"
+                      dataType="nText"
+                      name="WFBAllocatedGas" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WFBFlaringUptime]"
+                      dataType="nText"
+                      name="WFBFlaringUptime" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Gaslift]"
+                      dataType="nText"
+                      name="Gaslift" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TotalProducedGas]"
+                      dataType="nText"
+                      name="TotalProducedGas" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[CumGas]"
+                      dataType="nText"
+                      name="CumGas" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[EffluentOilInWater]"
+                      dataType="nText"
+                      name="EffluentOilInWater" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ProdWater]"
+                      dataType="nText"
+                      name="ProdWater" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[CumWater]"
+                      dataType="nText"
+                      name="CumWater" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[API]"
+                      dataType="nText"
+                      name="API" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ExportAPI]"
+                      dataType="nText"
+                      name="ExportAPI" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ExportTemp]"
+                      dataType="nText"
+                      name="ExportTemp" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ExportMetersReadingGross]"
+                      dataType="nText"
+                      name="ExportMetersReadingGross" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ExportMetersReadingNet]"
+                      dataType="nText"
+                      name="ExportMetersReadingNet" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[FieldWaterCut]"
+                      dataType="nText"
+                      name="FieldWaterCut" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ExportWaterCut]"
+                      dataType="nText"
+                      name="ExportWaterCut" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[PumpablecargoonBoard]"
+                      dataType="nText"
+                      name="PumpablecargoonBoard" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Adjustment]"
+                      dataType="nText"
+                      name="Adjustment" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TotalMeteredGasFlared]"
+                      dataType="nText"
+                      name="TotalMeteredGasFlared" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ViriniPremStockBalance]"
+                      dataType="nText"
+                      name="ViriniPremStockBalance" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[BSW]"
+                      dataType="nText"
+                      name="BSW" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[FieldGOR]"
+                      dataType="nText"
+                      name="FieldGOR" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[AdjustedFieldGOR]"
+                      dataType="nText"
+                      name="AdjustedFieldGOR" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WaterOverboard]"
+                      dataType="nText"
+                      name="WaterOverboard" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[FreeWaterReceived]"
+                      dataType="nText"
+                      name="FreeWaterReceived" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WaterOverboardMOPU]"
+                      dataType="nText"
+                      name="WaterOverboardMOPU" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[UllageMeasurement]"
+                      dataType="nText"
+                      name="UllageMeasurement" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[MOPUcorrectedmeterVariance]"
+                      dataType="nText"
+                      name="MOPUcorrectedmeterVariance" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[BSWManual]"
+                      dataType="nText"
+                      name="BSWManual" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[BSWAutosampler]"
+                      dataType="nText"
+                      name="BSWAutosampler" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[OffloadVolume]"
+                      dataType="nText"
+                      name="OffloadVolume" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[OffloadBSW]"
+                      dataType="nText"
+                      name="OffloadBSW" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[OffloadAPI]"
+                      dataType="nText"
+                      name="OffloadAPI" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Forecast]"
+                      dataType="nText"
+                      name="Forecast" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[IdealDayRate]"
+                      dataType="nText"
+                      name="IdealDayRate" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[MarketExpectation]"
+                      dataType="nText"
+                      name="MarketExpectation" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Budget]"
+                      dataType="nText"
+                      name="Budget" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Deferment]"
+                      dataType="nText"
+                      name="Deferment" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[EstmatedProdGas]"
+                      dataType="nText"
+                      name="EstmatedProdGas" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TargetLC]"
+                      dataType="nText"
+                      name="TargetLC" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TargetHC]"
+                      dataType="nText"
+                      name="TargetHC" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TechnicalAllowable]"
+                      dataType="nText"
+                      name="TechnicalAllowable" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[CommercialAllowable]"
+                      dataType="nText"
+                      name="CommercialAllowable" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ActualProdGas]"
+                      dataType="nText"
+                      name="ActualProdGas" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WeeklyAverage]"
+                      dataType="nText"
+                      name="WeeklyAverage" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ProdOil]"
+                      dataType="nText"
+                      name="ProdOil" />
+                    <externalMetadataColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[WFBProcessUptime]"
+                      dataType="wstr"
+                      length="50"
+                      name="WFBProcessUptime" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\EBOKFieldProductionSummary.Paths[Data Conversion Output]"
+              endId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\EBOKFieldProductionSummary\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\EBOKFieldProductionSummary.Paths[Derived Column Output]"
+              endId="Package\EBOKFieldProductionSummary\Data Conversion.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\EBOKFieldProductionSummary\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\EBOKFieldProductionSummary.Paths[Excel Source Output]"
+              endId="Package\EBOKFieldProductionSummary\Derived Column.Inputs[Derived Column Input]"
+              name="Excel Source Output"
+              startId="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{8530767C-F662-492D-A800-EBF5B5AE8DD8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{36581950-E56B-47E2-A943-5E023E5488F8}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="Truncate table EBOKFieldProductionSummaryStagings" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{42118FE9-0514-4B0B-A8BB-568A1A4E504C}"
+      DTS:From="Package\Truncate Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\EBOKFieldProductionSummary" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="222,42"
+          Id="Package\EBOKFieldProductionSummary"
+          TopLeft="223,65" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Truncate Table"
+          TopLeft="21,24" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="171,45">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="52,41"
+              Start="0,0"
+              End="44.5,41">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="22,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22,0"
+                    Point2="26,0"
+                    Point3="26,4" />
+                  <mssgle:LineSegment
+                    End="26,37" />
+                  <mssgle:CubicBezierSegment
+                    Point1="26,37"
+                    Point2="26,41"
+                    Point3="30,41" />
+                  <mssgle:LineSegment
+                    End="44.5,41" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\EBOKFieldProductionSummary">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="258,42"
+          Id="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL"
+          TopLeft="548,318" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\EBOKFieldProductionSummary\Derived Column"
+          TopLeft="225,144" />
+        <NodeLayout
+          Size="222,42"
+          Id="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary"
+          TopLeft="93,46" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\EBOKFieldProductionSummary\Data Conversion"
+          TopLeft="318,217" />
+        <EdgeLayout
+          Id="Package\EBOKFieldProductionSummary.Paths[Data Conversion Output]"
+          TopLeft="396,259">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="281,59"
+              Start="0,0"
+              End="281,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.5"
+                    Point2="0,29.5"
+                    Point3="4,29.5" />
+                  <mssgle:LineSegment
+                    End="277,29.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="277,29.5"
+                    Point2="281,29.5"
+                    Point3="281,33.5" />
+                  <mssgle:LineSegment
+                    End="281,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\EBOKFieldProductionSummary.Paths[Excel Source Output]"
+          TopLeft="204,88">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="98,56"
+              Start="0,0"
+              End="98,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24"
+                    Point2="0,28"
+                    Point3="4,28" />
+                  <mssgle:LineSegment
+                    End="94,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="94,28"
+                    Point2="98,28"
+                    Point3="98,32" />
+                  <mssgle:LineSegment
+                    End="98,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\EBOKFieldProductionSummary.Paths[Derived Column Output]"
+          TopLeft="302,186">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="94,31"
+              Start="0,0"
+              End="94,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.5"
+                    Point2="0,15.5"
+                    Point3="4,15.5" />
+                  <mssgle:LineSegment
+                    End="90,15.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="90,15.5"
+                    Point2="94,15.5"
+                    Point3="94,19.5" />
+                  <mssgle:LineSegment
+                    End="94,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary MSSQL">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\EBOKFieldProductionSummary\EBOKFieldProductionSummary">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,1737 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/25/2018 12:21:41 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="OERLAGITDHAUH"
+  DTS:CreatorName="ORIENTAL-ER\Harrison.Uhunghama"
+  DTS:DTSID="{D7557535-5AFB-4AB2-89D3-85ABE53A4D80}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.107"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ProcessReport"
+  DTS:PackageType="5"
+  DTS:VersionBuild="48"
+  DTS:VersionGUID="{6415E50E-7CC0-49C6-AB6A-63F784480A42}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OERLAGITDHAUH.ERAS.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+      DTS:ObjectName="OERLAGITDHAUH.ERAS.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=10.130.64.137;Initial Catalog=ERAS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Run bopd"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{72FFD395-EFF7-444B-A31F-B705EB78567F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run bopd"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @NumberRecords int,  @RowCount int, @newrecordcount int&#xA;select @newrecordcount= count(Id) from EKOBDailyProductionIndicators a where a.IndicatorDate not in ( select IndicatorDate from BackAllocationBOPDs)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into BackAllocationBOPDs&#xA;select a.IndicatorDate, a.Well,  (((100 - a.BSW) * b.BPLD)/ 100)  from EKOBDailyProductionIndicators a&#xA;inner join  dbo.BackAllocationBPLDs b on a.Well = b.Well and a.IndicatorDate = b.IndicatorDate&#xA;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationBOPDs)&#xA;end" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run BSW"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3AACDE13-9B44-419B-9B19-67DF6066126B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run BSW"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @NumberRecords int,  @RowCount int, @newrecordcount int&#xA;select @newrecordcount= count(Id) from EKOBDailyProductionIndicators a where a.IndicatorDate not in ( select IndicatorDate from BackAllocationBSWs)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into BackAllocationBSWs&#xA;select a.IndicatorDate, a.Well, a.BSW  from EKOBDailyProductionIndicators a&#xA;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationBSWs)&#xA;end" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run EBOKHallPlotData"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{32d8ff5e-3ca6-4185-8009-ac9c8138a755}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run EBOKHallPlotData"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="drop table if exists #EBOKHallPlotDatas&#xA;declare @NumberRecords int,  @RowCount int, @CUMMMBBL float, @HallCal3 float = 0, @newrecordcount int,@HallCal4 float,  @DTDays int, @PreviousDate datetime = null, @HallCal float, @HallCal2 float, @Hall float&#xA;select @newrecordcount= count(Id) from WaterInjectorRateLineItems a where a.IndicatorDate not in ( select IndicatorDate from EBOKHallPlotDatas)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;Create Table #EBOKHallPlotDatas(RowID int IDENTITY(1, 1), IndicatorDate DateTime, Well nvarchar(50), BWPD float, FTHP float, THSP float, II float  )&#xA;&#xA;Insert into #EBOKHallPlotDatas&#xA;select IndicatorDate,Well,round(INJRate,2),round(THIP,2), round(THSP,2), case when (THIP - THSP)&gt;0 then round((INJRate / (THIP - THSP)),2) else 0 end as II   from WaterInjectorRateLineItems where WaterInjectorRateLineItems.IndicatorDate not in ( select IndicatorDate from EBOKHallPlotDatas)&#xA;SET @NumberRecords = @@ROWCOUNT&#xA;&#xA;&#xA;&#xA;SET @RowCount = 1&#xA;set @CUMMMBBL = 0&#xA;set @HallCal3 = 0&#xA;set @HallCal4 = 0&#xA;set @DTDays = 0&#xA;set @HallCal = 0&#xA;set @HallCal2 = 0&#xA;set @Hall = 0&#xA;&#xA;&#xA;&#xA;WHILE @RowCount &lt;= @NumberRecords&#xA;BEGIN&#xA;declare @IndicatorDate DateTime,  @BWPD float, @FTHP float, @THSP float, @II float, @well nvarchar(50)&#xA;select @well = Well, @IndicatorDate = IndicatorDate, @BWPD = round(BWPD,2), @FTHP = round(FTHP,2), @THSP = round(THSP,2), @II = round(II,2)   from #EBOKHallPlotDatas where RowID = @RowCount&#xA;set @CUMMMBBL = (@CUMMMBBL + @BWPD) * 0.000001&#xA;set @DTDays = convert(int,(case when @PreviousDate is null then 0 else datediff(day,@PreviousDate,@IndicatorDate) end))&#xA;set @HallCal = round(@DTDays * @THSP,2)&#xA;if @BWPD &gt; 0 begin&#xA;set @HallCal2 = round((@DTDays * @FTHP),2)end&#xA;else&#xA;begin&#xA;set @HallCal2 = round((@DTDays * @THSP),2)&#xA;end&#xA;set @HallCal3 = round(@HallCal3 + @HallCal,2)&#xA;set @HallCal4 = round(@HallCal4 + @HallCal2,2)&#xA;set @Hall = round(@HallCal4 - @HallCal3,2)&#xA;&#xA;&#xA;insert into EBOKHallPlotDatas(well, IndicatorDate, BWPD, CUMMMBBL, FTHP, THSP, DTDays,II,HallCal,HallCal2,HallCal3,HallCal4,Hall)&#xA;select @well, @IndicatorDate, round(@BWPD,2), round(@CUMMMBBL,2), round(@FTHP,2), round(@THSP,2), @DTDays,round(@II,2),round(@HallCal,2),round(@HallCal2,2),round(@HallCal3,2),round(@HallCal4,2),round(@Hall,2)&#xA;&#xA;set @PreviousDate = @IndicatorDate&#xA;set @RowCount = @RowCount + 1&#xA;END&#xA;end" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run EBOKInjectivityIndex"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{4fed1817-fc52-45b1-bbd1-38bd11d2ae21}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run EBOKInjectivityIndex"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @newrecordcount int&#xA;select @newrecordcount= count(Id) from WaterInjectorRateLineItems a where a.IndicatorDate not in ( select IndicatorDate from EBOKInjectivityIndexes)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into EBOKInjectivityIndexes ([Well], [UpTime], [IndicatorDate], [INJRate], [THIP], [THSP], [ScaledupRate], [InjectivityIndex])&#xA;select a.Well, a.UpTime,  a.IndicatorDate, a.INJRate, a.THIP, a.THSP, case when (a.UpTime * a.INJRate) &gt; 0 then (24/(a.UpTime * a.INJRate)) else 0 end as ScaledupRate,&#xA; case when (a.UpTime * a.INJRate) &gt; 0 and a.THIP&gt;0 then ((24/(a.UpTime * a.INJRate))/a.THIP) else 0 end as InjectivityIndex  from WaterInjectorRateLineItems a&#xA;where a.IndicatorDate not in ( select IndicatorDate from EBOKInjectivityIndexes)&#xA;end" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run EBOKProductionSurveillances"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{b926be04-4ff6-4c10-881d-dfbfb1657228}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run EBOKProductionSurveillances"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @NumberRecords int,  @RowCount int, @cumoil float, @cumoilkbbls float, @newrecordcount int&#xA;select @newrecordcount= count(Id) from EKOBDailyProductionIndicators a where a.IndicatorDate not in ( select IndicatorDate from EBOKProductionSurveillances)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;Create Table #EBOKProductionSurveillance(RowID int IDENTITY(1, 1), IndicatorDate DateTime, Well nvarchar(50), BSW float, OilBOPD float, GASMSCFD float  )&#xA;&#xA;Insert into #EBOKProductionSurveillance&#xA;select IndicatorDate,Well,BSW,OilBOPD, GASMSCFD from EKOBDailyProductionIndicators where EKOBDailyProductionIndicators.IndicatorDate not in ( select IndicatorDate from EBOKProductionSurveillances)&#xA;SET @NumberRecords = @@ROWCOUNT&#xA;&#xA;SET @RowCount = 1&#xA;set @cumoil = 0&#xA;set @cumoilkbbls = 0&#xA;WHILE @RowCount &lt;= @NumberRecords&#xA;BEGIN&#xA;select @cumoil = @cumoil + GASMSCFD from #EBOKProductionSurveillance where RowID = @RowCount&#xA;if @cumoil &gt; 0 begin set @cumoilkbbls = @cumoil/1000 end else begin set @cumoilkbbls = 0 end&#xA;insert into EBOKProductionSurveillances&#xA;select well, IndicatorDate, BSW, OilBOPD, GASMSCFD, @cumoil, @cumoilkbbls from #EBOKProductionSurveillance where RowID = @RowCount&#xA;set @RowCount = @RowCount + 1&#xA;END&#xA;end&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run Flow HRS"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{eaadc88d-102a-4a6b-afac-5482919e76f5}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run Flow HRS"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @NumberRecords int,  @RowCount int, @newrecordcount int&#xA;select @newrecordcount= count(Id) from EKOBDailyProductionIndicators a where a.IndicatorDate not in ( select IndicatorDate from BackAllocationFlowHRS)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into BackAllocationFlowHRS&#xA;select a.IndicatorDate, a.Well, a.Uptime  from EKOBDailyProductionIndicators a&#xA;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationFlowHRS)&#xA;end" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run Flow Parameters"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{D1E0DC04-FE24-4A8D-807B-3DA1428418DE}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run Flow Parameters"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @newrecordcount int&#xA;select @newrecordcount= count(Id) from EKOBDailyProductionIndicators a where a.IndicatorDate not in ( select IndicatorDate from FlowParameters)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into FlowParameters ([IndicatorDate], [Well], [FTHP_FLP], [FlowDescription])&#xA;select a.IndicatorDate, a.Well, case when a.FLP&gt;0 then (a.THP/a.FLP) else 0 end,&#xA;case when a.FLP&gt;0 and (a.THP/a.FLP) &lt; 1.6  then 'Sub-Sonic' when a.FLP&gt;0 and (a.THP/a.FLP) &gt;= 1.6 then 'Super-Sonic' when  a.FLP=0 then 'Sub-Sonic' end&#xA;   from EKOBDailyProductionIndicators a&#xA;where a.IndicatorDate not in ( select IndicatorDate from FlowParameters)&#xA;end" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run GasAllocation"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{dcd75074-2388-4d31-89e7-17b4decf5114}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run GasAllocation"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @newrecordcount int&#xA;select @newrecordcount= count(Id) from BackAllocationQgPotentials a where a.IndicatorDate not in ( select IndicatorDate from BackAllocationGasAllocations)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into BackAllocationGasAllocations&#xA;select a.IndicatorDate, a.well,  case when a.QgPotential &gt;0 then (a.QgPotential/a.QgPotential * b.WFBPROCESSTOTAL) else 0 end from BackAllocationQgPotentials a&#xA;inner join EBOKGasProductionSummaries b on b.IndicatorDate = a.IndicatorDate&#xA;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationGasAllocations)&#xA;&#xA;&#xA;end" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run GasAllocation Header"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{faeccb0a-a795-439b-a615-aa2f49b8dfa9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run GasAllocation Header"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @newrecordcount int&#xA;select @newrecordcount= count(Id) from BackAllocationQgPotentials a where a.IndicatorDate not in ( select IndicatorDate from BackAllocationGasAllocations)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into BackAllocationGasAllocations&#xA;select a.IndicatorDate, a.well,  case when a.QgPotential &gt;0 then (a.QgPotential/a.QgPotential * b.WFBPROCESSTOTAL) else 0 end from BackAllocationQgPotentials a&#xA;inner join EBOKGasProductionSummaries b on b.IndicatorDate = a.IndicatorDate&#xA;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationGasAllocations)&#xA;&#xA;&#xA;end" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run GasAllocation Summary"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{57be2edb-068e-484a-97d9-8d6bf943dd39}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run GasAllocation Summary"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @newrecordcount int&#xA;select @newrecordcount= count(Id) from BackAllocationQgPotentials a where a.IndicatorDate not in ( select IndicatorDate from BackAllocationGasAllocations)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into BackAllocationGasAllocations&#xA;select a.IndicatorDate, a.well,  case when a.QgPotential &gt;0 then (a.QgPotential/a.QgPotential * b.WFBPROCESSTOTAL) else 0 end from BackAllocationQgPotentials a&#xA;inner join EBOKGasProductionSummaries b on b.IndicatorDate = a.IndicatorDate&#xA;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationGasAllocations)&#xA;&#xA;&#xA;end" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run GasTrend"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{50ce93b2-1cad-4665-85d6-344299965cdf}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run GasTrend"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @NumberRecords int,  @RowCount int, @newrecordcount int&#xA;select @newrecordcount= count(Id) from EBOKGasProductionSummaries a where a.IndicatorDate not in ( select IndicatorDate from GasTrends)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into GasTrends&#xA;select a.IndicatorDate, a.WFBPROCESSTOTAL,  a.TOTALGasLift, a.CalcuatedInjectedGas, a.MeteredGasInjected, a.GASUtilizationTotal, a.GASFLAREDTOTAL  from EBOKGasProductionSummaries a&#xA;where a.IndicatorDate not in ( select IndicatorDate from GasTrends)&#xA;end&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run GOR"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9DEA2928-82C8-4EBC-824E-A08A2627FC19}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run GOR"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @newrecordcount int&#xA;select @newrecordcount= count(Id) from BackAllocationQoes a where a.IndicatorDate not in ( select IndicatorDate from BackAllocationActualGORs)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into BackAllocationActualGORs&#xA;select a.IndicatorDate, a.Well, case when b.AssumedGOR&gt;0 then ((b.AssumedGOR*a.Qo)/POWER(10, 6)) else 0 end from BackAllocationQoes a&#xA;inner join BackAllocationAssumedGORs b on b.IndicatorDate = a.IndicatorDate and a.Well = b.Well&#xA;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationActualGORs)&#xA;end" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run GOR Header"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{528756CD-293F-4F47-9754-199A3C1C71DC}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run GOR Header"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @newrecordcount int&#xA;select @newrecordcount= count(Id) from BackAllocationQoes a where a.IndicatorDate not in ( select IndicatorDate from BackAllocationActualGORHeaders)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into BackAllocationActualGORHeaders&#xA;select a.IndicatorDate, sum(a.ActualGOR) from BackAllocationActualGORs a&#xA;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationActualGORHeaders)&#xA;group by a.IndicatorDate&#xA;end&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run GOR Summary"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{E41BB871-FFF0-4975-9699-F786D527C93E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run GOR Summary"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @newrecordcount int&#xA;select @newrecordcount= count(Id) from BackAllocationQoes a where a.IndicatorDate not in ( select IndicatorDate from BackAllocationActualGORSummaries)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into BackAllocationActualGORSummaries&#xA;select a.IndicatorDate, b.faultblock, b.rsv, sum(a.ActualGOR) from BackAllocationActualGORs a&#xA;inner Join WellTestEnrichmentDatas b on b.well = a.well&#xA;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationActualGORSummaries)&#xA;group by a.IndicatorDate, b.faultblock, b.rsv&#xA;end&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run PressurePlotTCMs"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{f24f56dd-3f33-410f-a136-5ca63794bce7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run PressurePlotTCMs"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @newrecordcount int&#xA;select @newrecordcount= count(Id) from EKOBDailyProductionIndicators a where a.IndicatorDate not in ( select IndicatorDate from PressurePlotTCMs)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into PressurePlotTCMs&#xA;select a.IndicatorDate, b.RSV, a.Well, a.PWF from EKOBDailyProductionIndicators a &#xA;inner join WellTestEnrichmentDatas b on b.Well = a.Well&#xA;where a.IndicatorDate not in ( select IndicatorDate from PressurePlotTCMs)&#xA;end" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run Qgpotential"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9C0DD532-EAEF-413F-B0ED-2303FE67063E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run Qgpotential"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @newrecordcount int&#xA;select @newrecordcount= count(Id) from BackAllocationQoests a where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQgPotentials)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into BackAllocationQgPotentials&#xA;select a.IndicatorDate, a.well,  case when b.AssumedGOR &gt;0 then (b.AssumedGOR * a.Qoest)/POWER(10,6) else 0 end from BackAllocationQoests a&#xA;inner join BackAllocationAssumedGORs b on b.IndicatorDate = a.IndicatorDate and a.Well = b.Well&#xA;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQgPotentials )&#xA;&#xA;end" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run Qgpotential Header"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{63B89004-D99C-4D16-BF12-5FA16109983D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run Qgpotential Header"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @newrecordcount int&#xA;select @newrecordcount= count(Id) from BackAllocationQoests a where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQgPotentialHeaders)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into BackAllocationQgPotentialHeaders&#xA;select a.IndicatorDate,  case when sum(b.AssumedGOR) &gt;0 then sum((b.AssumedGOR * a.Qoest)/POWER(10,6)) else 0 end from BackAllocationQoests a&#xA;inner join BackAllocationAssumedGORs b on b.IndicatorDate = a.IndicatorDate and a.Well = b.Well&#xA;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQgPotentialHeaders)&#xA;group by a.IndicatorDate&#xA;end" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run Qgpotential Summary"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{889E67DB-37D6-44EF-A778-CE8152EBAC51}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run Qgpotential Summary"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @newrecordcount int&#xA;select @newrecordcount= count(Id) from BackAllocationQgPotentials a where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQgPotentialSummaries)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into BackAllocationQgPotentialSummaries&#xA;select a.IndicatorDate, b.FaultBlock, b.Rsv, sum(a.QgPotential)  from BackAllocationQgPotentials a&#xA;inner join [dbo].[WellTestEnrichmentDatas] b on b.well = a.well&#xA;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQgPotentialSummaries)&#xA;group by a.IndicatorDate, b.FaultBlock, b.Rsv&#xA;end&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run Qlest"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F24514F9-8F70-4395-AFE5-6E78B77F08FF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run Qlest"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @newrecordcount int&#xA;select @newrecordcount= count(Id) from BackAllocationBPLDs a where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQlests)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into BackAllocationQlests&#xA;select a.IndicatorDate, a.Well,  ((a.BPLD * b.Uptime) / 24)   from BackAllocationBPLDs a&#xA;inner join BackAllocationFlowHRS b on a.IndicatorDate = b.IndicatorDate and a.Well = b.Well&#xA;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQlests)&#xA;end" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run Qlest Header"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9E48AF1F-3C6B-401A-AB04-CD4C909249B7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run Qlest Header"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @newrecordcount int&#xA;select @newrecordcount= count(Id) from BackAllocationQlests a where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQlestHeaders)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into BackAllocationQlestHeaders(IndicatorDate, FaultBlock, RSV, Qlest)&#xA;select a.IndicatorDate, c.faultblock, c.Rsv, sum(a.Qlest) as TotalSum from BackAllocationQlests a&#xA;inner join WellTestEnrichmentDatas c on c.Well = a.Well &#xA;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQlestHeaders)&#xA;&#xA;group by a.IndicatorDate, c.Rsv, c.faultblock&#xA;end&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run Qliq"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A1892251-F046-4B04-9DCF-A564279ACEA6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run Qliq"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @newrecordcount int&#xA;select @newrecordcount= count(Id) from BackAllocationQoes a where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQlinks)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into BackAllocationQlinks&#xA;select a.IndicatorDate, a.Well,  case when a.Qo&gt;0 then a.Qo+b.Qw else 0 end from BackAllocationQoes a&#xA;inner join BackAllocationQws b on b.IndicatorDate = a.IndicatorDate and a.Well = b.Well&#xA;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQlinks)&#xA;end" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run Qliq Header"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7B2E5379-BEA0-4EA8-BE87-78C71CC6ED72}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run Qliq Header"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="&#xA;declare @newrecordcount int&#xA;select @newrecordcount= count(Id) from BackAllocationQoHeaders a where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQlinkHeaders)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into BackAllocationQlinkHeaders&#xA;select  a.IndicatorDate, sum(a.ProdOil), case when sum(a.Qo)&gt;0 then sum(a.Qo+b.Qw) else 0 end from BackAllocationQoHeaders a&#xA;inner join BackAllocationQwHeaders b on b.IndicatorDate = a.IndicatorDate &#xA;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQlinkHeaders)&#xA;group by a.IndicatorDate&#xA;end&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run Qliq Summary"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{854D41D2-0E66-4E28-B0CD-9CAF7D286F75}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run Qliq Summary"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @newrecordcount int&#xA;select @newrecordcount= count(Id) from BackAllocationQlinkHeaders a where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQlinkSummaries)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into BackAllocationQlinkSummaries&#xA; select a.IndicatorDate, b.FaultBlock, b.Rsv, 0, sum(a.Qlink) from BackAllocationQlinks a &#xA; inner join [dbo].[WellTestEnrichmentDatas] b on b.Well = a.well&#xA; where a.IndicatorDate not in (select IndicatorDate from BackAllocationQlinkSummaries)&#xA; group by  a.IndicatorDate, b.FaultBlock, b.Rsv&#xA;&#xA; UPDATE&#xA;    BackAllocationQlinkSummaries&#xA;SET&#xA;    BackAllocationQlinkSummaries.ProdOil = b.ProdOil&#xA;&#x9;&#xA;FROM&#xA;    BackAllocationQlinkSummaries a&#xA;INNER JOIN&#xA;    BackAllocationQoestHeaders b&#xA;ON &#xA;    a.IndicatorDate = b.IndicatorDate and b.ProdOil &gt;0;&#xA;end&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run Qo"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{72D70342-7E95-4188-B15C-52EC2A8EF4DF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run Qo"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="insert into BackAllocationQoes&#xA;select  a.IndicatorDate, a.Well, &#xA; case when b.wellTestPotential * b.ProdOil &gt;0 then (a.Qoest/b.wellTestPotential * b.ProdOil) else 0 end from BackAllocationQoests a inner join&#xA; BackAllocationQoestHeaders b on a.IndicatorDate = b.IndicatorDate&#xA; where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQoes)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run Qo Header"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7D3949AF-F944-49B2-BBDB-867FFE31FB41}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run Qo Header"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="&#xA;insert into BackAllocationQoHeaders&#xA;select a.IndicatorDate, sum(a.Qo), 0 from BackAllocationQoes a where&#xA; a.IndicatorDate not in (select IndicatorDate from BackAllocationQoHeaders)&#xA; group by  a.IndicatorDate&#xA;&#xA; UPDATE&#xA;    BackAllocationQoHeaders&#xA;SET&#xA;    BackAllocationQoHeaders.ProdOil = b.ProdOil&#xA;&#x9;&#xA;FROM&#xA;    BackAllocationQoHeaders a&#xA;INNER JOIN&#xA;    BackAllocationQoestHeaders b&#xA;ON &#xA;    a.IndicatorDate = b.IndicatorDate and b.ProdOil &gt;0;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run Qo Summary"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0D6DA57A-083C-42F3-BDFD-6C7B5C49B6C0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run Qo Summary"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource=" &#xA;insert into BackAllocationQoSummaries&#xA;select a.IndicatorDate, b.faultblock, b.rsv, sum(a.Qo), 0 from BackAllocationQoes a &#xA;inner join WellTestEnrichmentDatas b on a.well = b.well&#xA;where&#xA; a.IndicatorDate not in (select IndicatorDate from BackAllocationQoSummaries)&#xA; group by  a.IndicatorDate, b.faultblock, b.rsv&#xA;&#xA; UPDATE&#xA;    BackAllocationQoSummaries&#xA;SET&#xA;    BackAllocationQoSummaries.ProdOil = b.ProdOil&#xA;&#x9;&#xA;FROM&#xA;    BackAllocationQoSummaries a&#xA;INNER JOIN&#xA;    BackAllocationQoestHeaders b&#xA;ON &#xA;    a.IndicatorDate = b.IndicatorDate and b.ProdOil &gt;0;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run Qoest"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{4a2834bd-9a40-4bff-9aef-8bdad760bc3e}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run Qoest"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="&#xA;insert into BackAllocationQoests&#xA;select a.IndicatorDate,a.well,(a.BPLD*b.Uptime/24)*(1-c.BSW/100) from BackAllocationBPLDs a inner join &#xA;BackAllocationFlowHRS b on a.IndicatorDate = b.IndicatorDate and a.well = b.well inner join&#xA;BackAllocationBSWs c on c.IndicatorDate = a.IndicatorDate and a.Well = c.well&#x9;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQoests)&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run Qoest Header"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5e791fb6-2261-432f-9b73-02fc327764f1}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run Qoest Header"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @newrecordcount int&#xA;select @newrecordcount= count(Id) from EBOKFieldProductionSummaries a where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQoestHeaders)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into BackAllocationQoestHeaders(IndicatorDate,wellTestPotential, ProdOil, WellTestActual)&#xA;select a.IndicatorDate, sum(a.Qoest) as wellTestPotential,0,0 from BackAllocationQoests a &#xA;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQoestHeaders)&#xA;group by a.IndicatorDate&#xA;&#xA;UPDATE&#xA;    BackAllocationQoestHeaders&#xA;SET&#xA;    BackAllocationQoestHeaders.ProdOil = b.ProdOil,&#xA;&#x9;BackAllocationQoestHeaders.WellTestActual = (a.wellTestPotential/b.ProdOil)&#xA;FROM&#xA;    BackAllocationQoestHeaders a&#xA;INNER JOIN&#xA;    EBOKFieldProductionSummaries b&#xA;ON &#xA;    a.IndicatorDate = b.IndicatorDate and b.ProdOil &gt;0;&#xA;&#xA;&#xA;end" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run Qoest Summary"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6EBCFD12-7C66-4872-B610-249ACD620529}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run Qoest Summary"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @newrecordcount int&#xA;select @newrecordcount= count(Id) from BackAllocationQoests a where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQoestSummaries)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into BackAllocationQoestSummaries(FaultBlock,Rsv,IndicatorDate,wellTestPotential, ProdOil, WellTestActual)&#xA;select b.FaultBlock,b.Rsv,a.IndicatorDate, sum(a.Qoest) as wellTestPotential,0,0 from BackAllocationQoests a  inner join&#xA;WellTestEnrichmentDatas b on b.Well = a.Well&#xA;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQoestSummaries)&#xA;group by a.IndicatorDate, b.FaultBlock, b.Rsv&#xA;&#xA;UPDATE&#xA;    BackAllocationQoestSummaries&#xA;SET&#xA;    BackAllocationQoestSummaries.ProdOil = b.ProdOil,&#xA;&#x9;BackAllocationQoestSummaries.WellTestActual = (a.wellTestPotential/b.ProdOil)&#xA;FROM&#xA;    BackAllocationQoestSummaries a&#xA;INNER JOIN&#xA;    EBOKFieldProductionSummaries b&#xA;ON &#xA;    a.IndicatorDate = b.IndicatorDate and b.ProdOil &gt;0&#xA;&#xA;end&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run Qw"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{31255EE3-199F-4018-8A2E-1A56A3FD6A41}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run Qw"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @newrecordcount int&#xA;select @newrecordcount= count(Id) from BackAllocationQoes a where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQws)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into BackAllocationQws&#xA;select a.IndicatorDate, a.Well,case when (1-b.BSW/100)*b.BSW/100&gt;0 then a.Qo/(1-b.BSW/100)*b.BSW/100 else 0 end  from BackAllocationQoes a&#xA;inner join BackAllocationBSWs b on b.IndicatorDate = a.IndicatorDate and a.Well = b.Well&#xA;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQws)&#xA;end" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run Qw Header"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{572DC01A-E677-483A-9365-4E2D77BBA7B5}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run Qw Header"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="declare @newrecordcount int&#xA;declare @ProdWater float&#xA;select @newrecordcount= count(Id) from BackAllocationQws a where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQwHeaders)&#xA;Create Table #IndicatorDates( IndicatorDate DateTime)&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into #IndicatorDates&#xA;select a.IndicatorDate  from BackAllocationQws a&#xA;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQwHeaders)&#xA;&#xA;insert into BackAllocationQwHeaders&#xA;select a.IndicatorDate, sum(a.Qw)  from BackAllocationQws a&#xA;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQwHeaders)&#xA;group by a.IndicatorDate&#xA;&#xA;declare @PrevCumWater float = 0&#xA;select  Top  1 @PrevCumWater = CumWater from EBOKFieldProductionSummaries order by IndicatorDate desc&#xA;&#xA;UPDATE        EBOKFieldProductionSummaries&#xA;SET           EBOKFieldProductionSummaries.ProdWater = p.Qw,&#xA;              EBOKFieldProductionSummaries.CumWater = p.Qw + @PrevCumWater&#xA;FROM          EBOKFieldProductionSummaries s&#xA;INNER JOIN    BackAllocationQwHeaders p&#xA;ON            s.IndicatorDate = p.IndicatorDate&#xA;where s.IndicatorDate in (select IndicatorDate from #IndicatorDates)&#xA;&#xA;end&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Run Qw Summary"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{34C6C654-916B-40F3-8AA2-99C56021F005}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Run Qw Summary"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0EB1894D-F2BB-4E7C-861B-A1F4181C26D4}"
+          SQLTask:SqlStatementSource="use ERAS&#xA;go&#xA;declare @newrecordcount int&#xA;select @newrecordcount= count(Id) from BackAllocationQws a where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQwSummaries)&#xA;&#xA;if @newrecordcount &gt;0&#xA;begin&#xA;insert into BackAllocationQwSummaries&#xA;select a.IndicatorDate, b.faultblock, b.rsv, sum(a.Qw)  from BackAllocationQws a inner join&#xA;WellTestEnrichmentDatas b on b.well = a.well&#xA;where a.IndicatorDate not in ( select IndicatorDate from BackAllocationQwSummaries)&#xA;group by a.IndicatorDate,  b.faultblock, b.rsv&#xA;end&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{55D50BD7-D54F-484C-A431-3B69BF09CAA7}"
+      DTS:From="Package\Run Flow Parameters"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Run BSW" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{14BF34FB-32AF-4A31-8014-DD75A261A83B}"
+      DTS:From="Package\Run BSW"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Run bopd" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{FF4EDA71-2115-4746-AC6F-6F932FBCCD47}"
+      DTS:From="Package\Run Qw"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\Run Qw Header" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{0EDF8C57-CBDB-41BD-A5E2-23E5F4C5518E}"
+      DTS:From="Package\Run Qw Header"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 11"
+      DTS:To="Package\Run Qw Summary" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 12]"
+      DTS:CreationName=""
+      DTS:DTSID="{516B3316-6E29-4894-BD9A-1D72AF3D7B47}"
+      DTS:From="Package\Run Qw Summary"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 12"
+      DTS:To="Package\Run GOR" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 13]"
+      DTS:CreationName=""
+      DTS:DTSID="{8C143F80-7CC1-4FC4-8181-02739767EDC1}"
+      DTS:From="Package\Run GOR"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 13"
+      DTS:To="Package\Run GOR Header" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 14]"
+      DTS:CreationName=""
+      DTS:DTSID="{36A00F2C-8690-446A-89FF-C493289ECC74}"
+      DTS:From="Package\Run GOR Header"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 14"
+      DTS:To="Package\Run GOR Summary" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 15]"
+      DTS:CreationName=""
+      DTS:DTSID="{80DE3E13-ED48-4396-8242-8473BA4A73B0}"
+      DTS:From="Package\Run GOR Summary"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 15"
+      DTS:To="Package\Run Qliq" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 16]"
+      DTS:CreationName=""
+      DTS:DTSID="{F3314204-110D-4013-8FB0-6C53C6904A23}"
+      DTS:From="Package\Run Qliq"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 16"
+      DTS:To="Package\Run Qliq Header" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 17]"
+      DTS:CreationName=""
+      DTS:DTSID="{479880FB-70CE-476F-B1D0-CF3B34172EA5}"
+      DTS:From="Package\Run Qliq Header"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 17"
+      DTS:To="Package\Run Qliq Summary" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 18]"
+      DTS:CreationName=""
+      DTS:DTSID="{5BC89943-A286-44E0-961C-3F5AD9345E20}"
+      DTS:From="Package\Run Qliq Summary"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 18"
+      DTS:To="Package\Run Qgpotential" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 19]"
+      DTS:CreationName=""
+      DTS:DTSID="{8A3811CF-CF7C-416A-A555-BB672350F826}"
+      DTS:From="Package\Run Qgpotential"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 19"
+      DTS:To="Package\Run Qgpotential Header" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{821F5B5E-FDAA-43BD-96F8-03942A9BA89F}"
+      DTS:From="Package\Run bopd"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Run Qlest" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 20]"
+      DTS:CreationName=""
+      DTS:DTSID="{2A871450-861E-4314-8512-A584B211D30E}"
+      DTS:From="Package\Run Qgpotential Header"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 20"
+      DTS:To="Package\Run Qgpotential Summary" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 21]"
+      DTS:CreationName=""
+      DTS:DTSID="{BB61F517-766D-400E-91DA-A1612207B9E6}"
+      DTS:From="Package\Run EBOKHallPlotData"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 21"
+      DTS:To="Package\Run EBOKInjectivityIndex" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 22]"
+      DTS:CreationName=""
+      DTS:DTSID="{6765A95D-6A99-4BC6-802A-693E17CCC2AB}"
+      DTS:From="Package\Run EBOKInjectivityIndex"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 22"
+      DTS:To="Package\Run EBOKProductionSurveillances" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 23]"
+      DTS:CreationName=""
+      DTS:DTSID="{1A8F190F-35DD-464C-AE9C-1F28855E313E}"
+      DTS:From="Package\Run EBOKProductionSurveillances"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 23"
+      DTS:To="Package\Run PressurePlotTCMs" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 24]"
+      DTS:CreationName=""
+      DTS:DTSID="{97166607-8549-45F2-92FC-C0E715FF6F3F}"
+      DTS:From="Package\Run PressurePlotTCMs"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 24"
+      DTS:To="Package\Run GasTrend" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 25]"
+      DTS:CreationName=""
+      DTS:DTSID="{C1BC8BB4-0E62-4C98-A484-5FF6305F040A}"
+      DTS:From="Package\Run Flow HRS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 25"
+      DTS:To="Package\Run Flow Parameters" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 26]"
+      DTS:CreationName=""
+      DTS:DTSID="{44AD074B-72C8-44F2-865F-563815A30D91}"
+      DTS:From="Package\Run Qoest"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 26"
+      DTS:To="Package\Run Qoest Summary" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 27]"
+      DTS:CreationName=""
+      DTS:DTSID="{7BC1AB5B-7200-4153-82C9-966B10A60158}"
+      DTS:From="Package\Run Qoest Header"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 27"
+      DTS:To="Package\Run Qo" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 28]"
+      DTS:CreationName=""
+      DTS:DTSID="{F362EEE9-DC5E-4DAE-BFF2-3C20CD1EC6FA}"
+      DTS:From="Package\Run Qgpotential Summary"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 28"
+      DTS:To="Package\Run GasAllocation" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 29]"
+      DTS:CreationName=""
+      DTS:DTSID="{6AED33B4-8494-4537-B676-BBB25000DBC0}"
+      DTS:From="Package\Run GasAllocation"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 29"
+      DTS:To="Package\Run GasAllocation Header" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{972B2CF9-018D-4487-9977-9CD05203A450}"
+      DTS:From="Package\Run Qlest"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Run Qlest Header" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 30]"
+      DTS:CreationName=""
+      DTS:DTSID="{C7269B9F-1A3A-41DA-8D1D-F4B061EF834B}"
+      DTS:From="Package\Run GasAllocation Header"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 30"
+      DTS:To="Package\Run GasAllocation Summary" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{BD52081F-3BC6-4F7D-8BE6-3C0AC621E888}"
+      DTS:From="Package\Run Qlest Header"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Run Qoest" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{787C3FDB-0B86-4C38-9075-1EFEE3C64C42}"
+      DTS:From="Package\Run Qoest Summary"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Run Qoest Header" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{88887092-2F90-4156-8AAF-DF1B29E7F31B}"
+      DTS:From="Package\Run GasTrend"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Run Flow HRS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{42B4CCE2-1750-40B9-ABA1-31D6CB3E5E13}"
+      DTS:From="Package\Run Qo"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Run Qo Header" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{80402EE2-302D-4655-8EA0-572C96F5EB0B}"
+      DTS:From="Package\Run Qo Header"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Run Qo Summary" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{A41A3BAD-5835-40F0-B2C2-F9E76C951CF8}"
+      DTS:From="Package\Run Qo Summary"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\Run Qw" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="124,42"
+          Id="Package\Run bopd"
+          TopLeft="629,256" />
+        <NodeLayout
+          Size="123,42"
+          Id="Package\Run BSW"
+          TopLeft="410,255" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\Run EBOKHallPlotData"
+          TopLeft="177,43" />
+        <NodeLayout
+          Size="200,42"
+          Id="Package\Run EBOKInjectivityIndex"
+          TopLeft="507,45" />
+        <NodeLayout
+          Size="238,42"
+          Id="Package\Run EBOKProductionSurveillances"
+          TopLeft="815,47" />
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Run Flow HRS"
+          TopLeft="690,156" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Run Flow Parameters"
+          TopLeft="189,254" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Run GasAllocation"
+          TopLeft="745,650" />
+        <NodeLayout
+          Size="201,42"
+          Id="Package\Run GasAllocation Header"
+          TopLeft="977,647" />
+        <NodeLayout
+          Size="212,42"
+          Id="Package\Run GasAllocation Summary"
+          TopLeft="200,747" />
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Run GasTrend"
+          TopLeft="475,160" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\Run GOR"
+          TopLeft="770,454" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Run GOR Header"
+          TopLeft="956,453" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Run GOR Summary"
+          TopLeft="188,545" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\Run PressurePlotTCMs"
+          TopLeft="190,156" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Run Qgpotential"
+          TopLeft="993,550" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\Run Qgpotential Header"
+          TopLeft="188,654" />
+        <NodeLayout
+          Size="203,42"
+          Id="Package\Run Qgpotential Summary"
+          TopLeft="492,651" />
+        <NodeLayout
+          Size="125,42"
+          Id="Package\Run Qlest"
+          TopLeft="822,252" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Run Qlest Header"
+          TopLeft="985,250" />
+        <NodeLayout
+          Size="119,42"
+          Id="Package\Run Qliq"
+          TopLeft="417,543" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Run Qliq Header"
+          TopLeft="590,545" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Run Qliq Summary"
+          TopLeft="791,546" />
+        <NodeLayout
+          Size="114,42"
+          Id="Package\Run Qo"
+          TopLeft="564,358" />
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Run Qo Header"
+          TopLeft="725,356" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Run Qo Summary"
+          TopLeft="963,360" />
+        <NodeLayout
+          Size="128,42"
+          Id="Package\Run Qoest"
+          TopLeft="1173,255" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Run Qoest Header"
+          TopLeft="348,353" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Run Qoest Summary"
+          TopLeft="97,353" />
+        <NodeLayout
+          Size="116,42"
+          Id="Package\Run Qw"
+          TopLeft="198,450" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Run Qw Header"
+          TopLeft="349,451" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Run Qw Summary"
+          TopLeft="559,455" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="368,275.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="42,0"
+              Start="0,0"
+              End="34.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="34.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="533,276.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="96,0"
+              Start="0,0"
+              End="88.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="88.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="314,471.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="35,0"
+              Start="0,0"
+              End="27.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="27.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="502,474">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="57,0"
+              Start="0,0"
+              End="49.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="49.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 12]"
+          TopLeft="723,475.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="47,0"
+              Start="0,0"
+              End="39.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="39.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 13]"
+          TopLeft="892,474.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="64,0"
+              Start="0,0"
+              End="56.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="56.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 14]"
+          TopLeft="1035.5,495">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-762.5,50"
+              Start="0,0"
+              End="-762.5,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21"
+                    Point2="0,25"
+                    Point3="-4,25" />
+                  <mssgle:LineSegment
+                    End="-758.5,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-758.5,25"
+                    Point2="-762.5,25"
+                    Point3="-762.5,29" />
+                  <mssgle:LineSegment
+                    End="-762.5,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 15]"
+          TopLeft="358,565">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="59,0"
+              Start="0,0"
+              End="51.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="51.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 16]"
+          TopLeft="536,565">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="54,0"
+              Start="0,0"
+              End="46.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="46.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 17]"
+          TopLeft="746,566.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="45,0"
+              Start="0,0"
+              End="37.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="37.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 18]"
+          TopLeft="958,569">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="35,0"
+              Start="0,0"
+              End="27.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="27.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 19]"
+          TopLeft="1070.5,592">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-786.5,62"
+              Start="0,0"
+              End="-786.5,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27"
+                    Point2="0,31"
+                    Point3="-4,31" />
+                  <mssgle:LineSegment
+                    End="-782.5,31" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-782.5,31"
+                    Point2="-786.5,31"
+                    Point3="-786.5,35" />
+                  <mssgle:LineSegment
+                    End="-786.5,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="753,275">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="69,0"
+              Start="0,0"
+              End="61.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="61.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 20]"
+          TopLeft="380,673.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="112,0"
+              Start="0,0"
+              End="104.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="104.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 21]"
+          TopLeft="361,65">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="146,0"
+              Start="0,0"
+              End="138.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="138.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 22]"
+          TopLeft="707,67">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="108,0"
+              Start="0,0"
+              End="100.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="100.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 23]"
+          TopLeft="934,89">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-652,67"
+              Start="0,0"
+              End="-652,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.5"
+                    Point2="0,33.5"
+                    Point3="-4,33.5" />
+                  <mssgle:LineSegment
+                    End="-648,33.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-648,33.5"
+                    Point2="-652,33.5"
+                    Point3="-652,37.5" />
+                  <mssgle:LineSegment
+                    End="-652,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 24]"
+          TopLeft="374,179">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="101,0"
+              Start="0,0"
+              End="93.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="93.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 25]"
+          TopLeft="763,198">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-484.5,56"
+              Start="0,0"
+              End="-484.5,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24"
+                    Point2="0,28"
+                    Point3="-4,28" />
+                  <mssgle:LineSegment
+                    End="-480.5,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-480.5,28"
+                    Point2="-484.5,28"
+                    Point3="-484.5,32" />
+                  <mssgle:LineSegment
+                    End="-484.5,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 26]"
+          TopLeft="1237,297">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-1052,56"
+              Start="0,0"
+              End="-1052,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24"
+                    Point2="0,28"
+                    Point3="-4,28" />
+                  <mssgle:LineSegment
+                    End="-1048,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-1048,28"
+                    Point2="-1052,28"
+                    Point3="-1052,32" />
+                  <mssgle:LineSegment
+                    End="-1052,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 27]"
+          TopLeft="513,376.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="51,0"
+              Start="0,0"
+              End="43.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="43.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 28]"
+          TopLeft="695,671.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="50,0"
+              Start="0,0"
+              End="42.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="42.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 29]"
+          TopLeft="909,669.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="68,0"
+              Start="0,0"
+              End="60.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="60.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="947,272">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="38,0"
+              Start="0,0"
+              End="30.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="30.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 30]"
+          TopLeft="1077.5,689">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-771.5,58"
+              Start="0,0"
+              End="-771.5,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25"
+                    Point2="0,29"
+                    Point3="-4,29" />
+                  <mssgle:LineSegment
+                    End="-767.5,29" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-767.5,29"
+                    Point2="-771.5,29"
+                    Point3="-771.5,33" />
+                  <mssgle:LineSegment
+                    End="-771.5,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="1147,273.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="26,0"
+              Start="0,0"
+              End="18.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="18.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="273,374">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="75,0"
+              Start="0,0"
+              End="67.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="67.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="621,179">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="69,0"
+              Start="0,0"
+              End="61.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="61.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="678,378">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="47,0"
+              Start="0,0"
+              End="39.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="39.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="876,379">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="87,0"
+              Start="0,0"
+              End="79.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="79.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="1044,402">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-788,48"
+              Start="0,0"
+              End="-788,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20"
+                    Point2="0,24"
+                    Point3="-4,24" />
+                  <mssgle:LineSegment
+                    End="-784,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-784,24"
+                    Point2="-788,24"
+                    Point3="-788,28" />
+                  <mssgle:LineSegment
+                    End="-788,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DeploymentModel>Package</DeploymentModel>
+  <ProductVersion>14.0.3002.107</ProductVersion>
+  <SchemaVersion>9.0.1.0</SchemaVersion>
+  <State>$base64$PFNvdXJjZUNvbnRyb2xJbmZvIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOmRkbDI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDAzL2VuZ2luZS8yIiB4bWxuczpkZGwyXzI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDAzL2VuZ2luZS8yLzIiIHhtbG5zOmRkbDEwMF8xMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDA4L2VuZ2luZS8xMDAvMTAwIiB4bWxuczpkZGwyMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEwL2VuZ2luZS8yMDAiIHhtbG5zOmRkbDIwMF8yMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEwL2VuZ2luZS8yMDAvMjAwIiB4bWxuczpkZGwzMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDExL2VuZ2luZS8zMDAiIHhtbG5zOmRkbDMwMF8zMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDExL2VuZ2luZS8zMDAvMzAwIiB4bWxuczpkZGw0MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEyL2VuZ2luZS80MDAiIHhtbG5zOmRkbDQwMF80MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEyL2VuZ2luZS80MDAvNDAwIiB4bWxuczpkZGw1MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEzL2VuZ2luZS81MDAiIHhtbG5zOmRkbDUwMF81MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEzL2VuZ2luZS81MDAvNTAwIiB4bWxuczpkd2Q9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vRGF0YVdhcmVob3VzZS9EZXNpZ25lci8xLjAiPg0KICA8RW5hYmxlZD5mYWxzZTwvRW5hYmxlZD4NCiAgPFByb2plY3ROYW1lPjwvUHJvamVjdE5hbWU+DQogIDxBdXhQYXRoPjwvQXV4UGF0aD4NCiAgPExvY2FsUGF0aD48L0xvY2FsUGF0aD4NCiAgPFByb3ZpZGVyPjwvUHJvdmlkZXI+DQo8L1NvdXJjZUNvbnRyb2xJbmZvPg==</State>
+  <Database>
+    <Name>ERASDataMigration.database</Name>
+    <FullPath>ERASDataMigration.database</FullPath>
+  </Database>
+  <DataSources />
+  <DataSourceViews />
+  <DeploymentModelSpecificContent>
+    <Manifest>
+      <DTSPackages>
+        <DtsPackage FormatVersion="8">
+          <Name>LoadDailyFBHP CFB.dtsx</Name>
+          <FullPath>LoadDailyFBHP CFB.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>LoadDailyFBHP ESP.dtsx</Name>
+          <FullPath>LoadDailyFBHP ESP.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>LoadDailyFBHP WFB.dtsx</Name>
+          <FullPath>LoadDailyFBHP WFB.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>LoadDailyReseviorWellData.dtsx</Name>
+          <FullPath>LoadDailyReseviorWellData.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>LoadHistoricFBHP 2019 Historical.dtsx</Name>
+          <FullPath>LoadHistoricFBHP 2019 Historical.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>LoadHistoricFBHP CFB.dtsx</Name>
+          <FullPath>LoadHistoricFBHP CFB.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>LoadHistoricFBHP ESP.dtsx</Name>
+          <FullPath>LoadHistoricFBHP ESP.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>LoadHistoricFBHP More Historical.dtsx</Name>
+          <FullPath>LoadHistoricFBHP More Historical.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>LoadHistoricFBHP.dtsx</Name>
+          <FullPath>LoadHistoricFBHP.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>MoveBulkDailyReportData 1.dtsx</Name>
+          <FullPath>MoveBulkDailyReportData 1.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>MoveBulkDailyReportData.dtsx</Name>
+          <FullPath>MoveBulkDailyReportData.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>MoveBulkDailyReportData_Config.dtsx</Name>
+          <FullPath>MoveBulkDailyReportData_Config.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>MoveBulkDailyReportDataRemoteFolder.dtsx</Name>
+          <FullPath>MoveBulkDailyReportDataRemoteFolder.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>MoveHistoricData.dtsx</Name>
+          <FullPath>MoveHistoricData.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>Package.dtsx</Name>
+          <FullPath>Package.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>ProcessReport.dtsx</Name>
+          <FullPath>ProcessReport.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>RunBackAllocationBulkSPs.dtsx</Name>
+          <FullPath>RunBackAllocationBulkSPs.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>UploadBackAccountingAssumedGOR.dtsx</Name>
+          <FullPath>UploadBackAccountingAssumedGOR.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>UploadBackAccountingAssumedGORDaily.dtsx</Name>
+          <FullPath>UploadBackAccountingAssumedGORDaily.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>UploadBackAccountingBPLD.dtsx</Name>
+          <FullPath>UploadBackAccountingBPLD.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>UploadBackAccountingBPLDDaily.dtsx</Name>
+          <FullPath>UploadBackAccountingBPLDDaily.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>UploadBackAccountingBSWDaily.dtsx</Name>
+          <FullPath>UploadBackAccountingBSWDaily.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>UploadEBOKFieldProductionSummary 1.dtsx</Name>
+          <FullPath>UploadEBOKFieldProductionSummary 1.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>UploadEBOKFieldProductionSummary.dtsx</Name>
+          <FullPath>UploadEBOKFieldProductionSummary.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>UploadEBOKGasProductionSummary.dtsx</Name>
+          <FullPath>UploadEBOKGasProductionSummary.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>UploadERASDailyData.dtsx</Name>
+          <FullPath>UploadERASDailyData.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>UploadGasInjectorDailyIndicators.dtsx</Name>
+          <FullPath>UploadGasInjectorDailyIndicators.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>UploadTransformationData.dtsx</Name>
+          <FullPath>UploadTransformationData.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>UploadWaterInjectorQuality.dtsx</Name>
+          <FullPath>UploadWaterInjectorQuality.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>UploadWaterInjectorRateHeader.dtsx</Name>
+          <FullPath>UploadWaterInjectorRateHeader.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+        <DtsPackage FormatVersion="8">
+          <Name>UploadWaterInjectorRateLineItem.dtsx</Name>
+          <FullPath>UploadWaterInjectorRateLineItem.dtsx</FullPath>
+          <References />
+        </DtsPackage>
+      </DTSPackages>
+    </Manifest>
+  </DeploymentModelSpecificContent>
+  <ControlFlowParts />
+  <Miscellaneous />
+  <Configurations>
+    <Configuration>
+      <Name>Development</Name>
+      <Options>
+        <OutputPath>bin</OutputPath>
+        <ConnectionMappings />
+        <ConnectionProviderMappings />
+        <ConnectionSecurityMappings />
+        <DatabaseStorageLocations />
+        <TargetServerVersion>SQLServer2017</TargetServerVersion>
+        <ParameterConfigurationValues />
+      </Options>
+    </Configuration>
+  </Configurations>
+</Project>

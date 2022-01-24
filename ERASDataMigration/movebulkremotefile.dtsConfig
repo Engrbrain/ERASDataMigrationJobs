@@ -1,0 +1,492 @@
+<?xml version="1.0"?><DTSConfiguration><DTSConfigurationHeading><DTSConfigurationFileInfo GeneratedBy="PRINT\Administrator" GeneratedFromPackageName="MoveBulkDailyReportDataRemoteFolder" GeneratedFromPackageID="{A9FB690C-5BD1-455D-81CE-046D16920022}" GeneratedDate="4/1/2021 9:23:43 PM"/></DTSConfigurationHeading><Configuration ConfiguredType="Property" Path="\Package.Connections[10.130.64.115.ERAS].Properties[ConnectionString]" ValueType="String"><ConfiguredValue>Data Source=10.130.64.115;Initial Catalog=ERAS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[10.130.64.115.ERAS].Properties[Description]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[10.130.64.115.ERAS].Properties[InitialCatalog]" ValueType="String"><ConfiguredValue>ERAS</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[10.130.64.115.ERAS].Properties[Name]" ValueType="String"><ConfiguredValue>10.130.64.115.ERAS</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[10.130.64.115.ERAS].Properties[Password]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[10.130.64.115.ERAS].Properties[ProtectionLevel]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[10.130.64.115.ERAS].Properties[RetainSameConnection]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[10.130.64.115.ERAS].Properties[Scope]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[10.130.64.115.ERAS].Properties[ServerName]" ValueType="String"><ConfiguredValue>10.130.64.115</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[10.130.64.115.ERAS].Properties[UserName]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[Ebok_Daily_Report.xlsx].Properties[ConnectionString]" ValueType="String"><ConfiguredValue>\\Farmhost001\DailyReportIn\EBOK Daily Report\Ebok_Daily_Report.xlsx</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[Ebok_Daily_Report.xlsx].Properties[Description]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[Ebok_Daily_Report.xlsx].Properties[FileUsageType]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[Ebok_Daily_Report.xlsx].Properties[Name]" ValueType="String"><ConfiguredValue>Ebok_Daily_Report.xlsx</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[Ebok_Daily_Report.xlsx].Properties[ProtectionLevel]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[Ebok_Daily_Report.xlsx].Properties[Scope]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[Excel Connection Manager].Properties[ConnectionString]" ValueType="String"><ConfiguredValue>Provider=Microsoft.ACE.OLEDB.12.0;User ID=;Data Source=\\Farmhost001\DailyReportIn\EBOK Daily Report\Ebok_Daily_Report.xlsx;Extended Properties="EXCEL 12.0 XML;HDR=YES";</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[Excel Connection Manager].Properties[Description]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[Excel Connection Manager].Properties[ExcelFilePath]" ValueType="String"><ConfiguredValue>\\Farmhost001\DailyReportIn\EBOK Daily Report\Ebok_Daily_Report.xlsx</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[Excel Connection Manager].Properties[ExcelVersionNumber]" ValueType="Int32"><ConfiguredValue>4</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[Excel Connection Manager].Properties[FirstRowHasColumnName]" ValueType="Boolean"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[Excel Connection Manager].Properties[InitialCatalog]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[Excel Connection Manager].Properties[Name]" ValueType="String"><ConfiguredValue>Excel Connection Manager</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[Excel Connection Manager].Properties[Password]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[Excel Connection Manager].Properties[ProtectionLevel]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[Excel Connection Manager].Properties[RetainSameConnection]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[Excel Connection Manager].Properties[Scope]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[Excel Connection Manager].Properties[ServerName]" ValueType="String"><ConfiguredValue>\\Farmhost001\DailyReportIn\EBOK Daily Report\Ebok_Daily_Report.xlsx</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Connections[Excel Connection Manager].Properties[UserName]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::ArchiveFolder].Properties[Description]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::ArchiveFolder].Properties[EvaluateAsExpression]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::ArchiveFolder].Properties[Expression]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::ArchiveFolder].Properties[IncludeInDebugDump]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::ArchiveFolder].Properties[Name]" ValueType="String"><ConfiguredValue>ArchiveFolder</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::ArchiveFolder].Properties[Namespace]" ValueType="String"><ConfiguredValue>User</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::ArchiveFolder].Properties[RaiseChangedEvent]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::ArchiveFolder].Properties[ReadOnly]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::ArchiveFolder].Properties[Value]" ValueType="String"><ConfiguredValue>\\farmhost001\DailyReportArchive</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::Filename].Properties[Description]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::Filename].Properties[EvaluateAsExpression]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::Filename].Properties[Expression]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::Filename].Properties[IncludeInDebugDump]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::Filename].Properties[Name]" ValueType="String"><ConfiguredValue>Filename</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::Filename].Properties[Namespace]" ValueType="String"><ConfiguredValue>User</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::Filename].Properties[RaiseChangedEvent]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::Filename].Properties[ReadOnly]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::Filename].Properties[Value]" ValueType="String"><ConfiguredValue>\EBOKDailyReport</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::FilenameAdd].Properties[Description]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::FilenameAdd].Properties[EvaluateAsExpression]" ValueType="Boolean"><ConfiguredValue>-1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::FilenameAdd].Properties[Expression]" ValueType="String"><ConfiguredValue>RIGHT("0" + (DT_STR, 2, 1252) DATEPART("dd" , GETDATE()), 2) + "-" + RIGHT("0" + (DT_STR, 2, 1252) DATEPART("mm" , GETDATE()), 2) + "-" +  (DT_STR, 4, 1252) DATEPART("yy" , GETDATE()) + ".xlsx"</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::FilenameAdd].Properties[IncludeInDebugDump]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::FilenameAdd].Properties[Name]" ValueType="String"><ConfiguredValue>FilenameAdd</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::FilenameAdd].Properties[Namespace]" ValueType="String"><ConfiguredValue>User</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::FilenameAdd].Properties[RaiseChangedEvent]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::FilenameAdd].Properties[ReadOnly]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::FilenameAdd].Properties[Value]" ValueType="String"><ConfiguredValue>01-04-2021.xlsx</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::FilePattern].Properties[Description]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::FilePattern].Properties[EvaluateAsExpression]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::FilePattern].Properties[Expression]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::FilePattern].Properties[IncludeInDebugDump]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::FilePattern].Properties[Name]" ValueType="String"><ConfiguredValue>FilePattern</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::FilePattern].Properties[Namespace]" ValueType="String"><ConfiguredValue>User</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::FilePattern].Properties[RaiseChangedEvent]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::FilePattern].Properties[ReadOnly]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::FilePattern].Properties[Value]" ValueType="String"><ConfiguredValue>*.xlsx</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::ReceivingFolder].Properties[Description]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::ReceivingFolder].Properties[EvaluateAsExpression]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::ReceivingFolder].Properties[Expression]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::ReceivingFolder].Properties[IncludeInDebugDump]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::ReceivingFolder].Properties[Name]" ValueType="String"><ConfiguredValue>ReceivingFolder</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::ReceivingFolder].Properties[Namespace]" ValueType="String"><ConfiguredValue>User</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::ReceivingFolder].Properties[RaiseChangedEvent]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::ReceivingFolder].Properties[ReadOnly]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Variables[User::ReceivingFolder].Properties[Value]" ValueType="String"><ConfiguredValue>\\farmhost001\DailyReportIn</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[CheckpointFileName]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[CheckpointUsage]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[CreationDate]" ValueType="DateTime"><ConfiguredValue>10/24/2018 3:42:13 PM</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[CreatorComputerName]" ValueType="String"><ConfiguredValue>PRINT</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[CreatorName]" ValueType="String"><ConfiguredValue>PRINT\Administrator</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[DelayValidation]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[Description]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[DesignTimeProperties]" ValueType="String"><ConfiguredValue>&lt;!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.--&gt;
+&lt;!--If you manually edit this section and make a mistake, you can delete it. --&gt;
+&lt;!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.--&gt;
+&lt;Objects
+  Version="8"&gt;
+  &lt;!--Each node below will contain properties that do not affect runtime behavior.--&gt;
+  &lt;Package
+    design-time-name="package-diagram"&gt;
+    &lt;LayoutInfo&gt;
+      &lt;GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml"&gt;
+        &lt;NodeLayout
+          Size="151,42"
+          Id="{}{041DA242-9D3A-4615-AFC4-2274A83F7D95}"
+          TopLeft="455.5,76.5" /&gt;
+        &lt;NodeLayout
+          Size="181,42"
+          Id="{}{DA107887-2DC5-4A84-926F-B9A3094B8841}"
+          TopLeft="706,462" /&gt;
+        &lt;NodeLayout
+          Size="270,42"
+          Id="{}{225215F9-DADB-41C7-99E3-B3176D866CE0}"
+          TopLeft="715,377" /&gt;
+        &lt;NodeLayout
+          Size="266,42"
+          Id="{}{02375B65-4ABE-43E5-8FCB-269418A0A616}"
+          TopLeft="386.5,290" /&gt;
+        &lt;NodeLayout
+          Size="208,42"
+          Id="{}{9F4BFFCB-4DD0-4B99-A7E9-1F444A672D72}"
+          TopLeft="438,182" /&gt;
+        &lt;NodeLayout
+          Size="182,42"
+          Id="{}{A6EF6A9D-8C67-4F57-BA3E-48B142FCEEDA}"
+          TopLeft="402,445" /&gt;
+        &lt;NodeLayout
+          Size="245,42"
+          Id="{}{3B48FC12-5836-4A6E-9DB1-B0634CCFD354}"
+          TopLeft="387.5,374" /&gt;
+        &lt;NodeLayout
+          Size="252,42"
+          Id="{}{C2D12C7A-A2C1-4675-9BED-4B5A3BCEF2F9}"
+          TopLeft="731.5,293" /&gt;
+        &lt;NodeLayout
+          Size="149,42"
+          Id="{}{41EE4A7A-9C5A-4272-93A5-B490BFD218AE}"
+          TopLeft="157,178" /&gt;
+        &lt;NodeLayout
+          Size="173,42"
+          Id="{}{3618F974-D187-4639-BD84-CC420229FFA9}"
+          TopLeft="238,68" /&gt;
+        &lt;EdgeLayout
+          Id="{}{BC139C59-2344-4C2A-86F0-958229DC35BA}"
+          TopLeft="531,118.5"&gt;
+          &lt;EdgeLayout.Curve&gt;
+            &lt;mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-299.5,59.5"
+              Start="0,0"
+              End="-299.5,52"&gt;
+              &lt;mssgle:Curve.Segments&gt;
+                &lt;mssgle:SegmentCollection
+                  Capacity="5"&gt;
+                  &lt;mssgle:LineSegment
+                    End="0,25.75" /&gt;
+                  &lt;mssgle:CubicBezierSegment
+                    Point1="0,25.75"
+                    Point2="0,29.75"
+                    Point3="-4,29.75" /&gt;
+                  &lt;mssgle:LineSegment
+                    End="-295.5,29.75" /&gt;
+                  &lt;mssgle:CubicBezierSegment
+                    Point1="-295.5,29.75"
+                    Point2="-299.5,29.75"
+                    Point3="-299.5,33.75" /&gt;
+                  &lt;mssgle:LineSegment
+                    End="-299.5,52" /&gt;
+                &lt;/mssgle:SegmentCollection&gt;
+              &lt;/mssgle:Curve.Segments&gt;
+            &lt;/mssgle:Curve&gt;
+          &lt;/EdgeLayout.Curve&gt;
+          &lt;EdgeLayout.Labels&gt;
+            &lt;EdgeLabelCollection /&gt;
+          &lt;/EdgeLayout.Labels&gt;
+        &lt;/EdgeLayout&gt;
+        &lt;EdgeLayout
+          Id="{}{F9BDC177-0010-4112-9225-D891A07DD2E6}"
+          TopLeft="542,224"&gt;
+          &lt;EdgeLayout.Curve&gt;
+            &lt;mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-22.5,66"
+              Start="0,0"
+              End="-22.5,58.5"&gt;
+              &lt;mssgle:Curve.Segments&gt;
+                &lt;mssgle:SegmentCollection
+                  Capacity="5"&gt;
+                  &lt;mssgle:LineSegment
+                    End="0,29" /&gt;
+                  &lt;mssgle:CubicBezierSegment
+                    Point1="0,29"
+                    Point2="0,33"
+                    Point3="-4,33" /&gt;
+                  &lt;mssgle:LineSegment
+                    End="-18.5,33" /&gt;
+                  &lt;mssgle:CubicBezierSegment
+                    Point1="-18.5,33"
+                    Point2="-22.5,33"
+                    Point3="-22.5,37" /&gt;
+                  &lt;mssgle:LineSegment
+                    End="-22.5,58.5" /&gt;
+                &lt;/mssgle:SegmentCollection&gt;
+              &lt;/mssgle:Curve.Segments&gt;
+            &lt;/mssgle:Curve&gt;
+          &lt;/EdgeLayout.Curve&gt;
+          &lt;EdgeLayout.Labels&gt;
+            &lt;EdgeLabelCollection /&gt;
+          &lt;/EdgeLayout.Labels&gt;
+        &lt;/EdgeLayout&gt;
+        &lt;EdgeLayout
+          Id="{}{F64B4DCB-B787-4F2B-8B55-0671295DAEB2}"
+          TopLeft="632.5,396.5"&gt;
+          &lt;EdgeLayout.Curve&gt;
+            &lt;mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="82.5,0"
+              Start="0,0"
+              End="75,0"&gt;
+              &lt;mssgle:Curve.Segments&gt;
+                &lt;mssgle:SegmentCollection
+                  Capacity="5"&gt;
+                  &lt;mssgle:LineSegment
+                    End="75,0" /&gt;
+                &lt;/mssgle:SegmentCollection&gt;
+              &lt;/mssgle:Curve.Segments&gt;
+            &lt;/mssgle:Curve&gt;
+          &lt;/EdgeLayout.Curve&gt;
+          &lt;EdgeLayout.Labels&gt;
+            &lt;EdgeLabelCollection /&gt;
+          &lt;/EdgeLayout.Labels&gt;
+        &lt;/EdgeLayout&gt;
+        &lt;EdgeLayout
+          Id="{}{02D56A92-0EED-40E4-BCBB-03A2E8034FBE}"
+          TopLeft="652.5,312.5"&gt;
+          &lt;EdgeLayout.Curve&gt;
+            &lt;mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="79,0"
+              Start="0,0"
+              End="71.5,0"&gt;
+              &lt;mssgle:Curve.Segments&gt;
+                &lt;mssgle:SegmentCollection
+                  Capacity="5"&gt;
+                  &lt;mssgle:LineSegment
+                    End="71.5,0" /&gt;
+                &lt;/mssgle:SegmentCollection&gt;
+              &lt;/mssgle:Curve.Segments&gt;
+            &lt;/mssgle:Curve&gt;
+          &lt;/EdgeLayout.Curve&gt;
+          &lt;EdgeLayout.Labels&gt;
+            &lt;EdgeLabelCollection /&gt;
+          &lt;/EdgeLayout.Labels&gt;
+        &lt;/EdgeLayout&gt;
+        &lt;EdgeLayout
+          Id="{}{EC8FD0B1-D042-49FC-9785-FEA90F11ED3A}"
+          TopLeft="857.5,335"&gt;
+          &lt;EdgeLayout.Curve&gt;
+            &lt;mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-347.5,39"
+              Start="0,0"
+              End="-347.5,31.5"&gt;
+              &lt;mssgle:Curve.Segments&gt;
+                &lt;mssgle:SegmentCollection
+                  Capacity="5"&gt;
+                  &lt;mssgle:LineSegment
+                    End="0,15.5" /&gt;
+                  &lt;mssgle:CubicBezierSegment
+                    Point1="0,15.5"
+                    Point2="0,19.5"
+                    Point3="-4,19.5" /&gt;
+                  &lt;mssgle:LineSegment
+                    End="-343.5,19.5" /&gt;
+                  &lt;mssgle:CubicBezierSegment
+                    Point1="-343.5,19.5"
+                    Point2="-347.5,19.5"
+                    Point3="-347.5,23.5" /&gt;
+                  &lt;mssgle:LineSegment
+                    End="-347.5,31.5" /&gt;
+                &lt;/mssgle:SegmentCollection&gt;
+              &lt;/mssgle:Curve.Segments&gt;
+            &lt;/mssgle:Curve&gt;
+          &lt;/EdgeLayout.Curve&gt;
+          &lt;EdgeLayout.Labels&gt;
+            &lt;EdgeLabelCollection /&gt;
+          &lt;/EdgeLayout.Labels&gt;
+        &lt;/EdgeLayout&gt;
+        &lt;EdgeLayout
+          Id="{}{9FE32A6A-CF0A-4717-9BE0-922BB51CB443}"
+          TopLeft="411,89"&gt;
+          &lt;EdgeLayout.Curve&gt;
+            &lt;mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="44.5,8.5"
+              Start="0,0"
+              End="37,8.5"&gt;
+              &lt;mssgle:Curve.Segments&gt;
+                &lt;mssgle:SegmentCollection
+                  Capacity="5"&gt;
+                  &lt;mssgle:LineSegment
+                    End="18.25,0" /&gt;
+                  &lt;mssgle:CubicBezierSegment
+                    Point1="18.25,0"
+                    Point2="22.25,0"
+                    Point3="22.25,4" /&gt;
+                  &lt;mssgle:LineSegment
+                    End="22.25,4.5" /&gt;
+                  &lt;mssgle:CubicBezierSegment
+                    Point1="22.25,4.5"
+                    Point2="22.25,8.5"
+                    Point3="26.25,8.5" /&gt;
+                  &lt;mssgle:LineSegment
+                    End="37,8.5" /&gt;
+                &lt;/mssgle:SegmentCollection&gt;
+              &lt;/mssgle:Curve.Segments&gt;
+            &lt;/mssgle:Curve&gt;
+          &lt;/EdgeLayout.Curve&gt;
+          &lt;EdgeLayout.Labels&gt;
+            &lt;EdgeLabelCollection /&gt;
+          &lt;/EdgeLayout.Labels&gt;
+        &lt;/EdgeLayout&gt;
+        &lt;EdgeLayout
+          Id="{}{5EAD8B6F-1CD5-408E-832E-478A2B572020}"
+          TopLeft="850,419"&gt;
+          &lt;EdgeLayout.Curve&gt;
+            &lt;mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-357,26"
+              Start="0,0"
+              End="-357,18.5"&gt;
+              &lt;mssgle:Curve.Segments&gt;
+                &lt;mssgle:SegmentCollection
+                  Capacity="5"&gt;
+                  &lt;mssgle:LineSegment
+                    End="0,9" /&gt;
+                  &lt;mssgle:CubicBezierSegment
+                    Point1="0,9"
+                    Point2="0,13"
+                    Point3="-4,13" /&gt;
+                  &lt;mssgle:LineSegment
+                    End="-353,13" /&gt;
+                  &lt;mssgle:CubicBezierSegment
+                    Point1="-353,13"
+                    Point2="-357,13"
+                    Point3="-357,17" /&gt;
+                  &lt;mssgle:LineSegment
+                    End="-357,18.5" /&gt;
+                &lt;/mssgle:SegmentCollection&gt;
+              &lt;/mssgle:Curve.Segments&gt;
+            &lt;/mssgle:Curve&gt;
+          &lt;/EdgeLayout.Curve&gt;
+          &lt;EdgeLayout.Labels&gt;
+            &lt;EdgeLabelCollection /&gt;
+          &lt;/EdgeLayout.Labels&gt;
+        &lt;/EdgeLayout&gt;
+        &lt;EdgeLayout
+          Id="{}{8A683AD3-D6FD-4D51-8361-7DF5427BDACD}"
+          TopLeft="306,201"&gt;
+          &lt;EdgeLayout.Curve&gt;
+            &lt;mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="132,0"
+              Start="0,0"
+              End="124.5,0"&gt;
+              &lt;mssgle:Curve.Segments&gt;
+                &lt;mssgle:SegmentCollection
+                  Capacity="5"&gt;
+                  &lt;mssgle:LineSegment
+                    End="124.5,0" /&gt;
+                &lt;/mssgle:SegmentCollection&gt;
+              &lt;/mssgle:Curve.Segments&gt;
+            &lt;/mssgle:Curve&gt;
+          &lt;/EdgeLayout.Curve&gt;
+          &lt;EdgeLayout.Labels&gt;
+            &lt;EdgeLabelCollection /&gt;
+          &lt;/EdgeLayout.Labels&gt;
+        &lt;/EdgeLayout&gt;
+        &lt;EdgeLayout
+          Id="{}{81BAF31D-91DD-466F-899B-1B575D64E846}"
+          TopLeft="584,466"&gt;
+          &lt;EdgeLayout.Curve&gt;
+            &lt;mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="122,17"
+              Start="0,0"
+              End="114.5,17"&gt;
+              &lt;mssgle:Curve.Segments&gt;
+                &lt;mssgle:SegmentCollection
+                  Capacity="5"&gt;
+                  &lt;mssgle:LineSegment
+                    End="57,0" /&gt;
+                  &lt;mssgle:CubicBezierSegment
+                    Point1="57,0"
+                    Point2="61,0"
+                    Point3="61,4" /&gt;
+                  &lt;mssgle:LineSegment
+                    End="61,13" /&gt;
+                  &lt;mssgle:CubicBezierSegment
+                    Point1="61,13"
+                    Point2="61,17"
+                    Point3="65,17" /&gt;
+                  &lt;mssgle:LineSegment
+                    End="114.5,17" /&gt;
+                &lt;/mssgle:SegmentCollection&gt;
+              &lt;/mssgle:Curve.Segments&gt;
+            &lt;/mssgle:Curve&gt;
+          &lt;/EdgeLayout.Curve&gt;
+          &lt;EdgeLayout.Labels&gt;
+            &lt;EdgeLabelCollection /&gt;
+          &lt;/EdgeLayout.Labels&gt;
+        &lt;/EdgeLayout&gt;
+      &lt;/GraphLayout&gt;
+    &lt;/LayoutInfo&gt;
+  &lt;/Package&gt;
+  &lt;TaskHost
+    design-time-name="{041DA242-9D3A-4615-AFC4-2274A83F7D95}"&gt;
+    &lt;LayoutInfo&gt;
+      &lt;GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph"&gt;
+        &lt;NodeLayout
+          Size="154,42"
+          Id="153"
+          TopLeft="323,250" /&gt;
+        &lt;NodeLayout
+          Size="175,42"
+          Id="165"
+          TopLeft="643,323" /&gt;
+        &lt;NodeLayout
+          Size="153,42"
+          Id="2"
+          TopLeft="150,34" /&gt;
+        &lt;EdgeLayout
+          Id="278"
+          TopLeft="226.5,76"&gt;
+          &lt;EdgeLayout.Curve&gt;
+            &lt;mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="173.5,174"
+              Start="0,0"
+              End="173.5,166.5"&gt;
+              &lt;mssgle:Curve.Segments&gt;
+                &lt;mssgle:SegmentCollection
+                  Capacity="5"&gt;
+                  &lt;mssgle:LineSegment
+                    End="0,83" /&gt;
+                  &lt;mssgle:CubicBezierSegment
+                    Point1="0,83"
+                    Point2="0,87"
+                    Point3="4,87" /&gt;
+                  &lt;mssgle:LineSegment
+                    End="169.5,87" /&gt;
+                  &lt;mssgle:CubicBezierSegment
+                    Point1="169.5,87"
+                    Point2="173.5,87"
+                    Point3="173.5,91" /&gt;
+                  &lt;mssgle:LineSegment
+                    End="173.5,166.5" /&gt;
+                &lt;/mssgle:SegmentCollection&gt;
+              &lt;/mssgle:Curve.Segments&gt;
+            &lt;/mssgle:Curve&gt;
+          &lt;/EdgeLayout.Curve&gt;
+          &lt;EdgeLayout.Labels&gt;
+            &lt;mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" /&gt;
+          &lt;/EdgeLayout.Labels&gt;
+        &lt;/EdgeLayout&gt;
+        &lt;EdgeLayout
+          Id="277"
+          TopLeft="400,292"&gt;
+          &lt;EdgeLayout.Curve&gt;
+            &lt;mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="330.5,31"
+              Start="0,0"
+              End="330.5,23.5"&gt;
+              &lt;mssgle:Curve.Segments&gt;
+                &lt;mssgle:SegmentCollection
+                  Capacity="5"&gt;
+                  &lt;mssgle:LineSegment
+                    End="0,11.5" /&gt;
+                  &lt;mssgle:CubicBezierSegment
+                    Point1="0,11.5"
+                    Point2="0,15.5"
+                    Point3="4,15.5" /&gt;
+                  &lt;mssgle:LineSegment
+                    End="326.5,15.5" /&gt;
+                  &lt;mssgle:CubicBezierSegment
+                    Point1="326.5,15.5"
+                    Point2="330.5,15.5"
+                    Point3="330.5,19.5" /&gt;
+                  &lt;mssgle:LineSegment
+                    End="330.5,23.5" /&gt;
+                &lt;/mssgle:SegmentCollection&gt;
+              &lt;/mssgle:Curve.Segments&gt;
+            &lt;/mssgle:Curve&gt;
+          &lt;/EdgeLayout.Curve&gt;
+          &lt;EdgeLayout.Labels&gt;
+            &lt;mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" /&gt;
+          &lt;/EdgeLayout.Labels&gt;
+        &lt;/EdgeLayout&gt;
+      &lt;/GraphLayout&gt;
+    &lt;/LayoutInfo&gt;
+  &lt;/TaskHost&gt;
+  &lt;PipelineComponentMetadata
+    design-time-name="{041DA242-9D3A-4615-AFC4-2274A83F7D95};165"&gt;
+    &lt;Properties&gt;
+      &lt;Property&gt;
+        &lt;Name&gt;DataSourceViewID&lt;/Name&gt;
+      &lt;/Property&gt;
+      &lt;Property&gt;
+        &lt;Name&gt;TableInfoObjectType&lt;/Name&gt;
+        &lt;Value
+          type="q2:string"&gt;Table&lt;/Value&gt;
+      &lt;/Property&gt;
+    &lt;/Properties&gt;
+  &lt;/PipelineComponentMetadata&gt;
+  &lt;PipelineComponentMetadata
+    design-time-name="{041DA242-9D3A-4615-AFC4-2274A83F7D95};2"&gt;
+    &lt;Properties&gt;
+      &lt;Property&gt;
+        &lt;Name&gt;DataSourceViewID&lt;/Name&gt;
+      &lt;/Property&gt;
+      &lt;Property&gt;
+        &lt;Name&gt;TableInfoObjectType&lt;/Name&gt;
+        &lt;Value
+          type="q2:string"&gt;Table&lt;/Value&gt;
+      &lt;/Property&gt;
+    &lt;/Properties&gt;
+  &lt;/PipelineComponentMetadata&gt;
+&lt;/Objects&gt;</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[Disable]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[DisableEventHandlers]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[DumpDescriptor]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[DumpOnAnyError]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[EnableDump]" ValueType="Boolean"><ConfiguredValue>-1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[EncryptCheckpoints]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[FailPackageOnFailure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[FailParentOnFailure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[ForcedExecutionValue]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[ForceExecutionResult]" ValueType="Int32"><ConfiguredValue>-1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[ForceExecutionValue]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[IgnoreConfigurationsOnLoad]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[InteractiveMode]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[IsolationLevel]" ValueType="Int32"><ConfiguredValue>1048576</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[LocaleID]" ValueType="Int32"><ConfiguredValue>1033</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[LoggingMode]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[MaxConcurrentExecutables]" ValueType="Int32"><ConfiguredValue>-1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[MaximumErrorCount]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[Name]" ValueType="String"><ConfiguredValue>MoveBulkDailyReportDataRemoteFolder</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[OfflineMode]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[PackagePassword]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[PackagePriorityClass]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[PackageType]" ValueType="Int32"><ConfiguredValue>5</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[ProtectionLevel]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[SafeRecursiveProjectPackageExecution]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[SaveCheckpoints]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[SQLFolder]" ValueType="String"><ConfiguredValue>\</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[SuppressConfigurationWarnings]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[TransactionOption]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[UpdateObjects]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[UpdatePackage]" ValueType="Boolean"><ConfiguredValue>-1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[VersionBuild]" ValueType="Int32"><ConfiguredValue>109</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[VersionComments]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[VersionMajor]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package.Properties[VersionMinor]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Data Flow Task.Properties[[Derived Column].[Derived Column Output].[IndicatorDate].[FriendlyExpression]]" ValueType="String"><ConfiguredValue>GETDATE()</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Data Flow Task.Properties[[Derived Column].[Derived Column Output].[SurrogateKey].[FriendlyExpression]]" ValueType="String"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[Attributes]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[DebugMode]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[DelayValidation]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[Description]" ValueType="String"><ConfiguredValue>File System Task</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[Destination]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[Disable]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[DisableEventHandlers]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[FailPackageOnFailure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[FailParentOnFailure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[ForcedExecutionValue]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[ForceExecutionResult]" ValueType="Int32"><ConfiguredValue>-1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[ForceExecutionValue]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[IsDestinationPathVariable]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[IsolationLevel]" ValueType="Int32"><ConfiguredValue>1048576</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[IsSourcePathVariable]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[LocaleID]" ValueType="Int32"><ConfiguredValue>1033</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[LoggingMode]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[MaximumErrorCount]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[Name]" ValueType="String"><ConfiguredValue>Delete File After Load</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[Operation]" ValueType="Int32"><ConfiguredValue>2</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[OperationName]" ValueType="String"><ConfiguredValue></ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[OverwriteDestinationFile]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[PreservedAttributes]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[Source]" ValueType="String"><ConfiguredValue>Ebok_Daily_Report.xlsx</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[SuspendRequired]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[TargetServerVersion]" ValueType="Int32"><ConfiguredValue>140</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Delete File After Load.Properties[TransactionOption]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[BypassPrepare]" ValueType="Boolean"><ConfiguredValue>-1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[CodePage]" ValueType="UInt32"><ConfiguredValue>1252</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[Connection]" ValueType="String"><ConfiguredValue>10.130.64.115.ERAS</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[DelayValidation]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[Description]" ValueType="String"><ConfiguredValue>Execute SQL Task</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[Disable]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[DisableEventHandlers]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[FailPackageOnFailure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[FailParentOnFailure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[ForcedExecutionValue]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[ForceExecutionResult]" ValueType="Int32"><ConfiguredValue>-1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[ForceExecutionValue]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[IsolationLevel]" ValueType="Int32"><ConfiguredValue>1048576</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[IsStoredProcedure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[LocaleID]" ValueType="Int32"><ConfiguredValue>1033</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[LoggingMode]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[MaximumErrorCount]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[Name]" ValueType="String"><ConfiguredValue>PopulateEBOKFieldProductionSummaries</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[ResultSetType]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[SqlStatementSource]" ValueType="String"><ConfiguredValue>Exec PopulateEBOKFieldProductionSummaries</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[SqlStatementSourceType]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[TargetServerVersion]" ValueType="Int32"><ConfiguredValue>140</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[TimeOut]" ValueType="UInt32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[TransactionOption]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEBOKFieldProductionSummaries.Properties[TypeConversionMode]" ValueType="Int32"><ConfiguredValue>2</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[BypassPrepare]" ValueType="Boolean"><ConfiguredValue>-1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[CodePage]" ValueType="UInt32"><ConfiguredValue>1252</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[Connection]" ValueType="String"><ConfiguredValue>10.130.64.115.ERAS</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[DelayValidation]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[Description]" ValueType="String"><ConfiguredValue>Execute SQL Task</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[Disable]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[DisableEventHandlers]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[FailPackageOnFailure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[FailParentOnFailure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[ForcedExecutionValue]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[ForceExecutionResult]" ValueType="Int32"><ConfiguredValue>-1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[ForceExecutionValue]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[IsolationLevel]" ValueType="Int32"><ConfiguredValue>1048576</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[IsStoredProcedure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[LocaleID]" ValueType="Int32"><ConfiguredValue>1033</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[LoggingMode]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[MaximumErrorCount]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[Name]" ValueType="String"><ConfiguredValue>PopulateEKOBDailyProductionIndicators</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[ResultSetType]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[SqlStatementSource]" ValueType="String"><ConfiguredValue>Exec PopulateEKOBDailyProductionIndicators</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[SqlStatementSourceType]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[TargetServerVersion]" ValueType="Int32"><ConfiguredValue>140</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[TimeOut]" ValueType="UInt32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[TransactionOption]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateEKOBDailyProductionIndicators.Properties[TypeConversionMode]" ValueType="Int32"><ConfiguredValue>2</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[BypassPrepare]" ValueType="Boolean"><ConfiguredValue>-1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[CodePage]" ValueType="UInt32"><ConfiguredValue>1252</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[Connection]" ValueType="String"><ConfiguredValue>10.130.64.115.ERAS</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[DelayValidation]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[Description]" ValueType="String"><ConfiguredValue>Execute SQL Task</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[Disable]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[DisableEventHandlers]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[FailPackageOnFailure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[FailParentOnFailure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[ForcedExecutionValue]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[ForceExecutionResult]" ValueType="Int32"><ConfiguredValue>-1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[ForceExecutionValue]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[IsolationLevel]" ValueType="Int32"><ConfiguredValue>1048576</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[IsStoredProcedure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[LocaleID]" ValueType="Int32"><ConfiguredValue>1033</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[LoggingMode]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[MaximumErrorCount]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[Name]" ValueType="String"><ConfiguredValue>PopulateGasAccountingREV</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[ResultSetType]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[SqlStatementSource]" ValueType="String"><ConfiguredValue>Exec PopulateGasAccountingREV</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[SqlStatementSourceType]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[TargetServerVersion]" ValueType="Int32"><ConfiguredValue>140</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[TimeOut]" ValueType="UInt32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[TransactionOption]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateGasAccountingREV.Properties[TypeConversionMode]" ValueType="Int32"><ConfiguredValue>2</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[BypassPrepare]" ValueType="Boolean"><ConfiguredValue>-1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[CodePage]" ValueType="UInt32"><ConfiguredValue>1252</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[Connection]" ValueType="String"><ConfiguredValue>10.130.64.115.ERAS</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[DelayValidation]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[Description]" ValueType="String"><ConfiguredValue>Execute SQL Task</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[Disable]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[DisableEventHandlers]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[FailPackageOnFailure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[FailParentOnFailure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[ForcedExecutionValue]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[ForceExecutionResult]" ValueType="Int32"><ConfiguredValue>-1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[ForceExecutionValue]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[IsolationLevel]" ValueType="Int32"><ConfiguredValue>1048576</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[IsStoredProcedure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[LocaleID]" ValueType="Int32"><ConfiguredValue>1033</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[LoggingMode]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[MaximumErrorCount]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[Name]" ValueType="String"><ConfiguredValue>PopulateOtherReports</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[ResultSetType]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[SqlStatementSource]" ValueType="String"><ConfiguredValue>Exec PopulateOtherReports</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[SqlStatementSourceType]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[TargetServerVersion]" ValueType="Int32"><ConfiguredValue>140</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[TimeOut]" ValueType="UInt32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[TransactionOption]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateOtherReports.Properties[TypeConversionMode]" ValueType="Int32"><ConfiguredValue>2</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[BypassPrepare]" ValueType="Boolean"><ConfiguredValue>-1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[CodePage]" ValueType="UInt32"><ConfiguredValue>1252</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[Connection]" ValueType="String"><ConfiguredValue>10.130.64.115.ERAS</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[DelayValidation]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[Description]" ValueType="String"><ConfiguredValue>Execute SQL Task</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[Disable]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[DisableEventHandlers]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[FailPackageOnFailure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[FailParentOnFailure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[ForcedExecutionValue]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[ForceExecutionResult]" ValueType="Int32"><ConfiguredValue>-1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[ForceExecutionValue]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[IsolationLevel]" ValueType="Int32"><ConfiguredValue>1048576</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[IsStoredProcedure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[LocaleID]" ValueType="Int32"><ConfiguredValue>1033</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[LoggingMode]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[MaximumErrorCount]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[Name]" ValueType="String"><ConfiguredValue>PopulateWaterInjectorRateHeaders</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[ResultSetType]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[SqlStatementSource]" ValueType="String"><ConfiguredValue>Exec PopulateWaterInjectorRateHeaders</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[SqlStatementSourceType]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[TargetServerVersion]" ValueType="Int32"><ConfiguredValue>140</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[TimeOut]" ValueType="UInt32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[TransactionOption]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateHeaders.Properties[TypeConversionMode]" ValueType="Int32"><ConfiguredValue>2</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[BypassPrepare]" ValueType="Boolean"><ConfiguredValue>-1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[CodePage]" ValueType="UInt32"><ConfiguredValue>1252</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[Connection]" ValueType="String"><ConfiguredValue>10.130.64.115.ERAS</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[DelayValidation]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[Description]" ValueType="String"><ConfiguredValue>Execute SQL Task</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[Disable]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[DisableEventHandlers]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[FailPackageOnFailure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[FailParentOnFailure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[ForcedExecutionValue]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[ForceExecutionResult]" ValueType="Int32"><ConfiguredValue>-1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[ForceExecutionValue]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[IsolationLevel]" ValueType="Int32"><ConfiguredValue>1048576</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[IsStoredProcedure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[LocaleID]" ValueType="Int32"><ConfiguredValue>1033</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[LoggingMode]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[MaximumErrorCount]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[Name]" ValueType="String"><ConfiguredValue>PopulateWaterInjectorRateLineItems</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[ResultSetType]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[SqlStatementSource]" ValueType="String"><ConfiguredValue>Exec PopulateWaterInjectorRateLineItems</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[SqlStatementSourceType]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[TargetServerVersion]" ValueType="Int32"><ConfiguredValue>140</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[TimeOut]" ValueType="UInt32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[TransactionOption]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\PopulateWaterInjectorRateLineItems.Properties[TypeConversionMode]" ValueType="Int32"><ConfiguredValue>2</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[BypassPrepare]" ValueType="Boolean"><ConfiguredValue>-1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[CodePage]" ValueType="UInt32"><ConfiguredValue>1252</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[Connection]" ValueType="String"><ConfiguredValue>10.130.64.115.ERAS</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[DelayValidation]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[Description]" ValueType="String"><ConfiguredValue>Execute SQL Task</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[Disable]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[DisableEventHandlers]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[FailPackageOnFailure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[FailParentOnFailure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[ForcedExecutionValue]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[ForceExecutionResult]" ValueType="Int32"><ConfiguredValue>-1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[ForceExecutionValue]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[IsolationLevel]" ValueType="Int32"><ConfiguredValue>1048576</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[IsStoredProcedure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[LocaleID]" ValueType="Int32"><ConfiguredValue>1033</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[LoggingMode]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[MaximumErrorCount]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[Name]" ValueType="String"><ConfiguredValue>Reconcile Date</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[ResultSetType]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[SqlStatementSource]" ValueType="String"><ConfiguredValue>  Declare @myIndicatorDate nvarchar(50)
+select @myIndicatorDate = left(F8, 11) from FieldDailyReportBulk where Id = dbo.findString('Reporting Period:')
+  update [dbo].[FieldDailyReportBulk] set IndicatorDate = @myIndicatorDate 
+
+update FieldDailyReportBulk set F1= replace(F1, ',', '') where left(F1,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F2= replace(F2, ',', '') where left(F2,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F3= replace(F3, ',', '') where left(F3,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F4= replace(F4, ',', '') where left(F4,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F5= replace(F5, ',', '') where left(F5,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F6= replace(F6, ',', '') where left(F6,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F7= replace(F7, ',', '') where left(F7,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F8= replace(F8, ',', '') where left(F8,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F9= replace(F9, ',', '') where left(F9,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F10= replace(F10, ',', '') where left(F10,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F11= replace(F11, ',', '') where left(F11,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F12= replace(F12, ',', '') where left(F12,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F13= replace(F13, ',', '') where left(F13,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F14= replace(F14, ',', '') where left(F14,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F15= replace(F15, ',', '') where left(F15,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F16= replace(F16, ',', '') where left(F16,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F17= replace(F17, ',', '') where left(F17,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F18= replace(F18, ',', '') where left(F18,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F19= replace(F19, ',', '') where left(F19,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F20= replace(F20, ',', '') where left(F20,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F21= replace(F21, ',', '') where left(F21,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F22= replace(F22, ',', '') where left(F22,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F23= replace(F23, ',', '') where left(F23,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F24= replace(F24, ',', '') where left(F24,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F25= replace(F25, ',', '') where left(F25,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F26= replace(F26, ',', '') where left(F26,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F27= replace(F27, ',', '') where left(F27,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F28= replace(F28, ',', '') where left(F28,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F29= replace(F29, ',', '') where left(F29,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F30= replace(F30, ',', '') where left(F30,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F31= replace(F31, ',', '') where left(F31,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F32= replace(F32, ',', '') where left(F32,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F33= replace(F33, ',', '') where left(F33,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F34= replace(F34, ',', '') where left(F34,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F35= replace(F35, ',', '') where left(F35,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F36= replace(F36, ',', '') where left(F36,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F37= replace(F37, ',', '') where left(F37,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F38= replace(F38, ',', '') where left(F38,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F39= replace(F39, ',', '') where left(F39,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F40= replace(F40, ',', '') where left(F40,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F41= replace(F41, ',', '') where left(F41,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F42= replace(F42, ',', '') where left(F42,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F43= replace(F43, ',', '') where left(F43,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F44= replace(F44, ',', '') where left(F44,1) in ('1','2','3','4','5','6','7','8','9','0')
+update FieldDailyReportBulk set F45= replace(F45, ',', '') where left(F45,1) in ('1','2','3','4','5','6','7','8','9','0')
+</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[SqlStatementSourceType]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[TargetServerVersion]" ValueType="Int32"><ConfiguredValue>140</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[TimeOut]" ValueType="UInt32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[TransactionOption]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Reconcile Date.Properties[TypeConversionMode]" ValueType="Int32"><ConfiguredValue>2</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[BypassPrepare]" ValueType="Boolean"><ConfiguredValue>-1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[CodePage]" ValueType="UInt32"><ConfiguredValue>1252</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[Connection]" ValueType="String"><ConfiguredValue>10.130.64.115.ERAS</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[DelayValidation]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[Description]" ValueType="String"><ConfiguredValue>Execute SQL Task</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[Disable]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[DisableEventHandlers]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[FailPackageOnFailure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[FailParentOnFailure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[ForcedExecutionValue]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[ForceExecutionResult]" ValueType="Int32"><ConfiguredValue>-1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[ForceExecutionValue]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[IsolationLevel]" ValueType="Int32"><ConfiguredValue>1048576</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[IsStoredProcedure]" ValueType="Boolean"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[LocaleID]" ValueType="Int32"><ConfiguredValue>1033</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[LoggingMode]" ValueType="Int32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[MaximumErrorCount]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[Name]" ValueType="String"><ConfiguredValue>Truncate DailyTable</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[ResultSetType]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[SqlStatementSource]" ValueType="String"><ConfiguredValue>truncate table FieldDailyReportBulk</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[SqlStatementSourceType]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[TargetServerVersion]" ValueType="Int32"><ConfiguredValue>140</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[TimeOut]" ValueType="UInt32"><ConfiguredValue>0</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[TransactionOption]" ValueType="Int32"><ConfiguredValue>1</ConfiguredValue></Configuration><Configuration ConfiguredType="Property" Path="\Package\Truncate DailyTable.Properties[TypeConversionMode]" ValueType="Int32"><ConfiguredValue>2</ConfiguredValue></Configuration></DTSConfiguration>

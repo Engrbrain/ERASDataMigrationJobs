@@ -1,0 +1,1468 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/3/2018 12:47:30 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="OERLAGITDHAUH"
+  DTS:CreatorName="ORIENTAL-ER\Harrison.Uhunghama"
+  DTS:DTSID="{70FBF06C-B250-4EAB-91A1-7F8480B5460E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.107"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="UploadGasInjectorDailyIndicators"
+  DTS:PackageType="5"
+  DTS:VersionBuild="52"
+  DTS:VersionGUID="{3E24D281-8903-4E0E-AEA6-B5E28A46B8AF}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{8CA9FCE0-CC7A-4B47-B95C-DC8ADCF84479}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\ProductionAccounting\Daily Well Surveillance (UPDATED).xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OERLAGITDHAUH.ERAS.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{F281B613-B6AF-439D-BDB4-87329EE57063}"
+      DTS:ObjectName="OERLAGITDHAUH.ERAS.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=10.130.64.137;Initial Catalog=ERAS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\GasInjectorDailyIndicators"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{97AFDA37-5879-4F55-BBCF-91099C921EF8}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="GasInjectorDailyIndicators">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\GasInjectorDailyIndicators\Check for Duplicate"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Check for Duplicate"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select substring(convert(nvarchar(50),IndicatorDate), 6,2) + '/' + 
+substring(convert(nvarchar(50),IndicatorDate), 9,2) + '/' + substring(convert(nvarchar(50),IndicatorDate),1,4) as DuplicateChecker  from GasInjectorDailyIndicators</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select substring(convert(nvarchar(50),IndicatorDate), 6,2) + '/' + 
+substring(convert(nvarchar(50),IndicatorDate), 9,2) + '/' + substring(convert(nvarchar(50),IndicatorDate),1,4) as DuplicateChecker  from GasInjectorDailyIndicators) [refTable]
+where [refTable].[DuplicateChecker] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DuplicateChecker" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\GasInjectorDailyIndicators\Derived Column 1.Outputs[Derived Column Output].Columns[DuplicateChecker]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\GasInjectorDailyIndicators\Check for Duplicate.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OERLAGITDHAUH.ERAS.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[OERLAGITDHAUH.ERAS.sa]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\GasInjectorDailyIndicators\Check for Duplicate.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\GasInjectorDailyIndicators\Check for Duplicate.Inputs[Lookup Input].Columns[DuplicateChecker]"
+                      cachedDataType="wstr"
+                      cachedLength="86"
+                      cachedName="DuplicateChecker"
+                      lineageId="Package\GasInjectorDailyIndicators\Derived Column 1.Outputs[Derived Column Output].Columns[DuplicateChecker]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DuplicateChecker</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\GasInjectorDailyIndicators\Check for Duplicate.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\GasInjectorDailyIndicators\Check for Duplicate.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\Check for Duplicate.Outputs[Lookup Match Output].Columns[DuplicateChecker]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="10"
+                      lineageId="Package\GasInjectorDailyIndicators\Check for Duplicate.Outputs[Lookup Match Output].Columns[DuplicateChecker]"
+                      name="DuplicateChecker"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DuplicateChecker</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\GasInjectorDailyIndicators\Check for Duplicate.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\GasInjectorDailyIndicators\Check for Duplicate.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\GasInjectorDailyIndicators\Check for Duplicate.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\GasInjectorDailyIndicators\Check for Duplicate.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\Check for Duplicate.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\GasInjectorDailyIndicators\Check for Duplicate.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\Check for Duplicate.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\GasInjectorDailyIndicators\Check for Duplicate.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\GasInjectorDailyIndicators\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\GasInjectorDailyIndicators\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\GasInjectorDailyIndicators\Data Conversion.Inputs[Data Conversion Input].Columns[DATE]"
+                      cachedDataType="date"
+                      cachedName="DATE"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[DATE]" />
+                    <inputColumn
+                      refId="Package\GasInjectorDailyIndicators\Data Conversion.Inputs[Data Conversion Input].Columns[DayOftheWeek]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="DayOftheWeek"
+                      lineageId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Output].Columns[DayOftheWeek]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\GasInjectorDailyIndicators\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\GasInjectorDailyIndicators\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of DATE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="80"
+                      lineageId="Package\GasInjectorDailyIndicators\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of DATE]"
+                      name="Copy of DATE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[DATE]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of DayOftheWeek]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\GasInjectorDailyIndicators\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of DayOftheWeek]"
+                      name="Copy of DayOftheWeek"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Output].Columns[DayOftheWeek]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\GasInjectorDailyIndicators\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\GasInjectorDailyIndicators\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\GasInjectorDailyIndicators\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\GasInjectorDailyIndicators\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\GasInjectorDailyIndicators\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\GasInjectorDailyIndicators\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\GasInjectorDailyIndicators\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Output].Columns[ReportDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Output].Columns[ReportDate]"
+                      name="ReportDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[SUBSTRING]((DT_STR,50,1256)[DATEADD]("DAY",-1,[GETDATE]()),1,10)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING((DT_STR,50,1256)DATEADD("DAY",-1,GETDATE()),1,10)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Output].Columns[UploadTime]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="2"
+                      lineageId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Output].Columns[UploadTime]"
+                      name="UploadTime"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[RIGHT]("0" + (DT_STR,2,1252)[DATEPART]("hh",[GETDATE]()),2)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">RIGHT("0" + (DT_STR,2,1252)DATEPART("hh",GETDATE()),2)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Output].Columns[TimeStamp]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Output].Columns[TimeStamp]"
+                      name="TimeStamp"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Output].Columns[DayOftheWeek]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Output].Columns[DayOftheWeek]"
+                      name="DayOftheWeek"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,20,1252)(([DATEPART]("DW",[GETDATE]()) == 1) ? "SUNDAY" : ([DATEPART]("DW",[GETDATE]()) == 2) ? "MONDAY" : ([DATEPART]("DW",[GETDATE]()) == 3) ? "TUESDAY" : ([DATEPART]("DW",[GETDATE]()) == 4) ? "WEDNESDAY" : ([DATEPART]("DW",[GETDATE]()) == 5) ? "THURSDAY" : ([DATEPART]("DW",[GETDATE]()) == 6) ? "FRIDAY" : ([DATEPART]("DW",[GETDATE]()) == 7) ? "SATURDAY" : "NULL")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,20,1252)((DATEPART("DW",GETDATE()) == 1) ? "SUNDAY" : (DATEPART("DW",GETDATE()) == 2) ? "MONDAY" : (DATEPART("DW",GETDATE()) == 3) ? "TUESDAY" : (DATEPART("DW",GETDATE()) == 4) ? "WEDNESDAY" : (DATEPART("DW",GETDATE()) == 5) ? "THURSDAY" : (DATEPART("DW",GETDATE()) == 6) ? "FRIDAY" : (DATEPART("DW",GETDATE()) == 7) ? "SATURDAY" : "NULL")</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Output].Columns[Well]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="9"
+                      lineageId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Output].Columns[Well]"
+                      name="Well"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"Ebok-9INJ"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Ebok-9INJ"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\GasInjectorDailyIndicators\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\GasInjectorDailyIndicators\Derived Column 1"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\GasInjectorDailyIndicators\Derived Column 1.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\GasInjectorDailyIndicators\Derived Column 1.Inputs[Derived Column Input].Columns[Copy of DATE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="80"
+                      cachedName="Copy of DATE"
+                      lineageId="Package\GasInjectorDailyIndicators\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of DATE]" />
+                    <inputColumn
+                      refId="Package\GasInjectorDailyIndicators\Derived Column 1.Inputs[Derived Column Input].Columns[Well]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="Well"
+                      lineageId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Output].Columns[Well]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\GasInjectorDailyIndicators\Derived Column 1.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\GasInjectorDailyIndicators\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\Derived Column 1.Outputs[Derived Column Output].Columns[DuplicateChecker]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="86"
+                      lineageId="Package\GasInjectorDailyIndicators\Derived Column 1.Outputs[Derived Column Output].Columns[DuplicateChecker]"
+                      name="DuplicateChecker"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\GasInjectorDailyIndicators\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of DATE]} + #{Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Output].Columns[Well]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">[Copy of DATE] + Well</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\GasInjectorDailyIndicators\Derived Column 1.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\GasInjectorDailyIndicators\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\GasInjectorDailyIndicators\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\GasInjectorDailyIndicators\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="GasInjectorDailyIndicators"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">'Ebok-9$'</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM [Ebok-9 Gas INJ$A5:K65536] where [UPTIME (hr:mm)] is not null</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[REMARK]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].ExternalColumns[REMARK]"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[REMARK]"
+                      name="REMARK"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[DATE]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].ExternalColumns[DATE]"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[DATE]"
+                      name="DATE"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[CHOKE    SIZE (1/64&quot;)]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].ExternalColumns[CHOKE    SIZE (1/64&quot;)]"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[CHOKE    SIZE (1/64&quot;)]"
+                      name="CHOKE    SIZE (1/64&quot;)"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[Comp_Disch Press_(Psig)]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].ExternalColumns[Comp_Disch Press_(Psig)]"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[Comp_Disch Press_(Psig)]"
+                      name="Comp_Disch Press_(Psig)"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[Gas Inject  (mmscf/d)_Flow Rate]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].ExternalColumns[Gas Inject  (mmscf/d)_Flow Rate]"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[Gas Inject  (mmscf/d)_Flow Rate]"
+                      name="Gas Inject  (mmscf/d)_Flow Rate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[IFLP (Psig)]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].ExternalColumns[IFLP (Psig)]"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[IFLP (Psig)]"
+                      name="IFLP (Psig)"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[IFL Skin Temp         (deg F)]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].ExternalColumns[IFL Skin Temp         (deg F)]"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[IFL Skin Temp         (deg F)]"
+                      name="IFL Skin Temp         (deg F)"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[ITHP (Psi)]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].ExternalColumns[ITHP (Psi)]"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[ITHP (Psi)]"
+                      name="ITHP (Psi)"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[IBHP]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].ExternalColumns[IBHP]"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[IBHP]"
+                      name="IBHP"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[IBHT (oF)]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].ExternalColumns[IBHT (oF)]"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[IBHT (oF)]"
+                      name="IBHT (oF)"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[UPTIME (hr:mm)]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].ExternalColumns[UPTIME (hr:mm)]"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[UPTIME (hr:mm)]"
+                      name="UPTIME (hr:mm)"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].ExternalColumns[REMARK]"
+                      dataType="r8"
+                      name="REMARK" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].ExternalColumns[DATE]"
+                      dataType="date"
+                      name="DATE" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].ExternalColumns[UPTIME (hr:mm)]"
+                      dataType="r8"
+                      name="UPTIME (hr:mm)" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].ExternalColumns[CHOKE    SIZE (1/64&quot;)]"
+                      dataType="r8"
+                      name="CHOKE    SIZE (1/64&quot;)" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].ExternalColumns[Comp_Disch Press_(Psig)]"
+                      dataType="r8"
+                      name="Comp_Disch Press_(Psig)" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].ExternalColumns[Gas Inject  (mmscf/d)_Flow Rate]"
+                      dataType="r8"
+                      name="Gas Inject  (mmscf/d)_Flow Rate" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].ExternalColumns[IFLP (Psig)]"
+                      dataType="r8"
+                      name="IFLP (Psig)" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].ExternalColumns[IFL Skin Temp         (deg F)]"
+                      dataType="r8"
+                      name="IFL Skin Temp         (deg F)" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].ExternalColumns[ITHP (Psi)]"
+                      dataType="r8"
+                      name="ITHP (Psi)" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].ExternalColumns[IBHP]"
+                      dataType="r8"
+                      name="IBHP" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].ExternalColumns[IBHT (oF)]"
+                      dataType="r8"
+                      name="IBHT (oF)" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[DATE]"
+                      dataType="date"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[DATE]"
+                      name="DATE" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[CHOKE    SIZE (1/64&quot;)]"
+                      dataType="r8"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[CHOKE    SIZE (1/64&quot;)]"
+                      name="CHOKE    SIZE (1/64&quot;)" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[REMARK]"
+                      dataType="r8"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[REMARK]"
+                      name="REMARK" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[Comp_Disch Press_(Psig)]"
+                      dataType="r8"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[Comp_Disch Press_(Psig)]"
+                      name="Comp_Disch Press_(Psig)" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[Gas Inject  (mmscf/d)_Flow Rate]"
+                      dataType="r8"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[Gas Inject  (mmscf/d)_Flow Rate]"
+                      name="Gas Inject  (mmscf/d)_Flow Rate" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[IFLP (Psig)]"
+                      dataType="r8"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[IFLP (Psig)]"
+                      name="IFLP (Psig)" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[IFL Skin Temp         (deg F)]"
+                      dataType="r8"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[IFL Skin Temp         (deg F)]"
+                      name="IFL Skin Temp         (deg F)" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[ITHP (Psi)]"
+                      dataType="r8"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[ITHP (Psi)]"
+                      name="ITHP (Psi)" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[IBHP]"
+                      dataType="r8"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[IBHP]"
+                      name="IBHP" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[IBHT (oF)]"
+                      dataType="r8"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[IBHT (oF)]"
+                      name="IBHT (oF)" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[UPTIME (hr:mm)]"
+                      dataType="r8"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Error Output].Columns[UPTIME (hr:mm)]"
+                      name="UPTIME (hr:mm)" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="GasInjectorDailyIndicators MSSQL"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[GasInjectorDailyIndicatorsStagings]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OERLAGITDHAUH.ERAS.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[OERLAGITDHAUH.ERAS.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].Columns[ReportDate]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="ReportDate"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ReportDate]"
+                      lineageId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Output].Columns[ReportDate]" />
+                    <inputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].Columns[UploadTime]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="UploadTime"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[UploadTime]"
+                      lineageId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Output].Columns[UploadTime]" />
+                    <inputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].Columns[TimeStamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="TimeStamp"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TimeStamp]"
+                      lineageId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Output].Columns[TimeStamp]" />
+                    <inputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].Columns[DATE]"
+                      cachedDataType="date"
+                      cachedName="DATE"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[IndicatorDate]"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[DATE]" />
+                    <inputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].Columns[Copy of DayOftheWeek]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Copy of DayOftheWeek"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[DayOftheWeek]"
+                      lineageId="Package\GasInjectorDailyIndicators\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of DayOftheWeek]" />
+                    <inputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].Columns[REMARK]"
+                      cachedDataType="r8"
+                      cachedName="REMARK"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Remark]"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[REMARK]" />
+                    <inputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].Columns[CHOKE    SIZE (1/64&quot;)]"
+                      cachedDataType="r8"
+                      cachedName="CHOKE    SIZE (1/64&quot;)"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ChokeSize]"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[CHOKE    SIZE (1/64&quot;)]" />
+                    <inputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].Columns[IBHT (oF)]"
+                      cachedDataType="r8"
+                      cachedName="IBHT (oF)"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[IBHT]"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[IBHT (oF)]" />
+                    <inputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].Columns[IBHP]"
+                      cachedDataType="r8"
+                      cachedName="IBHP"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[IBHP]"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[IBHP]" />
+                    <inputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].Columns[ITHP (Psi)]"
+                      cachedDataType="r8"
+                      cachedName="ITHP (Psi)"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ITHP]"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[ITHP (Psi)]" />
+                    <inputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].Columns[IFL Skin Temp         (deg F)]"
+                      cachedDataType="r8"
+                      cachedName="IFL Skin Temp         (deg F)"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[IFLSkinTemp]"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[IFL Skin Temp         (deg F)]" />
+                    <inputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].Columns[IFLP (Psig)]"
+                      cachedDataType="r8"
+                      cachedName="IFLP (Psig)"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[IFLP]"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[IFLP (Psig)]" />
+                    <inputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].Columns[Gas Inject  (mmscf/d)_Flow Rate]"
+                      cachedDataType="r8"
+                      cachedName="Gas Inject  (mmscf/d)_Flow Rate"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[GasInject]"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[Gas Inject  (mmscf/d)_Flow Rate]" />
+                    <inputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].Columns[Comp_Disch Press_(Psig)]"
+                      cachedDataType="r8"
+                      cachedName="Comp_Disch Press_(Psig)"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[CompDischPress]"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[Comp_Disch Press_(Psig)]" />
+                    <inputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].Columns[UPTIME (hr:mm)]"
+                      cachedDataType="r8"
+                      cachedName="UPTIME (hr:mm)"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Uptime]"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output].Columns[UPTIME (hr:mm)]" />
+                    <inputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].Columns[Well]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="Well"
+                      externalMetadataColumnId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Well]"
+                      lineageId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Output].Columns[Well]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="i4"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[IndicatorDate]"
+                      dataType="nText"
+                      name="IndicatorDate" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ReportDate]"
+                      dataType="dbTimeStamp2"
+                      name="ReportDate"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[UploadTime]"
+                      dataType="nText"
+                      name="UploadTime" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[TimeStamp]"
+                      dataType="dbTimeStamp2"
+                      name="TimeStamp"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[DayOftheWeek]"
+                      dataType="nText"
+                      name="DayOftheWeek" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Remark]"
+                      dataType="nText"
+                      name="Remark" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ChokeSize]"
+                      dataType="nText"
+                      name="ChokeSize" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Uptime]"
+                      dataType="nText"
+                      name="Uptime" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[CompDischPress]"
+                      dataType="nText"
+                      name="CompDischPress" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[GasInject]"
+                      dataType="nText"
+                      name="GasInject" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[IFLP]"
+                      dataType="nText"
+                      name="IFLP" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[IFLSkinTemp]"
+                      dataType="nText"
+                      name="IFLSkinTemp" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[ITHP]"
+                      dataType="nText"
+                      name="ITHP" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[IBHP]"
+                      dataType="nText"
+                      name="IBHP" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[IBHT]"
+                      dataType="nText"
+                      name="IBHT" />
+                    <externalMetadataColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input].ExternalColumns[Well]"
+                      dataType="nText"
+                      name="Well" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\GasInjectorDailyIndicators.Paths[Data Conversion Output]"
+              endId="Package\GasInjectorDailyIndicators\Derived Column 1.Inputs[Derived Column Input]"
+              name="Data Conversion Output"
+              startId="Package\GasInjectorDailyIndicators\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\GasInjectorDailyIndicators.Paths[Derived Column Output]"
+              endId="Package\GasInjectorDailyIndicators\Data Conversion.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\GasInjectorDailyIndicators\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\GasInjectorDailyIndicators.Paths[Derived Column Output1]"
+              endId="Package\GasInjectorDailyIndicators\Check for Duplicate.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\GasInjectorDailyIndicators\Derived Column 1.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\GasInjectorDailyIndicators.Paths[Excel Source Output]"
+              endId="Package\GasInjectorDailyIndicators\Derived Column.Inputs[Derived Column Input]"
+              name="Excel Source Output"
+              startId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\GasInjectorDailyIndicators.Paths[Lookup No Match Output]"
+              endId="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\GasInjectorDailyIndicators\Check for Duplicate.Outputs[Lookup No Match Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Reconcile Data"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{598EF10E-7003-4780-82A9-6E67E8447596}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Reconcile Data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{F281B613-B6AF-439D-BDB4-87329EE57063}"
+          SQLTask:SqlStatementSource="Exec ProcessHistoricGasInjectorDailyIndicators" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{C270C353-1B54-4F93-9D57-B8288DCBD2B3}"
+      DTS:From="Package\GasInjectorDailyIndicators"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Reconcile Data" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="203,42"
+          Id="Package\GasInjectorDailyIndicators"
+          TopLeft="105,78" />
+        <NodeLayout
+          Size="149,42"
+          Id="Package\Reconcile Data"
+          TopLeft="399,149" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="206.5,120">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="267,29"
+              Start="0,0"
+              End="267,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.5"
+                    Point2="0,14.5"
+                    Point3="4,14.5" />
+                  <mssgle:LineSegment
+                    End="263,14.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="263,14.5"
+                    Point2="267,14.5"
+                    Point3="267,18.5" />
+                  <mssgle:LineSegment
+                    End="267,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\GasInjectorDailyIndicators">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="163,42"
+          Id="Package\GasInjectorDailyIndicators\Derived Column 1"
+          TopLeft="539,221" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\GasInjectorDailyIndicators\Data Conversion"
+          TopLeft="318,217" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\GasInjectorDailyIndicators\Derived Column"
+          TopLeft="225,144" />
+        <NodeLayout
+          Size="203,42"
+          Id="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators"
+          TopLeft="93,46" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\GasInjectorDailyIndicators\Check for Duplicate"
+          TopLeft="839,224" />
+        <NodeLayout
+          Size="239,42"
+          Id="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL"
+          TopLeft="548,340" />
+        <EdgeLayout
+          Id="Package\GasInjectorDailyIndicators.Paths[Data Conversion Output]"
+          TopLeft="474,240">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="65,0"
+              Start="0,0"
+              End="57.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="57.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\GasInjectorDailyIndicators.Paths[Lookup No Match Output]"
+          TopLeft="924.5,266">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-257,74"
+              Start="0,0"
+              End="-257,66.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33"
+                    Point2="0,37"
+                    Point3="-4,37" />
+                  <mssgle:LineSegment
+                    End="-253,37" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-253,37"
+                    Point2="-257,37"
+                    Point3="-257,41" />
+                  <mssgle:LineSegment
+                    End="-257,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-184.30638671875,42,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\GasInjectorDailyIndicators.Paths[Excel Source Output]"
+          TopLeft="194.5,88">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="107.5,56"
+              Start="0,0"
+              End="107.5,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24"
+                    Point2="0,28"
+                    Point3="4,28" />
+                  <mssgle:LineSegment
+                    End="103.5,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="103.5,28"
+                    Point2="107.5,28"
+                    Point3="107.5,32" />
+                  <mssgle:LineSegment
+                    End="107.5,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\GasInjectorDailyIndicators.Paths[Derived Column Output1]"
+          TopLeft="702,243.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="137,0"
+              Start="0,0"
+              End="129.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="129.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\GasInjectorDailyIndicators.Paths[Derived Column Output]"
+          TopLeft="302,186">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="94,31"
+              Start="0,0"
+              End="94,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.5"
+                    Point2="0,15.5"
+                    Point3="4,15.5" />
+                  <mssgle:LineSegment
+                    End="90,15.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="90,15.5"
+                    Point2="94,15.5"
+                    Point3="94,19.5" />
+                  <mssgle:LineSegment
+                    End="94,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\GasInjectorDailyIndicators\Check for Duplicate">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\GasInjectorDailyIndicators\GasInjectorDailyIndicators MSSQL">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
